@@ -54,5 +54,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/illumininja)]
 
-* Role: Developer
-* Responsibilities: Testing
+* Role: Developer, Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
