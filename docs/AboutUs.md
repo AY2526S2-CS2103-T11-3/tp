@@ -51,5 +51,5 @@ Role: Developer, Scheduling and Tracking
 
 [[github](http://github.com/illumininja)]
 
-* Role: Developer
-* Responsibilities: Testing
+* Role: Developer, Testing
+* Responsibilities: Ensures the testing of the project is done properly and on time.
