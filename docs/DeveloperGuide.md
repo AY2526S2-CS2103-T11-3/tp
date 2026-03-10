@@ -398,8 +398,11 @@ Use case ends.
 
 ### Glossary
 
+* **Diagnosis**: A medical description of a patient's condition or disease based on symptoms, medical history, and clinical examination
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Prescription**: A written order from a doctor specifying medication, dosage, and administration instructions for a patient's treatment
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Symptoms**: Physical or mental signs experienced by a patient that indicate a medical condition or disease
 
 ---
 
