@@ -20,10 +20,12 @@ public class Person {
     // Remove address field
 
     // Identity fields
+    private static final NRIC DEFAULT_NRIC = new NRIC("S0000000J");
+
     private final Name name;
+    private final NRIC nric;
     private final Phone phone;
     private final Email email;
-    private final NRIC nric;
 
     // Data fields
     private final Address address;
@@ -33,8 +35,16 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        this(name, DEFAULT_NRIC, phone, email, address, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, NRIC nric, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, nric, phone, email, address, tags);
         this.name = name;
+        this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -43,6 +53,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public NRIC getNric() {
+        return nric;
     }
 
     public Phone getPhone() {
