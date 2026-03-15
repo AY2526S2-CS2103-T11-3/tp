@@ -281,7 +281,6 @@ Clinic staff who manage patient and vendor information as part of daily clinic o
 - Speed up patient registration during busy hours
 - Improve data consistency across patient and vendor records
 - Decrease dependency on individual staff memory
-- Improve traceability of record changes over time
 - Support quicker onboarding of new staff
 
 ### User stories
@@ -294,7 +293,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | Doctor               | Record an existing patient's symptoms, issue a diagnosis and generate prescriptions with specified dosages   | The patient receives accurate and timely treatment                                          |
 | `* * *` | Doctor               | Retrieve an existing patient's medical history                                                               | We can make informed, clinical diagnosis                                                    |
 | `* `    | Doctor               | Order lab or imaging tests                                                                                   | We can confirm or refine a diagnosis                                                        |
-| `* `    | Doctor               | Discontinue a medication                                                                                     | Unnecessary or harmful treatment is stopped safely                                          |
 | `* *`   | Doctor               | Generate a medical certificate for a patient                                                                 | They can formally justify absence from work, school, or other obligations                   |
 | `*`     | Doctor               | Generate a specialist referral                                                                               | The patient can receive expert evaluation or treatment for conditions beyond my scope       |
 | `*`     | Doctor               | Document any reported side-effects linked to a specific medication and prescription after its administration | Adverse reactions are traceable and clinically actionable                                   |
