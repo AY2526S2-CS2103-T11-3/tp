@@ -265,28 +265,70 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+Clinic staff who manage patient and vendor information as part of daily clinic operations
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+* Registering patients
+* Managing contact information (patients, vendors, etc.)
+* Retrieving and updating records quickly
+
+**Value proposition**:
+
+- Digitises and reduce paper-based records
+- Faster information retrieval
+- Reduced human error (illegible handwriting, duplicate entries, etc.)
+- Easy to learn and use, designed for staff with basic computer skills
+- Lightweight and cost effective (minimal resources and no complex setup)
+- Speed up patient registration during busy hours
+- Improve data consistency across patient and vendor records
+- Decrease dependency on individual staff memory
+- Support quicker onboarding of new staff
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority  | As a …                                    | I want to …                 | So that I can…                                                        |
-| --------- | ------------------------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| `* * *` | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | add a new person             |                                                                        |
-| `* * *` | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *` | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`   | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`     | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority  | As a…               | I can…                                                                                                      | So that…                                                                                   |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| `* * `  | Doctor               | Update an existing patient's health information                                                              | I can make medical decisions based on the most current medical history.                     |
+| `* * *` | Doctor               | Record an existing patient's symptoms, issue a diagnosis and generate prescriptions with specified dosages   | The patient receives accurate and timely treatment                                          |
+| `* * *` | Doctor               | Retrieve an existing patient's medical history                                                               | We can make informed, clinical diagnosis                                                    |
+| `* `    | Doctor               | Order lab or imaging tests                                                                                   | We can confirm or refine a diagnosis                                                        |
+| `* *`   | Doctor               | Generate a medical certificate for a patient                                                                 | They can formally justify absence from work, school, or other obligations                   |
+| `*`     | Doctor               | Generate a specialist referral                                                                               | The patient can receive expert evaluation or treatment for conditions beyond my scope       |
+| `*`     | Doctor               | Document any reported side-effects linked to a specific medication and prescription after its administration | Adverse reactions are traceable and clinically actionable                                   |
+| `*`     | Doctor               | Retrieve an existing patient's medical records from their caregiver or next-of-kin's name                    | We can access the correct patient records when the patient cannot provide identification    |
+| `* `    | Doctor               | Record an existing patient's vital signs                                                                     | Changes in condition can be monitored                                                       |
+| `* `    | Doctor               | Log medication administration details                                                                        | Treatment delivery is traceable                                                             |
+| `* *`   | Doctor               | Schedule follow-up appointments before discharge                                                             | Continuity of care is maintained                                                            |
+| `* * *` | Pharmacist           | Retrieve a patient's health information                                                                      | We can issue the right medication based on the doctor's recommendation                      |
+| `* *`   | Pharmacist           | Update a prescription after identifying an incorrect medication or dosage                                    | The patient receives the correct treatment while maintaining a clear audit trail of changes |
+| `* *`   | Pharmacist           | Mark a prescription as dispensed                                                                             | Medication fulfillment is fully tracked                                                     |
+| `*`     | Pharmacist           | Generate a prescription record for a patient when the medication is unavailable                              | The patient can pick it up from another authorised pharmacy                                 |
+| `* * *` | Existing patient     | View my medical records                                                                                      | I can understand my health condition and treatment history                                  |
+| `*`     | Existing patient     | Request a refill on my prescription                                                                          | My treatment is not interrupted                                                             |
+| `*`     | Existing patient     | Schedule an appointment                                                                                      | I receive timely medical care                                                               |
+| `* *`   | Existing patient     | Update my contact information                                                                                | The clinic can reach me whenever necessary                                                  |
+| `* *`   | Existing patient     | Grant access to my caregiver or next-of-kin                                                                  | They can assist in managing my healthcare                                                   |
+| `* * *` | System Administrator | Purge a patient's record based on data retention policy                                                      | We maintain only the data that is required to operate compliantly                           |
+| `* * *` | System Administrator | Register a new patient                                                                                       | The patient can be registered in the system and receive care                                |
+| `* * *` | System Administrator | Register a new doctor                                                                                        | They can access the clinic system with the appropriate permissions                          |
+| `* * *` | System Administrator | Register a new pharmacist                                                                                    | They can access the clinic system with the appropriate permissions                          |
+| `* *`   | Registration staff   | Have phone numbers and IDs auto formatted                                                                    | Data is entered consistently                                                                |
+| `* * *` | Registration staff   | Search for an existing patient before creating a new record                                                  | I can avoid creating a duplicated patient record                                            |
+| `* * *` | Registration staff   | Search for patients by name, NRIC, or phone number                                                           | I can retrieve records quickly                                                              |
+| `*`     | System Administrator | Import a patient medical history from an external clinic after verification                                  | The patient's records are complete and up-to-date                                           |
 
-*{More to be added}*
+## MVP User Stories
+
+| Priority  | As a…               | I can…                                                                                                    | So that…                                                           |
+| --------- | -------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `* * *` | Doctor               | Record an existing patient's symptoms, issue a diagnosis and generate prescriptions with specified dosages | The patient receives accurate and timely treatment                  |
+| `* * *` | Doctor / Pharmacist  | Retrieve an existing patient's medical history                                                             | We can make informed, clinical diagnosis                            |
+| `* * *` | System Administrator | Purge a patient's record based on data retention policy                                                    | We maintain only the data that is required to operate compliantly   |
+| `* * *` | System Administrator | Register a new patient                                                                                     | The patient can be registered in the system and receive care        |
+| `* * *` | System Administrator | Register a new doctor                                                                                      | They can access the clinic system with the appropriate permissions. |
+| `* * *` | System Administrator | Register a new pharmacist                                                                                  | They can access the clinic system with the appropriate permissions. |
+| `* * *` | Registration staff   | Search for patients by name, NRIC, or phone number                                                         | I can retrieve records quickly                                      |
 
 ### Use cases
 
@@ -342,10 +384,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. ClinicBook cannot find the record
-   * 2a1. ClinicBook notifies the user that no records was found.
+   * 2a1. ClinicBook notifies the user that no records were found.
    Use case ends.
 
-* 3a. The given NRIC is invalid.
+* 3a. The patient's NRIC / Name is invalid.
   * 3a1. AddressBook shows an error message.
    Use case resumes at step 2.
 
@@ -431,16 +473,9 @@ Use case ends.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The system should be able to recover gracefully from unexpected shutdowns without data loss for committed transactions.
 5. The application should handle invalid or malformed data files without crashing and provide appropriate error messages.
-
-### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  All operations should complete within 2 seconds
-5.  The system supports only one user accessing the data at a time.
-6.  Data should persist unless the user deletes the data file.
-
+6. All operations should complete within 2 seconds
+7. The system supports only one user accessing the data at a time.
+8. Data should persist unless the user deletes the data file.
 
 ### Glossary
 
