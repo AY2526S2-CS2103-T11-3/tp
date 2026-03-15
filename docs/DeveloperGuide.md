@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the delete 1</code></code></code></code></code></code></code></code></code></code></code></code></code></code></code></code> Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the delete 1</code> Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -371,6 +371,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5b1. User cancels the submission
     * Use case ends.
 
+
+
 **Use case: UC2 - Get Patient's Medical History**
 
 **MSS**
@@ -382,28 +384,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. ClinicBook cannot find the record
-    * 2a1. ClinicBook notifies the user that no record is found.
+   * 2a1. ClinicBook notifies the user that no records were found.
    Use case ends.
 
-* 3a. The given NRIC / Name is invalid.
+* 3a. The patient's NRIC / Name is invalid.
   * 3a1. AddressBook shows an error message.
-    Use case resumes at step 2.
+   Use case resumes at step 2.
+
+
+
+**Use case: UC3 - Create patient diagnosis and prescription**
+
+**Actor:** Doctor
+
+**Preconditions:** Doctor is logged in; UC2 returns a valid patient record
+
+**MSS**
+
+1. Doctor <u>gets a patient's medical history (UC2)</u>
+2. Doctor requests to create a new diagnosis
+3. ClinicBook requests for diagnosis details
+4. Doctor enters diagnosis, prescription details
+5. ClinicBook requests for confirmation on recording of diagnosis, prescription
+6. Doctor confirms
+7. ClinicBook adds new diagnosis, prescription
+
+Use case ends.
+
+**Extensions**
+
+* 5a. The diagnosis field is empty
+  5a1. ClinicBook requests for a diagnosis and prescription
+  5a2. Doctor enters data for the missing fields
+  Steps 5a1 - 5a2 are repeated until the missing fields are filled
+  Use case resumes at step 5
+
+* *a. At any time, doctor chooses to cancel the diagnosis logging
+  *a1. ClinicBook requests to confirm cancellation.
+  *a2. Doctor confirms
+  Use case ends.
+
+
+
+**Use case: UC4 - Register a new doctor**
+
+**Actor:** System Administrator
+
+**Preconditions:** System Administrator is logged in
+
+**MSS**
+
+1. System Administrator requests to register a new doctor
+2. ClinicBook requests for doctor's particulars
+3. System Administrator enters doctor's particulars
+4. ClinicBook requests for confirmation on registering the new doctor
+5. System Administrator confirms
+6. ClinicBook registers new doctor
+Use case ends.
+
+**Extensions**
+
+* 3a. At least one of the fields (name, NRIC, contact number) are empty
+  3a1. ClinicBook requests for values for these fields
+  3a2. System Administrator enters data for the missing fields
+  Steps 3a1 - 3a2 are repeated until the missing fields are filled
+  Use case resumes at step 4.
+
+* 3b. ClinicBook finds a duplicate doctor with the same NRIC
+  3b1. ClinicBook shows the duplicate record
+  Use case ends.
+
+* 3c. System Administrator enters invalid input.
+* 3c1. ClinicBook shows an error message indicating the correct input format.
+* 3c2. System Administrator re-enters the particulars.
+  Use case resumes at step 4.
+
+* *a. At any time, System Administrator chooses to cancel the doctor registration
+  *a1. ClinicBook requests to confirm cancellation.
+  *a2. System Administrator confirms
+  Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  All operations should complete within 2 seconds
-5.  The system supports only one user accessing the data at a time.
-6.  Data should persist unless the user deletes the data file.
-
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should be able to recover gracefully from unexpected shutdowns without data loss for committed transactions.
+5. The application should handle invalid or malformed data files without crashing and provide appropriate error messages.
+6. All operations should complete within 2 seconds
+7. The system supports only one user accessing the data at a time.
+8. Data should persist unless the user deletes the data file.
 
 ### Glossary
 
+* **Diagnosis**: A medical description of a patient's condition or disease based on symptoms, medical history, and clinical examination
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Prescription**: A written order from a doctor specifying medication, dosage, and administration instructions for a patient's treatment
+* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Symptom**: Physical or mental signs experienced by a patient that indicate a medical condition or disease
 * **Patient Record**: A record containing a patient's medical history that can be identified using the patient's NRIC
 * **Duplicate Record**: A record with the same NRIC / Name / Phone Number
 
