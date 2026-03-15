@@ -33,6 +33,12 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void parse_nonEmptyPreamble_throwsParseException() {
+        assertParseFailure(parser, " Alice n/Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validNameArgs_returnsFindCommand() {
         FindCommand expectedFindCommand = new FindCommand(
                 new PersonMatchesFindCriteriaPredicate(Arrays.asList("Alice", "Bob"), Optional.empty()));
