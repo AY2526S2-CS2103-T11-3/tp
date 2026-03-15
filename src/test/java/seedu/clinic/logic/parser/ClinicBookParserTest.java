@@ -9,25 +9,27 @@ import static seedu.clinic.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinic.logic.commands.AddCommand;
-import seedu.clinic.logic.commands.ClearCommand;
-import seedu.clinic.logic.commands.DeleteCommand;
-import seedu.clinic.logic.commands.EditCommand;
-import seedu.clinic.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.clinic.logic.commands.ExitCommand;
-import seedu.clinic.logic.commands.FindCommand;
-import seedu.clinic.logic.commands.HelpCommand;
-import seedu.clinic.logic.commands.ListCommand;
-import seedu.clinic.logic.parser.exceptions.ParseException;
-import seedu.clinic.model.person.NameContainsKeywordsPredicate;
-import seedu.clinic.model.person.Person;
-import seedu.clinic.testutil.EditPersonDescriptorBuilder;
-import seedu.clinic.testutil.PersonBuilder;
-import seedu.clinic.testutil.PersonUtil;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.PersonMatchesFindCriteriaPredicate;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
 
 public class ClinicBookParserTest {
 
@@ -72,8 +74,15 @@ public class ClinicBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new PersonMatchesFindCriteriaPredicate(keywords, Optional.empty())), command);
+    }
+
+    @Test
+    public void parseCommand_findByPhone() throws Exception {
+        FindCommand command = (FindCommand) parser.parseCommand(FindCommand.COMMAND_WORD + " p/98765432");
+        assertEquals(new FindCommand(new PersonMatchesFindCriteriaPredicate(List.of(),
+                Optional.of(new Phone("98765432")))), command);
     }
 
     @Test
