@@ -8,8 +8,8 @@ import seedu.clinic.model.Model;
 import seedu.clinic.model.person.PersonMatchesFindCriteriaPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all persons in clinic book whose names contain any of the
+ * specified keywords (case-insensitive) or whose phone numbers match exactly.
  */
 public class FindCommand extends Command {
 
