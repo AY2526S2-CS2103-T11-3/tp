@@ -16,6 +16,12 @@ public class PersonMatchesFindCriteriaPredicate implements Predicate<Person> {
     private final List<String> nameKeywords;
     private final Optional<Phone> phone;
 
+    /**
+     * Creates a predicate that matches persons by name keywords or phone number.
+     *
+     * @param nameKeywords Name keywords to match against a person's name.
+     * @param phone Phone number to match exactly.
+     */
     public PersonMatchesFindCriteriaPredicate(List<String> nameKeywords, Optional<Phone> phone) {
         requireNonNull(nameKeywords);
         requireNonNull(phone);
