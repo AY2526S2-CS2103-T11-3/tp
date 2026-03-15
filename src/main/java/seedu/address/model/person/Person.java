@@ -16,13 +16,18 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    // TODO: Remove all dependencies to this class, make class abstract
+    // Remove address field
     // default id for patient who has yet been assigned with an ID
     private static final int DEFAULT_ID = 0;
     // will be used later
     private static final String ID_FORMAT = "P%03d";
 
     // Identity fields
+    private static final NRIC DEFAULT_NRIC = new NRIC("S0000000J");
+
     private final Name name;
+    private final NRIC nric;
     private final Phone phone;
     private final Email email;
     private int id;
@@ -51,8 +56,16 @@ public class Person {
      * ID will then be assigned by the AddressBook
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+        this(name, DEFAULT_NRIC, phone, email, address, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(Name name, NRIC nric, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, nric, phone, email, address, tags);
         this.name = name;
+        this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -63,6 +76,10 @@ public class Person {
 
     public Name getName() {
         return name;
+    }
+
+    public NRIC getNric() {
+        return nric;
     }
 
     public Phone getPhone() {
