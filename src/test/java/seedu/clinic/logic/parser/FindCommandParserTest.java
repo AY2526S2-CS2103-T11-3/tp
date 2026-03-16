@@ -29,6 +29,10 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+
+        FindCommand mixedKeywordCommand =
+            new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "94351253", "3")));
+        assertParseSuccess(parser, "Alice 94351253 3", mixedKeywordCommand);
     }
 
 }

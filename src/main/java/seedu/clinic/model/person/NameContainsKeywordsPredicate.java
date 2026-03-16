@@ -7,7 +7,7 @@ import seedu.clinic.commons.util.StringUtil;
 import seedu.clinic.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s name or supported identifiers match any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
@@ -19,7 +19,21 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .anyMatch(keyword -> matchesName(person, keyword)
+                        || matchesPhone(person, keyword)
+                        || matchesPatientId(person, keyword));
+    }
+
+    private boolean matchesName(Person person, String keyword) {
+        return StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword);
+    }
+
+    private boolean matchesPhone(Person person, String keyword) {
+        return person.getPhone().value.equals(keyword);
+    }
+
+    private boolean matchesPatientId(Person person, String keyword) {
+        return String.valueOf(person.getId()).equals(keyword);
     }
 
     @Override

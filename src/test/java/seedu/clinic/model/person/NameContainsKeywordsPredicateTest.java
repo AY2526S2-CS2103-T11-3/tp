@@ -56,6 +56,14 @@ public class NameContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Exact phone number match
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("85355255"));
+        assertTrue(predicate.test(new PersonBuilder().withPhone("85355255").build()));
+
+        // Exact patient ID match
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("27"));
+        assertTrue(predicate.test(new PersonBuilder().withId(27).build()));
     }
 
     @Test
@@ -72,6 +80,10 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
+
+        // Patient ID must match exactly
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("2"));
+        assertFalse(predicate.test(new PersonBuilder().withId(12).build()));
     }
 
     @Test
