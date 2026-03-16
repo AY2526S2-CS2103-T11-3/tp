@@ -537,8 +537,202 @@ Use case ends.
   * *a2. System Administrator confirms.
   Use case ends.
 
+**Use case: UC7 - Add Remark to Existing Patient**
 
+**Actor:** Registration Staff
 
+**Preconditions:** Registration Staff is logged in; patient exists in ClinicBook.
+
+**MSS**
+
+1. Registration Staff requests to find a patient by NRIC, name, or phone number.
+2. ClinicBook displays matching patient record(s).
+3. Registration Staff selects the target patient.
+4. Registration Staff requests to add a remark.
+5. ClinicBook requests for remark content.
+6. Registration Staff enters the remark.
+7. ClinicBook shows the updated patient record with the new remark.
+8. Registration Staff confirms.
+9. ClinicBook saves the updated record.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No matching patient is found.
+  * 2a1. ClinicBook informs Registration Staff that no matching records were found.
+  * Use case ends.
+* 6a. Remark content is empty or invalid.
+  * 6a1. ClinicBook shows an error message and requests valid remark content.
+  * 6a2. Registration Staff re-enters remark content.
+  * Use case resumes at step 7.
+* *a. At any time, Registration Staff cancels the operation.
+  * *a1. ClinicBook discards unsaved changes.
+  * Use case ends.
+
+**Use case: UC8 - Mark Prescription as Dispensed**
+
+**Actor:** Pharmacist
+
+**Preconditions:** Pharmacist is logged in; patient and prescription records exist.
+
+**MSS**
+
+1. Pharmacist requests to search for a patient by NRIC, name, or phone number.
+2. ClinicBook displays matching patient record(s).
+3. Pharmacist selects the target patient.
+4. ClinicBook displays active prescriptions for the selected patient.
+5. Pharmacist chooses a prescription to dispense.
+6. ClinicBook requests confirmation to mark the prescription as dispensed.
+7. Pharmacist confirms.
+8. ClinicBook updates the prescription status to dispensed and records the action.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No matching patient record is found.
+  * 2a1. ClinicBook informs Pharmacist that no matching records were found.
+  * Use case ends.
+* 4a. Patient has no active prescriptions.
+  * 4a1. ClinicBook informs Pharmacist that there are no active prescriptions to dispense.
+  * Use case ends.
+* 5a. Pharmacist selects an invalid prescription entry.
+  * 5a1. ClinicBook shows an error message.
+  * 5a2. Pharmacist selects a valid prescription.
+  * Use case resumes at step 6.
+* *a. At any time, Pharmacist cancels the dispensing operation.
+  * *a1. ClinicBook cancels the operation without changing prescription status.
+  * Use case ends.
+
+**Use case: UC9 - Search for Existing Patient Before Registration**
+
+**Actor:** Registration Staff
+
+**Preconditions:** Registration Staff is logged in.
+
+**MSS**
+
+1. Registration Staff requests to register a new patient.
+2. ClinicBook requests for a search keyword (name, NRIC, or phone number) to check for duplicates.
+3. Registration Staff enters the search keyword.
+4. ClinicBook displays matching patient record(s), if any.
+5. Registration Staff reviews the search result.
+6. Registration Staff confirms that no duplicate exists and proceeds with registration.
+7. ClinicBook requests for new patient particulars.
+8. Registration Staff enters patient particulars.
+9. ClinicBook validates and saves the new patient record.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. A duplicate patient record is found.
+  * 4a1. ClinicBook shows the duplicate record details.
+  * 4a2. Registration Staff cancels the registration.
+  * Use case ends.
+* 8a. Entered particulars are invalid.
+  * 8a1. ClinicBook shows an error message indicating the correct input format.
+  * 8a2. Registration Staff re-enters the particulars.
+  * Use case resumes at step 9.
+* *a. At any time, Registration Staff cancels the operation.
+  * *a1. ClinicBook discards the in-progress registration.
+  * Use case ends.
+
+**Use case: UC10 - Update Prescription After Medication or Dosage Error**
+
+**Actor:** Pharmacist
+
+**Preconditions:** Pharmacist is logged in; patient and prescription records exist.
+
+**MSS**
+
+1. Pharmacist requests to search for a patient by NRIC, name, or phone number.
+2. ClinicBook displays matching patient record(s).
+3. Pharmacist selects the target patient.
+4. ClinicBook displays the patient's prescription history.
+5. Pharmacist selects the prescription that requires correction.
+6. Pharmacist requests to update medication and/or dosage details.
+7. ClinicBook requests the updated prescription details and reason for change.
+8. Pharmacist enters the corrected details.
+9. ClinicBook requests confirmation.
+10. Pharmacist confirms.
+11. ClinicBook updates the prescription and records the change in audit history.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No matching patient record is found.
+  * 2a1. ClinicBook informs Pharmacist that no matching records were found.
+  * Use case ends.
+* 5a. Selected prescription cannot be edited (e.g., already cancelled).
+  * 5a1. ClinicBook informs Pharmacist that the selected prescription cannot be updated.
+  * Use case ends.
+* 8a. Entered medication or dosage is invalid.
+  * 8a1. ClinicBook shows an error message indicating the correct input format.
+  * 8a2. Pharmacist re-enters corrected details.
+  * Use case resumes at step 9.
+* *a. At any time, Pharmacist cancels the update operation.
+  * *a1. ClinicBook exits without changing the prescription.
+  * Use case ends.
+
+**Use case: UC11 - Purge Patient Record by Data Retention Policy**
+
+**Actor:** System Administrator
+
+**Preconditions:** System Administrator is logged in; target record satisfies retention policy.
+
+**MSS**
+
+1. System Administrator requests to purge a patient record.
+2. ClinicBook requests for patient identifier and purge reason.
+3. System Administrator enters patient identifier and purge reason.
+4. ClinicBook retrieves and displays the patient record with a purge warning.
+5. System Administrator confirms the purge action.
+6. ClinicBook removes the patient record and related references according to policy.
+7. ClinicBook displays a success message and purge log reference.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. Patient record does not exist.
+  * 4a1. ClinicBook informs System Administrator that the record was not found.
+  * Use case ends.
+* 4b. Record does not satisfy retention policy conditions.
+  * 4b1. ClinicBook rejects the purge request and displays reason.
+  * Use case ends.
+* 5a. System Administrator aborts confirmation.
+  * 5a1. ClinicBook cancels the purge operation.
+  * Use case ends.
+
+**Use case: UC12 - Retrieve Patient Record Through Caregiver or Next-of-Kin**
+
+**Actor:** Doctor
+
+**Preconditions:** Doctor is logged in; caregiver or next-of-kin links are recorded in the system.
+
+**MSS**
+
+1. Doctor requests to find a patient through caregiver or next-of-kin details.
+2. ClinicBook requests caregiver/next-of-kin name.
+3. Doctor enters caregiver/next-of-kin name.
+4. ClinicBook displays linked patient record(s).
+5. Doctor selects the target patient record.
+6. ClinicBook displays the selected patient's medical history.
+
+Use case ends.
+
+**Extensions**
+
+* 4a. No linked patient records are found.
+  * 4a1. ClinicBook informs Doctor that no linked records were found.
+  * Use case ends.
+* 5a. Doctor selects an invalid record index.
+  * 5a1. ClinicBook shows an error message.
+  * 5a2. Doctor selects a valid patient record.
+  * Use case resumes at step 6.
 
 *{More to be added}*
 
@@ -555,6 +749,9 @@ Use case ends.
 8. The application should handle invalid or malformed data files without crashing and provide appropriate error messages.
 9. The system should enforce role-based access control so that users can only perform actions permitted by their assigned roles (e.g., only System Administrators can register pharmacists).
 10. The system should validate user input such as NRIC, phone numbers, and names before storing them to prevent invalid data.
+11. The system should record auditable metadata (e.g., user role and timestamp) for high-risk actions such as prescription updates, dispensing, and patient record purge.
+12. The system should prevent duplicate patient registration by requiring a pre-registration search check by name, NRIC, or phone number.
+13. The system should complete patient search operations within 2 seconds for datasets up to 1000 records under typical clinic usage.
 
 
 ### Glossary
@@ -566,6 +763,9 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Symptom**: Physical or mental signs experienced by a patient that indicate a medical condition or disease
 * **Duplicate Record**: A record with the same NRIC / Name / Phone Number
+* **Audit Trail**: A chronological record of significant system actions (e.g., prescription changes, dispensing, purge operations), including actor and timestamp.
+* **Data Retention Policy**: A rule set defining how long patient data is stored and when records are eligible for purge.
+* **Next-of-Kin**: A person designated by a patient for emergency contact and care coordination.
 * **NRIC**: National Registration Identity Card number used as a unique identifier for individuals in the system.
 * **System User**: Any individual registered in ClinicBook, such as a patient, doctor, or pharmacist.
 
