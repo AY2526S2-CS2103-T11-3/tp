@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.clinic.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.clinic.testutil.TypicalPersons.BENSON;
 import static seedu.clinic.testutil.TypicalPersons.CARL;
 import static seedu.clinic.testutil.TypicalPersons.ELLE;
 import static seedu.clinic.testutil.TypicalPersons.FIONA;
-import static seedu.clinic.testutil.TypicalPersons.BENSON;
 import static seedu.clinic.testutil.TypicalPersons.getTypicalClinicBook;
 
 import java.util.Arrays;
