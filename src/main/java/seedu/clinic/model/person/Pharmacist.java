@@ -11,8 +11,8 @@ import seedu.clinic.model.tag.Tag;
  * A Pharmacist is a Person who dispenses and manages prescriptions.
  *
  * TODO: Make Pharmacist extend Staff instead of Person once Staff hierarchy is implemented
- * TODO: Implement actual prescription dispensing logic
- * TODO: Implement actual prescription management logic
+ * TODO: Implement prescription dispensing logic
+ * TODO: Implement prescription management logic
  * TODO: Add patient history retrieval functionality
  */
 public class Pharmacist extends Person {

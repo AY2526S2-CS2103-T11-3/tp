@@ -7,6 +7,7 @@ import static seedu.clinic.commons.util.AppUtil.checkArgument;
  * Represents a Singapore NRIC in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidNric(String)}
  */
+@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class NRIC {
 
     public static final String MESSAGE_CONSTRAINTS =

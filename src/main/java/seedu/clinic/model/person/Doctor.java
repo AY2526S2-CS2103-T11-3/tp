@@ -11,8 +11,8 @@ import seedu.clinic.model.tag.Tag;
  * A Doctor is a Person who can diagnose patients and prescribe treatments.
  *
  * TODO: Make Doctor extend Staff instead of Person once Staff hierarchy is implemented
- * TODO: Implement actual diagnosis recording logic
- * TODO: Implement actual prescription management logic
+ * TODO: Implement  diagnosis recording logic
+ * TODO: Implement  prescription management logic
  * TODO: Add patient history retrieval functionality
  */
 public class Doctor extends Person {

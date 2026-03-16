@@ -6,7 +6,7 @@ import seedu.clinic.commons.util.ToStringBuilder;
 
 /**
  * Represents a Staff member in the clinic.
- * 
+ *
  */
 public abstract class Staff extends ContactPerson {
 

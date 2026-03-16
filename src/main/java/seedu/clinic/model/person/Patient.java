@@ -18,7 +18,7 @@ import seedu.clinic.model.tag.Tag;
  *
  * TODO: Replace emergencyContact string with EmergencyContact objects collection
  * TODO: Add Sex enum field for biological sex
- * TODO: Use Set<EmergencyContact> instead of String for emergency contacts
+ * TODO: Use {@code Set<EmergencyContact>} instead of String for emergency contacts
  * TODO: Implement allergies management
  * TODO: Create patientId field
  * TODO: Extract address to separate structure
@@ -86,11 +86,17 @@ public class Patient extends ContactPerson {
 		return emergencyContact;
 	}
 
+	/**
+	 * Adds a diagnosis to the patient's diagnosis list.
+	 */
 	public void addDiagnosis(Diagnosis diagnosis) {
 		requireAllNonNull(diagnosis);
 		diagnoses.add(diagnosis);
 	}
 
+	/**
+	 * Removes a diagnosis from the patient's diagnosis list.
+	 */
 	public void removeDiagnosis(Diagnosis diagnosis) {
 		requireAllNonNull(diagnosis);
 		diagnoses.remove(diagnosis);

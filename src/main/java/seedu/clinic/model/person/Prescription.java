@@ -1,7 +1,7 @@
 package seedu.clinic.model.person;
 
-import static seedu.clinic.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.clinic.commons.util.AppUtil.checkArgument;
+import static seedu.clinic.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.clinic.commons.util.ToStringBuilder;
 
@@ -37,6 +37,9 @@ public class Prescription {
         this.dispensedBy = dispensedBy;
     }
 
+    /**
+     * Returns true if a given string is a valid prescription field value.
+     */
     public static boolean isValidField(String value) {
         requireAllNonNull(value);
         return value.matches(VALIDATION_REGEX);

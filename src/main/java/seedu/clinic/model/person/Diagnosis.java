@@ -1,7 +1,7 @@
 package seedu.clinic.model.person;
 
-import static seedu.clinic.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.clinic.commons.util.AppUtil.checkArgument;
+import static seedu.clinic.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -74,16 +74,25 @@ public class Diagnosis {
         return diagnosedBy;
     }
 
+    /**
+     * Returns the diagnosis description.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Adds a symptom for this diagnosis.
+     */
     public void addSymptom(String symptom) {
         requireAllNonNull(symptom);
         checkArgument(isValidDiagnosis(symptom), MESSAGE_CONSTRAINTS);
         symptoms.add(symptom);
     }
 
+    /**
+     * Removes a symptom from this diagnosis.
+     */
     public void removeSymptom(String symptom) {
         requireAllNonNull(symptom);
         symptoms.remove(symptom);
@@ -93,11 +102,17 @@ public class Diagnosis {
         return Collections.unmodifiableList(symptoms);
     }
 
+    /**
+     * Adds a prescription to this diagnosis.
+     */
     public void addPrescription(Prescription prescription) {
         requireAllNonNull(prescription);
         prescriptions.add(prescription);
     }
 
+    /**
+     * Removes a prescription from this diagnosis.
+     */
     public void removePrescription(Prescription prescription) {
         requireAllNonNull(prescription);
         prescriptions.remove(prescription);
