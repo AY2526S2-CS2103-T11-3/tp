@@ -8,6 +8,7 @@ import static seedu.clinic.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.clinic.testutil.TypicalPersons.CARL;
 import static seedu.clinic.testutil.TypicalPersons.ELLE;
 import static seedu.clinic.testutil.TypicalPersons.FIONA;
+import static seedu.clinic.testutil.TypicalPersons.BENSON;
 import static seedu.clinic.testutil.TypicalPersons.getTypicalClinicBook;
 
 import java.util.Arrays;
@@ -81,7 +82,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.singletonList(seedu.clinic.testutil.TypicalPersons.BENSON), model.getFilteredPersonList());
+        assertEquals(Collections.singletonList(BENSON), model.getFilteredPersonList());
     }
 
     @Test
