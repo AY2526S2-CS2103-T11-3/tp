@@ -8,8 +8,6 @@ import seedu.clinic.model.Model;
  */
 public abstract class Command {
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "This command is not implemented yet.";
-
     /**
      * Executes the command and returns the result message.
      *
