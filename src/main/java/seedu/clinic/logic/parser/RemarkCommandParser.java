@@ -7,6 +7,7 @@ import static seedu.clinic.logic.parser.CliSyntax.PREFIX_REMARK;
 import seedu.clinic.commons.core.index.Index;
 import seedu.clinic.logic.commands.RemarkCommand;
 import seedu.clinic.logic.parser.exceptions.ParseException;
+import seedu.clinic.model.person.Remark;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
@@ -29,7 +30,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), pe);
         }
 
-        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
         return new RemarkCommand(index, remark);
     }
 }

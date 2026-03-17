@@ -27,6 +27,7 @@ import seedu.clinic.logic.commands.RemarkCommand;
 import seedu.clinic.logic.parser.exceptions.ParseException;
 import seedu.clinic.model.person.NameContainsKeywordsPredicate;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Remark;
 import seedu.clinic.testutil.EditPersonDescriptorBuilder;
 import seedu.clinic.testutil.PersonBuilder;
 import seedu.clinic.testutil.PersonUtil;
@@ -92,7 +93,7 @@ public class ClinicBookParserTest {
 
     @Test
     public void parseCommand_remark() throws Exception {
-        String remark = "Likes to swim.";
+        Remark remark = new Remark("Likes to swim.");
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_REMARK + remark);
         assertEquals(new RemarkCommand(INDEX_FIRST_PERSON, remark), command);
