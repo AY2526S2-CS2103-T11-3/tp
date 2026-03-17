@@ -83,7 +83,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
         if (p.getId() == 0) {
             int newId = getNextId();
             p = new Person(p.getName(), p.getPhone(), p.getEmail(),
-                    p.getAddress(), p.getTags(), newId);
+                    p.getAddress(), p.getRemark(), p.getTags(), newId);
         }
         persons.add(p);
     }
