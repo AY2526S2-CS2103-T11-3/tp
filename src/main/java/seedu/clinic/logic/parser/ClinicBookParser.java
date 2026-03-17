@@ -17,6 +17,7 @@ import seedu.clinic.logic.commands.ExitCommand;
 import seedu.clinic.logic.commands.FindCommand;
 import seedu.clinic.logic.commands.HelpCommand;
 import seedu.clinic.logic.commands.ListCommand;
+import seedu.clinic.logic.commands.RemarkCommand;
 import seedu.clinic.logic.parser.exceptions.ParseException;
 
 /**
@@ -70,6 +71,9 @@ public class ClinicBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
