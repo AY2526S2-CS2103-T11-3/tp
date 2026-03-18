@@ -83,7 +83,8 @@ public class NameContainsKeywordsPredicateTest {
 
         // Patient ID must match exactly
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("2"));
-        assertFalse(predicate.test(new PersonBuilder().withId(12).build()));
+        // assertFalse(predicate.test(new PersonBuilder().withId(12).build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("Charlie").withPhone("99999999").withId(12).build()));
     }
 
     @Test
