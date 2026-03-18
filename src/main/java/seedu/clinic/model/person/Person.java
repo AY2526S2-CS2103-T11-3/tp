@@ -25,7 +25,6 @@ public class Person {
 
     // TODO: Move this to Staff/Patient subclasses
     private static final int DEFAULT_ID = 0;
-    private static int nextPersonId = DEFAULT_ID + 1;
     // TODO: Implement ID_FORMAT usage in automatic ID assignment (e.g., P001, P002)
     // This format will be used when generating IDs from DEFAULT_ID or similar constants
     private static final String ID_FORMAT = "P%03d";
@@ -54,20 +53,13 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.id = id;
-        if (id >= nextPersonId) {
-            nextPersonId = id + 1;
-        }
     }
 
     /**
      * Constructor for Person with automatic ID assignment.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        this(name, phone, email, address, tags, getNextPersonId());
-    }
-
-    private static int getNextPersonId() {
-        return nextPersonId++;
+        this(name, phone, email, address, tags, DEFAULT_ID);
     }
 
 
@@ -93,9 +85,6 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
-        if (id >= nextPersonId) {
-            nextPersonId = id + 1;
-        }
     }
 
 
