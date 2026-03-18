@@ -5,13 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.clinic.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.clinic.testutil.TypicalPatients.NADIA_NAME;
+import static seedu.clinic.testutil.TypicalPatients.NADIA_NRIC;
+import static seedu.clinic.testutil.TypicalPatients.createNadia;
 import static seedu.clinic.testutil.TypicalPersons.BENSON;
 import static seedu.clinic.testutil.TypicalPersons.CARL;
 import static seedu.clinic.testutil.TypicalPersons.ELLE;
 import static seedu.clinic.testutil.TypicalPersons.FIONA;
 import static seedu.clinic.testutil.TypicalPersons.getTypicalClinicBook;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
@@ -25,7 +27,6 @@ import seedu.clinic.model.person.NRIC;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.PersonMatchesFindCriteriaPredicate;
 import seedu.clinic.model.person.Phone;
-import seedu.clinic.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -33,12 +34,6 @@ import seedu.clinic.testutil.PersonBuilder;
 public class FindCommandTest {
     private Model model = new ModelManager(getTypicalClinicBookWithPatient(), new UserPrefs());
     private Model expectedModel = new ModelManager(model.getClinicBook(), new UserPrefs());
-
-    private static Patient createNadia() {
-        return new Patient(new PersonBuilder().withName("Nadia Tan").withPhone("93456789")
-                .withEmail("nadiatan@example.com").withAddress("Blk 10 Bedok North Ave 2, #03-12")
-                .withTags("patient").build(), new NRIC("S1234567D"), LocalDate.of(1992, 4, 12), "Amir Tan");
-    }
 
     private static seedu.clinic.model.ClinicBook getTypicalClinicBookWithPatient() {
         seedu.clinic.model.ClinicBook clinicBook = getTypicalClinicBook();
@@ -126,14 +121,14 @@ public class FindCommandTest {
     public void execute_nric_onePatientFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         PersonMatchesFindCriteriaPredicate predicate = new PersonMatchesFindCriteriaPredicate(
-                Collections.emptyList(), Optional.empty(), Optional.of(new NRIC("S1234567D")));
+                Collections.emptyList(), Optional.empty(), Optional.of(new NRIC(NADIA_NRIC)));
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         Patient nadia = (Patient) model.getFilteredPersonList().get(0);
         assertEquals(1, model.getFilteredPersonList().size());
-        assertEquals(new NRIC("S1234567D"), nadia.getNric());
-        assertEquals("Nadia Tan", nadia.getName().fullName);
+        assertEquals(new NRIC(NADIA_NRIC), nadia.getNric());
+        assertEquals(NADIA_NAME, nadia.getName().fullName);
     }
 
     @Test
@@ -150,7 +145,7 @@ public class FindCommandTest {
     @Test
     public void toStringMethod() {
         PersonMatchesFindCriteriaPredicate predicate = new PersonMatchesFindCriteriaPredicate(
-                Arrays.asList("keyword"), Optional.of(new Phone("94351253")), Optional.of(new NRIC("S1234567D")));
+                Arrays.asList("keyword"), Optional.of(new Phone("94351253")), Optional.of(new NRIC(NADIA_NRIC)));
         FindCommand findCommand = new FindCommand(predicate);
         String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
         assertEquals(expected, findCommand.toString());

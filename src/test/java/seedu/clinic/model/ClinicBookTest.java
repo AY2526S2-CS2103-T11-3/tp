@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.clinic.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.clinic.testutil.TypicalPatients.NADIA_NRIC;
+import static seedu.clinic.testutil.TypicalPatients.createNadia;
 import static seedu.clinic.testutil.Assert.assertThrows;
 import static seedu.clinic.testutil.TypicalPersons.ALICE;
 import static seedu.clinic.testutil.TypicalPersons.getTypicalClinicBook;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -83,16 +84,12 @@ public class ClinicBookTest {
 
     @Test
     public void addPatient_defaultId_preservesPatientSubtypeAndAssignsId() {
-        Patient patient = new Patient(new PersonBuilder().withName("Nadia Tan").withPhone("93456789")
-                .withEmail("nadiatan@example.com").withAddress("Blk 10 Bedok North Ave 2, #03-12")
-                .withTags("patient").build(), new NRIC("S1234567D"), LocalDate.of(1992, 4, 12), "Amir Tan");
-
-        clinicBook.addPerson(patient);
+        clinicBook.addPerson(createNadia());
 
         Person storedPerson = clinicBook.getPersonList().get(0);
         assertTrue(storedPerson instanceof Patient);
         assertTrue(storedPerson.getId() > 0);
-        assertEquals(new NRIC("S1234567D"), ((Patient) storedPerson).getNric());
+        assertEquals(new NRIC(NADIA_NRIC), ((Patient) storedPerson).getNric());
     }
 
     @Test
