@@ -1,7 +1,6 @@
 package seedu.clinic.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.clinic.storage.JsonAdaptedPerson.MISSING_PATIENT_FIELD_MESSAGE_FORMAT;
 import static seedu.clinic.testutil.TypicalPatients.NADIA_EMERGENCY_CONTACT;
