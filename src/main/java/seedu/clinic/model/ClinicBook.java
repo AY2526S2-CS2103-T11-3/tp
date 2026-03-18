@@ -6,7 +6,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.util.ToStringBuilder;
+import seedu.clinic.model.person.Diagnosis;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.UniqueDiagnosisList;
 import seedu.clinic.model.person.UniquePersonList;
 
 /**
@@ -16,6 +18,7 @@ import seedu.clinic.model.person.UniquePersonList;
 public class ClinicBook implements ReadOnlyClinicBook {
 
     private final UniquePersonList persons;
+    private final UniqueDiagnosisList diagnoses;
     // id counter for Patient
     private int nextId = 1;
 
@@ -28,6 +31,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      */
     {
         persons = new UniquePersonList();
+        diagnoses = new UniqueDiagnosisList();
     }
 
     public ClinicBook() {}
@@ -124,6 +128,13 @@ public class ClinicBook implements ReadOnlyClinicBook {
         persons.remove(key);
     }
 
+    /**
+     * Adds a diagnosis to clinic book.
+     */
+    public void addDiagnosis(Diagnosis d) {
+        diagnoses.add(d);
+    }
+
     //// util methods
 
     @Override
@@ -136,6 +147,11 @@ public class ClinicBook implements ReadOnlyClinicBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Diagnosis> getDiagnosisList() {
+        return diagnoses.asUnmodifiableObservableList();
     }
 
     @Override

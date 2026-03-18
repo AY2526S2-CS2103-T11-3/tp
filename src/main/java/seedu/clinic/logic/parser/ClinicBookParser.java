@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.clinic.commons.core.LogsCenter;
 import seedu.clinic.logic.commands.AddCommand;
+import seedu.clinic.logic.commands.AddDiagnosisCommand;
 import seedu.clinic.logic.commands.ClearCommand;
 import seedu.clinic.logic.commands.Command;
 import seedu.clinic.logic.commands.DeleteCommand;
@@ -80,6 +81,9 @@ public class ClinicBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddDiagnosisCommand.COMMAND_WORD:
+            return new AddDiagnosisCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

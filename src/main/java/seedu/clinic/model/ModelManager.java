@@ -6,12 +6,19 @@ import static seedu.clinic.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.clinic.commons.core.GuiSettings;
 import seedu.clinic.commons.core.LogsCenter;
+import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Doctor;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
+import seedu.clinic.model.person.Prescription;
 
 /**
  * Represents the in-memory model of clinic book data.
@@ -111,6 +118,13 @@ public class ModelManager implements Model {
         clinicBook.setPerson(target, editedPerson);
     }
 
+    // TODO: Replace Person with Patient
+    // TODO: Link diagnosis to patient
+    @Override
+    public void addDiagnosisToPatient(Person target, Diagnosis diagnosis) {
+        clinicBook.addDiagnosis(diagnosis);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -126,6 +140,30 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Patient> getFilteredPatientList() {
+        return filteredPersons.filtered(p -> p instanceof Patient)
+                .stream()
+                .map(p -> (Patient) p)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
+    @Override
+    public ObservableList<Doctor> getFilteredDoctorList() {
+        return filteredPersons.filtered(p -> p instanceof Doctor)
+                .stream()
+                .map(d -> (Doctor) d)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+    }
+
+    @Override
+    public ObservableList<Pharmacist> getFilteredPharmacistList() {
+        return filteredPersons.filtered(p -> p instanceof Pharmacist)
+                .stream()
+                .map(p -> (Pharmacist) p)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
     }
 
     @Override

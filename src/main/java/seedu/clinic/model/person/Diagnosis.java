@@ -23,6 +23,7 @@ public class Diagnosis {
             "Diagnosis descriptions should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
+    private final int patientId;
     private final String description;
     private final LocalDate visitDate;
     private final Doctor diagnosedBy;
@@ -37,8 +38,8 @@ public class Diagnosis {
      * @param diagnosis A valid diagnosis description.
      * @param diagnosedBy Doctor who gave this diagnosis.
      */
-    public Diagnosis(String diagnosis, Doctor diagnosedBy) {
-        this(diagnosis, LocalDate.now(), diagnosedBy);
+    public Diagnosis(int patientId, String diagnosis, Doctor diagnosedBy) {
+        this(patientId, diagnosis, LocalDate.now(), diagnosedBy);
     }
 
     /**
@@ -48,9 +49,10 @@ public class Diagnosis {
      * @param visitDate Date of the visit associated with the diagnosis.
      * @param diagnosedBy Doctor who gave this diagnosis.
      */
-    public Diagnosis(String diagnosis, LocalDate visitDate, Doctor diagnosedBy) {
+    public Diagnosis(int patientId, String diagnosis, LocalDate visitDate, Doctor diagnosedBy) {
         requireAllNonNull(diagnosis, visitDate, diagnosedBy);
         checkArgument(isValidDiagnosis(diagnosis), MESSAGE_CONSTRAINTS);
+        this.patientId = patientId;
         description = diagnosis;
         this.visitDate = visitDate;
         this.diagnosedBy = diagnosedBy;
@@ -70,6 +72,10 @@ public class Diagnosis {
 
     public Doctor getDiagnosedBy() {
         return diagnosedBy;
+    }
+
+    public int getPatientId() {
+        return patientId;
     }
 
     /**
@@ -123,12 +129,28 @@ public class Diagnosis {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .add("patientId", patientId)
                 .add("description", description)
                 .add("visitDate", visitDate)
                 .add("diagnosedBy", diagnosedBy)
                 .add("symptoms", symptoms)
                 .add("prescriptions", prescriptions)
                 .toString();
+    }
+
+    /**
+     * Returns true if both diagnoses are considered the same.
+     * This defines a weaker notion of equality than {@link #equals(Object)}.
+     */
+    public boolean isSameDiagnosis(Diagnosis otherDiagnosis) {
+        if (otherDiagnosis == this) {
+            return true;
+        }
+
+        return otherDiagnosis != null
+                && description.equals(otherDiagnosis.description)
+                && Objects.equals(visitDate, otherDiagnosis.visitDate)
+                && diagnosedBy.equals(otherDiagnosis.diagnosedBy);
     }
 
     @Override

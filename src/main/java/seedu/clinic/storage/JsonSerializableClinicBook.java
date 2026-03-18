@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.ReadOnlyClinicBook;
+import seedu.clinic.model.person.Diagnosis;
 import seedu.clinic.model.person.Person;
 
 /**
@@ -22,13 +23,16 @@ class JsonSerializableClinicBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedDiagnosis> diagnoses =  new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableClinicBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                      @JsonProperty("diagnoses") List<JsonAdaptedDiagnosis> diagnoses) {
         this.persons.addAll(persons);
+        this.diagnoses.addAll(diagnoses);
     }
 
     /**
@@ -38,6 +42,7 @@ class JsonSerializableClinicBook {
      */
     public JsonSerializableClinicBook(ReadOnlyClinicBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        diagnoses.addAll(source.getDiagnosisList().stream().map(JsonAdaptedDiagnosis::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +58,10 @@ class JsonSerializableClinicBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             clinicBook.addPerson(person);
+        }
+        for (JsonAdaptedDiagnosis jsonAdaptedDiagnosis : diagnoses) {
+            Diagnosis diagnosis = jsonAdaptedDiagnosis.toModelType();
+            clinicBook.addDiagnosis(diagnosis);
         }
         return clinicBook;
     }
