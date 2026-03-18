@@ -40,29 +40,7 @@ public class ContactPerson extends Person {
      */
     @Override
     public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof ContactPerson
-                && super.isSamePerson(otherPerson);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ContactPerson)) {
-            return false;
-        }
-
-        ContactPerson otherContactPerson = (ContactPerson) other;
-        return getName().equals(otherContactPerson.getName())
-                && getPhone().equals(otherContactPerson.getPhone())
-                && getEmail().equals(otherContactPerson.getEmail());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getPhone(), getEmail());
+        return super.isSamePerson(otherPerson);
     }
 
     @Override
