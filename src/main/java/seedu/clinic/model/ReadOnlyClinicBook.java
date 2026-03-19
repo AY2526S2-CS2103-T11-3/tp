@@ -1,7 +1,6 @@
 package seedu.clinic.model;
 
 import javafx.collections.ObservableList;
-import seedu.clinic.model.person.Diagnosis;
 import seedu.clinic.model.person.Person;
 
 /**
@@ -15,8 +14,4 @@ public interface ReadOnlyClinicBook {
      */
     ObservableList<Person> getPersonList();
 
-    /**
-     * Returns an unmodifiable view of the diagnoses list.
-     */
-    ObservableList<Diagnosis> getDiagnosisList();
 }

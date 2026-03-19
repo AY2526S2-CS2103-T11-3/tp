@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
-import seedu.clinic.model.person.UniqueDiagnosisList;
 import seedu.clinic.model.person.UniquePersonList;
 
 /**
@@ -18,7 +18,6 @@ import seedu.clinic.model.person.UniquePersonList;
 public class ClinicBook implements ReadOnlyClinicBook {
 
     private final UniquePersonList persons;
-    private final UniqueDiagnosisList diagnoses;
     // id counter for Patient
     private int nextId = 1;
 
@@ -31,7 +30,6 @@ public class ClinicBook implements ReadOnlyClinicBook {
      */
     {
         persons = new UniquePersonList();
-        diagnoses = new UniqueDiagnosisList();
     }
 
     public ClinicBook() {}
@@ -85,9 +83,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
     public void addPerson(Person p) {
         // If ID is 0 (default), assign a new one
         if (p.getId() == 0) {
-            int newId = getNextId();
-            p = new Person(p.getName(), p.getPhone(), p.getEmail(),
-                    p.getAddress(), p.getTags(), newId);
+            p.setId(getNextId());
         }
         persons.add(p);
     }
@@ -131,8 +127,26 @@ public class ClinicBook implements ReadOnlyClinicBook {
     /**
      * Adds a diagnosis to clinic book.
      */
-    public void addDiagnosis(Diagnosis d) {
-        diagnoses.add(d);
+    public void addDiagnosis(Patient target, Diagnosis diagnosis) {
+        requireNonNull(target);
+        requireNonNull(diagnosis);
+
+        Patient editedPatient = new Patient(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getAddress(),
+                target.getTags(),
+                target.getNric(),
+                target.getDateOfBirth(),
+                target.getEmergencyContact(),
+                target.getId()
+        );
+
+        target.getDiagnoses().forEach(editedPatient::addDiagnosis);
+        editedPatient.addDiagnosis(diagnosis);
+
+        persons.setPerson(target, editedPatient);
     }
 
     //// util methods
@@ -147,11 +161,6 @@ public class ClinicBook implements ReadOnlyClinicBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public ObservableList<Diagnosis> getDiagnosisList() {
-        return diagnoses.asUnmodifiableObservableList();
     }
 
     @Override

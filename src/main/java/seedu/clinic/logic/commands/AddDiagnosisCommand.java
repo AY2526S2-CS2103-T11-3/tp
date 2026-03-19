@@ -1,23 +1,26 @@
 package seedu.clinic.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DESC;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DIAGNOSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DISPENSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DOSAGE;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_FREQ;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_MEDICATION;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_PRESCRIBED_BY;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DIAGNOSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_SYMPTOM;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.clinic.commons.core.index.Index;
 import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.logic.commands.exceptions.CommandException;
 import seedu.clinic.model.Model;
 import seedu.clinic.model.person.Diagnosis;
-import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Patient;
+import seedu.clinic.model.person.Prescription;
 
 /**
  * Adds a diagnosis to a patient.
@@ -42,15 +45,17 @@ public class AddDiagnosisCommand extends Command {
             + PREFIX_ID + "1 "
             + PREFIX_DESC + "Flu "
             + PREFIX_VISIT_DATE + "2026-03-01 "
-            + PREFIX_DIAGNOSED_BY + "Mark "
+            + PREFIX_DIAGNOSED_BY + "2 "
             + PREFIX_SYMPTOM + "fever " + PREFIX_SYMPTOM + "cough "
             + PREFIX_MEDICATION + "Paracetamol "
             + PREFIX_DOSAGE + "500mg "
             + PREFIX_FREQ + "3 times daily "
-            + PREFIX_DISPENSED_BY + "Sam";
+            + PREFIX_DISPENSED_BY + "3";
 
     public static final String MESSAGE_SUCCESS = "New diagnosis added: %1$s";
     public static final String MESSAGE_INVALID_PATIENT = "The patient index provided is invalid";
+    public static final String MESSAGE_INVALID_DOCTOR = "The doctor index provided is invalid";
+    public static final String MESSAGE_INVALID_PHARMACIST = "The pharmacist index provided is invalid";
 
     private final Index index;
     private final Diagnosis diagnosis;
@@ -66,20 +71,33 @@ public class AddDiagnosisCommand extends Command {
         this.diagnosis = diagnosis;
     }
 
-    /**
-     * TODO: Replace getFilteredPersonList with getFilteredPatientList
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (index.getZeroBased() >= model.getFilteredPersonList().size()) {
+        Optional<Patient> patient = model.getFilteredPatientList().stream()
+                .filter(p -> p.getId() == index.getOneBased())
+                .findFirst();
+        if (!patient.isPresent()) {
             throw new CommandException(MESSAGE_INVALID_PATIENT);
         }
 
-        Person person = model.getFilteredPersonList().get(index.getZeroBased());
+        System.out.println(model.getFilteredDoctorList().stream().map(d -> d.getId()).collect(Collectors.toList()));
+        boolean doctorExists = model.getFilteredDoctorList().stream()
+                .anyMatch(d -> d.getId() == diagnosis.getDiagnosedBy());
+        if (!doctorExists) {
+            throw new CommandException(MESSAGE_INVALID_DOCTOR);
+        }
 
-        model.addDiagnosisToPatient(person, diagnosis);
+        for (Prescription pres : diagnosis.getPrescriptions()) {
+            boolean pharmacistExists = model.getFilteredPharmacistList().stream()
+                    .anyMatch(p -> p.getId() == pres.getDispensedBy());
+            if (!pharmacistExists) {
+                throw new CommandException(MESSAGE_INVALID_PHARMACIST);
+            }
+        }
+
+        model.addDiagnosis(patient.get(), diagnosis);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, diagnosis));
     }

@@ -23,10 +23,9 @@ public class Diagnosis {
             "Diagnosis descriptions should not be blank";
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    private final int patientId;
     private final String description;
     private final LocalDate visitDate;
-    private final Doctor diagnosedBy;
+    private final int diagnosedBy;
     private final List<String> symptoms = new ArrayList<>();
     private final List<Prescription> prescriptions = new ArrayList<>();
 
@@ -38,8 +37,8 @@ public class Diagnosis {
      * @param diagnosis A valid diagnosis description.
      * @param diagnosedBy Doctor who gave this diagnosis.
      */
-    public Diagnosis(int patientId, String diagnosis, Doctor diagnosedBy) {
-        this(patientId, diagnosis, LocalDate.now(), diagnosedBy);
+    public Diagnosis(String diagnosis, int diagnosedBy) {
+        this(diagnosis, LocalDate.now(), diagnosedBy);
     }
 
     /**
@@ -49,10 +48,9 @@ public class Diagnosis {
      * @param visitDate Date of the visit associated with the diagnosis.
      * @param diagnosedBy Doctor who gave this diagnosis.
      */
-    public Diagnosis(int patientId, String diagnosis, LocalDate visitDate, Doctor diagnosedBy) {
+    public Diagnosis(String diagnosis, LocalDate visitDate, int diagnosedBy) {
         requireAllNonNull(diagnosis, visitDate, diagnosedBy);
         checkArgument(isValidDiagnosis(diagnosis), MESSAGE_CONSTRAINTS);
-        this.patientId = patientId;
         description = diagnosis;
         this.visitDate = visitDate;
         this.diagnosedBy = diagnosedBy;
@@ -70,12 +68,8 @@ public class Diagnosis {
         return visitDate;
     }
 
-    public Doctor getDiagnosedBy() {
+    public int getDiagnosedBy() {
         return diagnosedBy;
-    }
-
-    public int getPatientId() {
-        return patientId;
     }
 
     /**
@@ -129,7 +123,6 @@ public class Diagnosis {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("patientId", patientId)
                 .add("description", description)
                 .add("visitDate", visitDate)
                 .add("diagnosedBy", diagnosedBy)
@@ -150,7 +143,7 @@ public class Diagnosis {
         return otherDiagnosis != null
                 && description.equals(otherDiagnosis.description)
                 && Objects.equals(visitDate, otherDiagnosis.visitDate)
-                && diagnosedBy.equals(otherDiagnosis.diagnosedBy);
+                && diagnosedBy == otherDiagnosis.diagnosedBy;
     }
 
     @Override
@@ -166,7 +159,7 @@ public class Diagnosis {
         Diagnosis otherDiagnosis = (Diagnosis) other;
         return description.equals(otherDiagnosis.description)
                 && Objects.equals(visitDate, otherDiagnosis.visitDate)
-                && diagnosedBy.equals(otherDiagnosis.diagnosedBy)
+                && diagnosedBy == otherDiagnosis.diagnosedBy
                 && symptoms.equals(otherDiagnosis.symptoms)
                 && prescriptions.equals(otherDiagnosis.prescriptions);
     }

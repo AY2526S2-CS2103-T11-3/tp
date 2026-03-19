@@ -10,7 +10,6 @@ import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.Pharmacist;
-import seedu.clinic.model.person.Prescription;
 
 /**
  * The API of the Model component.
@@ -85,7 +84,7 @@ public interface Model {
      * Adds the given diagnosis to the target patient.
      * {@code target} must exist in clinic book.
      */
-    void addDiagnosisToPatient(Person target, Diagnosis diagnosis);
+    void addDiagnosis(Patient target, Diagnosis diagnosis);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

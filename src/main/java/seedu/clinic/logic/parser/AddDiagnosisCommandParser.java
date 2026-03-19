@@ -1,20 +1,18 @@
 package seedu.clinic.logic.parser;
 
 import static seedu.clinic.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DESC;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DIAGNOSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DISPENSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DOSAGE;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_FREQ;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_MEDICATION;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_PRESCRIBED_BY;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DIAGNOSED_BY;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_SYMPTOM;
+import static seedu.clinic.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -22,20 +20,19 @@ import java.util.stream.Stream;
 import seedu.clinic.commons.core.index.Index;
 import seedu.clinic.logic.commands.AddDiagnosisCommand;
 import seedu.clinic.logic.parser.exceptions.ParseException;
-import seedu.clinic.model.person.Address;
 import seedu.clinic.model.person.Diagnosis;
-import seedu.clinic.model.person.Doctor;
-import seedu.clinic.model.person.Email;
-import seedu.clinic.model.person.Name;
-import seedu.clinic.model.person.Phone;
 import seedu.clinic.model.person.Prescription;
-import seedu.clinic.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddDiagnosisCommand object
  */
 public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddDiagnosisCommand
+     * and returns an AddDiagnosisCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddDiagnosisCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
@@ -63,13 +60,16 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
         Index id = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ID).get());
         String description = argMultimap.getValue(PREFIX_DESC).get();
         LocalDate visitDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_VISIT_DATE).get());
-        String diagnosedBy = argMultimap.getValue(PREFIX_DIAGNOSED_BY).get();
+        Index diagnosedBy = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DIAGNOSED_BY).get());
         List<String> symptoms = argMultimap.getAllValues(PREFIX_SYMPTOM);
 
         List<String> medNames = argMultimap.getAllValues(PREFIX_MEDICATION);
         List<String> dosages = argMultimap.getAllValues(PREFIX_DOSAGE);
         List<String> frequencies = argMultimap.getAllValues(PREFIX_FREQ);
-        List<String> dispensedByList = argMultimap.getAllValues(PREFIX_DISPENSED_BY);
+        List<Index> dispensedByList = new ArrayList<>();
+        for (String value : argMultimap.getAllValues(PREFIX_DISPENSED_BY)) {
+            dispensedByList.add(ParserUtil.parseIndex(value));
+        }
 
         int prescriptionCount = medNames.size();
 
@@ -92,17 +92,11 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
                     medNames.get(i),
                     dosages.get(i),
                     frequencies.get(i),
-                    dispensedByList.get(i)
+                    dispensedByList.get(i).getOneBased()
             ));
         }
 
-        /**
-         * TODO: Retrieve doctor from list
-         * Currently creates new Doctor with diagnosedBy as name
-         */
-        Doctor doctorObj = new Doctor(new Name(diagnosedBy), new Phone("91234567"),
-                new Email("test1@gmail.com"), new Address("123 Clementi Rd"), new HashSet<Tag>());
-        Diagnosis diagnosis = new Diagnosis(id.getOneBased(), description, visitDate, doctorObj);
+        Diagnosis diagnosis = new Diagnosis(description, visitDate, diagnosedBy.getOneBased());
         symptoms.forEach(diagnosis::addSymptom);
         prescriptions.forEach(diagnosis::addPrescription);
 

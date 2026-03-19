@@ -18,7 +18,6 @@ import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.Pharmacist;
-import seedu.clinic.model.person.Prescription;
 
 /**
  * Represents the in-memory model of clinic book data.
@@ -118,11 +117,9 @@ public class ModelManager implements Model {
         clinicBook.setPerson(target, editedPerson);
     }
 
-    // TODO: Replace Person with Patient
-    // TODO: Link diagnosis to patient
     @Override
-    public void addDiagnosisToPatient(Person target, Diagnosis diagnosis) {
-        clinicBook.addDiagnosis(diagnosis);
+    public void addDiagnosis(Patient target, Diagnosis diagnosis) {
+        clinicBook.addDiagnosis(target, diagnosis);
     }
 
     //=========== Filtered Person List Accessors =============================================================

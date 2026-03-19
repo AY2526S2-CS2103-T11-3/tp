@@ -12,10 +12,8 @@ import seedu.clinic.commons.core.index.Index;
 import seedu.clinic.commons.util.StringUtil;
 import seedu.clinic.logic.parser.exceptions.ParseException;
 import seedu.clinic.model.person.Address;
-import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Email;
 import seedu.clinic.model.person.Name;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Phone;
 import seedu.clinic.model.person.Prescription;
 import seedu.clinic.model.tag.Tag;
@@ -173,17 +171,15 @@ public class ParserUtil {
             String medicationName,
             String dosage,
             String frequency,
-            String dispensedBy) throws ParseException {
+            int dispensedBy) throws ParseException {
 
         requireNonNull(medicationName);
         requireNonNull(dosage);
         requireNonNull(frequency);
-        requireNonNull(dispensedBy);
 
         medicationName = medicationName.trim();
         dosage = dosage.trim();
         frequency = frequency.trim();
-        dispensedBy = dispensedBy.trim();
 
         if (medicationName.isEmpty()) {
             throw new ParseException("Medication name cannot be empty.");
@@ -194,18 +190,7 @@ public class ParserUtil {
         if (frequency.isEmpty()) {
             throw new ParseException("Frequency cannot be empty.");
         }
-        if (dispensedBy.isEmpty()) {
-            throw new ParseException("Dispensing pharmacist cannot be empty.");
-        }
 
-        /**
-         * TODO: Retrieve doctor and pharmacist from list
-         * Currently creates new Doctor with prescribedBy as name
-         * and Pharmacist with dispensedBy as name
-         */
-        Pharmacist pharmacistObj = new Pharmacist(new Name(dispensedBy), new Phone("91234568"),
-                new Email("test2@gmail.com"), new Address("456 Clementi Rd"), new HashSet<Tag>());
-
-        return new Prescription(medicationName, dosage, frequency, pharmacistObj);
+        return new Prescription(medicationName, dosage, frequency, dispensedBy);
     }
 }

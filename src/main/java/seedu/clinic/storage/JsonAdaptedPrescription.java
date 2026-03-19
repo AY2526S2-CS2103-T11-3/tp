@@ -1,18 +1,10 @@
 package seedu.clinic.storage;
 
-import java.util.HashSet;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.clinic.commons.exceptions.IllegalValueException;
-import seedu.clinic.model.person.Address;
-import seedu.clinic.model.person.Email;
-import seedu.clinic.model.person.Name;
-import seedu.clinic.model.person.Pharmacist;
-import seedu.clinic.model.person.Phone;
 import seedu.clinic.model.person.Prescription;
-import seedu.clinic.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link `Prescription`}.
@@ -24,7 +16,7 @@ class JsonAdaptedPrescription {
     private final String medicationName;
     private final String dosage;
     private final String frequency;
-    private final String dispensedBy;
+    private final int dispensedBy;
 
     /**
      * Constructs a {@code JsonAdaptedPrescription} with the given prescription details.
@@ -33,7 +25,7 @@ class JsonAdaptedPrescription {
     public JsonAdaptedPrescription(@JsonProperty("medicationName") String medicationName,
                                    @JsonProperty("dosage") String dosage,
                                    @JsonProperty("frequency") String frequency,
-                                   @JsonProperty("dispensedBy") String dispensedBy) {
+                                   @JsonProperty("dispensedBy") int dispensedBy) {
         this.medicationName = medicationName;
         this.dosage = dosage;
         this.frequency = frequency;
@@ -47,7 +39,7 @@ class JsonAdaptedPrescription {
         medicationName = source.getMedicationName();
         dosage = source.getDosage();
         frequency = source.getFrequency();
-        dispensedBy = source.getDispensedBy().getName().toString();
+        dispensedBy = source.getDispensedBy();
     }
 
     /**
@@ -65,13 +57,10 @@ class JsonAdaptedPrescription {
         if (frequency == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "frequency"));
         }
-        if (dispensedBy == null) {
+        if (dispensedBy == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dispensedBy"));
         }
 
-        final Pharmacist modelPharmacist = new Pharmacist(new Name(dispensedBy), new Phone("91234568"),
-                new Email("test2@gmail.com"), new Address("456 Clementi Rd"), new HashSet<Tag>());
-
-        return new Prescription(medicationName, dosage, frequency, modelPharmacist);
+        return new Prescription(medicationName, dosage, frequency, dispensedBy);
     }
 }

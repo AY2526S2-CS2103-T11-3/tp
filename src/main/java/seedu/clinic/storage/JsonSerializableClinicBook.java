@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.ReadOnlyClinicBook;
-import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Doctor;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
 
 /**
  * An Immutable ClinicBook that is serializable to JSON format.
@@ -23,16 +25,13 @@ class JsonSerializableClinicBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonAdaptedDiagnosis> diagnoses =  new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableClinicBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                      @JsonProperty("diagnoses") List<JsonAdaptedDiagnosis> diagnoses) {
+    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
-        this.diagnoses.addAll(diagnoses);
     }
 
     /**
@@ -41,8 +40,20 @@ class JsonSerializableClinicBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableClinicBook}.
      */
     public JsonSerializableClinicBook(ReadOnlyClinicBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        diagnoses.addAll(source.getDiagnosisList().stream().map(JsonAdaptedDiagnosis::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream()
+                .map(person -> {
+                    if (person instanceof Patient) {
+                        return new JsonAdaptedPatient((Patient) person);
+                    }
+                    if (person instanceof Doctor) {
+                        return new JsonAdaptedDoctor((Doctor) person);
+                    }
+                    if (person instanceof Pharmacist) {
+                        return new JsonAdaptedPharmacist((Pharmacist) person);
+                    }
+                    return new JsonAdaptedPerson(person);
+                })
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -58,10 +69,6 @@ class JsonSerializableClinicBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             clinicBook.addPerson(person);
-        }
-        for (JsonAdaptedDiagnosis jsonAdaptedDiagnosis : diagnoses) {
-            Diagnosis diagnosis = jsonAdaptedDiagnosis.toModelType();
-            clinicBook.addDiagnosis(diagnosis);
         }
         return clinicBook;
     }
