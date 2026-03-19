@@ -41,7 +41,7 @@ public class AddPatientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in clinic book";
-    
+
     private final Patient newPatient;
 
     /**
@@ -89,3 +89,4 @@ public class AddPatientCommand extends Command {
                 .toString();
     }
 }
+

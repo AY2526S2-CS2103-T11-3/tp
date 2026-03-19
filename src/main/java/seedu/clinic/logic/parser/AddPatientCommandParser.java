@@ -41,14 +41,14 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
     public AddPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args,
-                PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-                PREFIX_SEX, PREFIX_ALLERGIES,
-                PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
+                        PREFIX_SEX, PREFIX_ALLERGIES,
+                        PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
 
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-            PREFIX_SEX,
+                PREFIX_SEX,
                 PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
@@ -57,9 +57,9 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(
-            PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-            PREFIX_SEX,
-            PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
+                PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
+                PREFIX_SEX,
+                PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         NRIC nric = parseNric(argMultimap.getValue(PREFIX_NRIC).get());
@@ -82,7 +82,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     private static NRIC parseNric(String nricInput) throws ParseException {
         String normalized = nricInput.trim().toUpperCase(Locale.ROOT);
         if (!NRIC.isValidNric(normalized)) {
-                throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
+            throw new ParseException(NRIC.MESSAGE_CONSTRAINTS);
         }
         return new NRIC(normalized);
     }
