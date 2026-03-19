@@ -24,10 +24,10 @@ import seedu.clinic.model.tag.Tag;
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = JsonAdaptedPerson.class, name = "person"),
-        @JsonSubTypes.Type(value = JsonAdaptedPatient.class, name = "patient"),
-        @JsonSubTypes.Type(value = JsonAdaptedDoctor.class, name = "doctor"),
-        @JsonSubTypes.Type(value = JsonAdaptedPharmacist.class, name = "pharmacist")
+    @JsonSubTypes.Type(value = JsonAdaptedPerson.class, name = "person"),
+    @JsonSubTypes.Type(value = JsonAdaptedPatient.class, name = "patient"),
+    @JsonSubTypes.Type(value = JsonAdaptedDoctor.class, name = "doctor"),
+    @JsonSubTypes.Type(value = JsonAdaptedPharmacist.class, name = "pharmacist")
 })
 class JsonAdaptedPerson {
 
