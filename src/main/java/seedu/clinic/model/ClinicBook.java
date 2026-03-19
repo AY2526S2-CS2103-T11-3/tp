@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.util.ToStringBuilder;
+import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.UniquePersonList;
 
@@ -77,6 +79,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      * The person must not already exist in clinic book.
      */
     public void addPerson(Person p) {
+        // If ID is 0 (default), assign a new one
         assignIdIfMissing(p);
         persons.add(p);
     }
@@ -118,6 +121,31 @@ public class ClinicBook implements ReadOnlyClinicBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Adds a diagnosis to clinic book.
+     */
+    public void addDiagnosis(Patient target, Diagnosis diagnosis) {
+        requireNonNull(target);
+        requireNonNull(diagnosis);
+
+        Patient editedPatient = new Patient(
+                target.getName(),
+                target.getPhone(),
+                target.getEmail(),
+                target.getAddress(),
+                target.getTags(),
+                target.getNric(),
+                target.getDateOfBirth(),
+                target.getEmergencyContact(),
+                target.getId()
+        );
+
+        target.getDiagnoses().forEach(editedPatient::addDiagnosis);
+        editedPatient.addDiagnosis(diagnosis);
+
+        persons.setPerson(target, editedPatient);
     }
 
     //// util methods
