@@ -22,6 +22,7 @@ import seedu.clinic.model.person.Name;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.Phone;
+import seedu.clinic.model.person.Sex;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code GetHistoryCommand}.
@@ -75,8 +76,8 @@ public class GetHistoryCommandTest {
                 Set.of(),
                 new NRIC("S1234567D"),
                 LocalDate.of(1990, 1, 1),
-            "91230000",
-            1));
+                Sex.FEMALE,
+                1));
         clinicBook.addPerson(new Patient(
                 new Name("Bob Lee"),
                 new Phone("92345678"),
@@ -85,8 +86,8 @@ public class GetHistoryCommandTest {
                 Set.of(),
                 new NRIC("T1234567J"),
                 LocalDate.of(1988, 6, 15),
-            "92340000",
-            2));
+                Sex.MALE,
+                2));
         clinicBook.addPerson(new Person(
                 new Name("Carl Helper"),
                 new Phone("93456789"),

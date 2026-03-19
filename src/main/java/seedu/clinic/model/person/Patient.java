@@ -16,6 +16,7 @@ import seedu.clinic.model.tag.Tag;
  * Represents a Patient in the clinic.
  * A Patient is a Person who receives medical services.
  *
+ * TODO: Reintroduce emergency contact support after temporary model simplification.
  * TODO: Replace emergencyContact string with EmergencyContact objects collection
  * TODO: Use {@code Set<EmergencyContact>} instead of String for emergency contacts
  * TODO: Implement allergies management
@@ -31,43 +32,40 @@ public class Patient extends ContactPerson {
     private final NRIC nric;
     private final LocalDate dateOfBirth;
     private final Sex sex;
-    private final String emergencyContact;
     private final List<Diagnosis> diagnoses = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-            NRIC nric, LocalDate dateOfBirth, Sex sex, String emergencyContact) {
+            NRIC nric, LocalDate dateOfBirth, Sex sex) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(nric, dateOfBirth, sex, emergencyContact);
+        requireAllNonNull(nric, dateOfBirth, sex);
         this.patientId = getNextPatientId();
         this.nric = nric;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
-        this.emergencyContact = emergencyContact;
     }
 
     /**
      * Constructs a Patient with ID.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-            NRIC nric, LocalDate dateOfBirth, Sex sex, String emergencyContact, int id) {
+            NRIC nric, LocalDate dateOfBirth, Sex sex, int id) {
         super(name, phone, email, address, tags, id);
-        requireAllNonNull(nric, dateOfBirth, sex, emergencyContact);
+        requireAllNonNull(nric, dateOfBirth, sex);
         this.patientId = getNextPatientId();
         this.nric = nric;
         this.dateOfBirth = dateOfBirth;
         this.sex = sex;
-        this.emergencyContact = emergencyContact;
     }
 
     /**
      * Reuses an existing person as the shared identity and contact details for a patient.
      */
-    public Patient(Person person, NRIC nric, LocalDate dob, Sex sex, String emergencyContact) {
+    public Patient(Person person, NRIC nric, LocalDate dob, Sex sex) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(),
-                nric, dob, sex, emergencyContact, person.getId());
+                nric, dob, sex, person.getId());
     }
 
     private static int getNextPatientId() {
@@ -99,10 +97,6 @@ public class Patient extends ContactPerson {
 
     public int getAge() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
-    }
-
-    public String getEmergencyContact() {
-        return emergencyContact;
     }
 
     /**

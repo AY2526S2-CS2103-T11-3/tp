@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.exceptions.DuplicatePersonException;
 import seedu.clinic.testutil.PersonBuilder;
@@ -102,6 +103,11 @@ public class ClinicBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Patient> getPatientList() {
+            return FXCollections.emptyObservableList();
         }
     }
 

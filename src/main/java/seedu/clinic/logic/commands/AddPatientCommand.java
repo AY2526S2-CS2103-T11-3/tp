@@ -6,7 +6,6 @@ import static seedu.clinic.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ALLERGIES;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -27,7 +26,6 @@ public class AddPatientCommand extends Command {
             + PREFIX_DOB + "DOB "
             + PREFIX_SEX + "SEX "
             + "[" + PREFIX_ALLERGIES + "ALLERGY]... "
-            + PREFIX_EMERGENCY_CONTACT + "EMERGENCY_CONTACT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -37,7 +35,6 @@ public class AddPatientCommand extends Command {
             + PREFIX_DOB + "01-01-1912 "
             + PREFIX_SEX + "Male "
             + PREFIX_ALLERGIES + "G6PD " + PREFIX_ALLERGIES + "Shellfish "
-            + PREFIX_EMERGENCY_CONTACT + "Matthew "
             + PREFIX_EMAIL + "john@gmail.com "
             + PREFIX_PHONE + "90010000 "
             + PREFIX_ADDRESS + "123 Marina Terrace ";

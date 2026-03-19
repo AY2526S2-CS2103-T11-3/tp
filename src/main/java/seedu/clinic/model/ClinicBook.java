@@ -2,14 +2,13 @@ package seedu.clinic.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.util.ToStringBuilder;
-import seedu.clinic.model.person.Person;
-import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Patient;
+import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.UniquePatientList;
 import seedu.clinic.model.person.UniquePersonList;
 
 /**
@@ -19,7 +18,7 @@ import seedu.clinic.model.person.UniquePersonList;
 public class ClinicBook implements ReadOnlyClinicBook {
 
     private final UniquePersonList persons;
-    private final UniquePersonList patients;
+    private final UniquePatientList patients;
     // id counter for Patient
     private int nextId = 1;
 
@@ -32,7 +31,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      */
     {
         persons = new UniquePersonList();
-        patients = new UniquePersonList();
+        patients = new UniquePatientList();
     }
 
     public ClinicBook() {}
@@ -75,8 +74,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      */
     public void setPatients(List<Patient> patients) {
         requireNonNull(patients);
-        List<Person> personsToSet = new ArrayList<>(patients);
-        this.patients.setPersons(personsToSet);
+        this.patients.setPatients(patients);
     }
 
     //// person-level operations

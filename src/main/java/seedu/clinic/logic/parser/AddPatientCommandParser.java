@@ -6,7 +6,6 @@ import static seedu.clinic.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ALLERGIES;
-import static seedu.clinic.logic.parser.CliSyntax.PREFIX_EMERGENCY_CONTACT;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.clinic.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -39,18 +38,17 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
     private static final DateTimeFormatter DOB_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final String MESSAGE_INVALID_DOB = "DOB must be in dd-MM-yyyy format.";
     private static final String MESSAGE_INVALID_SEX = "Sex must be one of: MALE, FEMALE, INTERSEX.";
-    private static final String MESSAGE_EMPTY_EMERGENCY_CONTACT = "Emergency contact cannot be blank.";
 
     public AddPatientCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args,
                 PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-                PREFIX_SEX, PREFIX_ALLERGIES, PREFIX_EMERGENCY_CONTACT,
+                PREFIX_SEX, PREFIX_ALLERGIES,
                 PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
 
         if (!arePrefixesPresent(argMultimap,
                 PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-                PREFIX_SEX, PREFIX_EMERGENCY_CONTACT,
+            PREFIX_SEX,
                 PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
@@ -60,7 +58,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(
             PREFIX_NAME, PREFIX_NRIC, PREFIX_DOB,
-            PREFIX_SEX, PREFIX_EMERGENCY_CONTACT,
+            PREFIX_SEX,
             PREFIX_EMAIL, PREFIX_PHONE, PREFIX_ADDRESS);
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -68,7 +66,6 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         LocalDate dob = parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Sex sex = parseSex(argMultimap.getValue(PREFIX_SEX).get());
 
-        String emergencyContact = parseEmergencyContact(argMultimap.getValue(PREFIX_EMERGENCY_CONTACT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
@@ -77,7 +74,8 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Set<Tag> allergies = ParserUtil.parseTags(allergyValues);
 
         Person person = new Person(name, phone, email, address, allergies);
-        Patient patient = new Patient(person, nric, dob, sex, emergencyContact);
+        // TODO: Reintroduce emergency contact parsing when Patient model supports it again.
+        Patient patient = new Patient(person, nric, dob, sex);
         return new AddPatientCommand(patient);
     }
 
@@ -104,15 +102,6 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         } catch (IllegalArgumentException e) {
             throw new ParseException(MESSAGE_INVALID_SEX, e);
         }
-    }
-
-    // TODO: Verify this works
-    private static String parseEmergencyContact(String emergencyContactInput) throws ParseException {
-        String trimmed = emergencyContactInput.trim();
-        if (trimmed.isEmpty()) {
-            throw new ParseException(MESSAGE_EMPTY_EMERGENCY_CONTACT);
-        }
-        return trimmed;
     }
 
     /**

@@ -58,7 +58,7 @@ public class AddPatientCommandTest {
     @Test
     public void equals() {
         Patient alicePatient = createPatient("Alice Pauline", "T1234567J");
-        Patient bobPatient = createPatient("Bob Choo", "F2345678N");
+        Patient bobPatient = createPatient("Bob Choo", "S1234567D");
         AddPatientCommand addAliceCommand = new AddPatientCommand(alicePatient);
         AddPatientCommand addBobCommand = new AddPatientCommand(bobPatient);
 
@@ -85,7 +85,7 @@ public class AddPatientCommandTest {
                 .withId(0)
                 .withName(name)
                 .build();
-        return new Patient(person, new NRIC(nric), LocalDate.of(1990, 1, 1), Sex.FEMALE, "John Tan");
+        return new Patient(person, new NRIC(nric), LocalDate.of(1990, 1, 1), Sex.FEMALE);
     }
 
     /**
