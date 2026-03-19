@@ -96,6 +96,5 @@ class JsonAdaptedDiagnosis {
 //
 //        return new Diagnosis(description, modelVisitDate, modelDoctor, symptoms, modelPrescriptions);
 //    }
-*/
 
 }
