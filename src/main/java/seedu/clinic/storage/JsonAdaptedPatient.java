@@ -41,7 +41,9 @@ class JsonAdaptedPatient {
         this.emergencyContact = emergencyContact;
     }
 
-    // Converts a given Patient into this class for Jackson use.
+    // /**
+    //  * Converts a given {@code Patient} into this class for Jackson use.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public JsonAdaptedPatient(Patient source) {
@@ -56,8 +58,11 @@ class JsonAdaptedPatient {
 //                .collect(Collectors.toList()));
 //    }
 
-    // Converts this Jackson-friendly adapted patient object into the model's Patient object.
-    // Throws IllegalValueException if there were any data constraints violated.
+    // /**
+    //  * Converts this Jackson-friendly adapted patient object into the model's {@code Patient} object.
+    //  *
+    //  * @throws IllegalValueException if there were any data constraints violated.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public Patient toModelType() throws IllegalValueException {

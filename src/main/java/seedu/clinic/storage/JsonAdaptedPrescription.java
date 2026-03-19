@@ -34,7 +34,9 @@ class JsonAdaptedPrescription {
         this.dispensedBy = dispensedBy;
     }
 
-    // Converts a given Prescription into this class for Jackson use.
+    // /**
+    //  * Converts a given {@code Prescription} into this class for Jackson use.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public JsonAdaptedPrescription(Prescription source) {
@@ -44,8 +46,11 @@ class JsonAdaptedPrescription {
 //        dispensedBy = source.getDispensedBy().getName();
 //    }
 
-    // Converts this Jackson-friendly adapted prescription object into the model's Prescription object.
-    // Throws IllegalValueException if there were any data constraints violated.
+    // /**
+    //  * Converts this Jackson-friendly adapted prescription object into the model's {@code Prescription} object.
+    //  *
+    //  * @throws IllegalValueException if there were any data constraints violated.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public Prescription toModelType() throws IllegalValueException {

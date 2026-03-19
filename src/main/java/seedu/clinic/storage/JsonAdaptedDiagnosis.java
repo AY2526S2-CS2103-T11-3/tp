@@ -47,7 +47,9 @@ class JsonAdaptedDiagnosis {
         }
     }
 
-    // Converts a given Diagnosis into this class for Jackson use.
+    // /**
+    //  * Converts a given {@code Diagnosis} into this class for Jackson use.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public JsonAdaptedDiagnosis(Diagnosis source) {
@@ -62,8 +64,11 @@ class JsonAdaptedDiagnosis {
 //                .collect(Collectors.toList()));
 //    }
 
-    // Converts this Jackson-friendly adapted diagnosis object into the model's Diagnosis object.
-    // Throws IllegalValueException if there were any data constraints violated.
+    // /**
+    //  * Converts this Jackson-friendly adapted diagnosis object into the model's {@code Diagnosis} object.
+    //  *
+    //  * @throws IllegalValueException if there were any data constraints violated.
+    //  */
     // TODO: Enable after PR #52 merges
     // Currently omitted to avoid dependency on unmerged classes
 //    public Diagnosis toModelType() throws IllegalValueException {
