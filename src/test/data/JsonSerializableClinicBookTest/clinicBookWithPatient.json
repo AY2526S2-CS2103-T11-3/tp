@@ -25,5 +25,6 @@
     "email" : "bob@example.com",
     "address" : "10th street",
     "tags" : [ "colleagues" ]
-  } ]
+  } ],
+  "doctors": []
 }

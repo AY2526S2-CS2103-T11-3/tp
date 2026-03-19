@@ -138,7 +138,8 @@ public class ModelManagerTest {
         modelManager.addDiagnosis(patient, diagnosis);
 
         assertEquals(1, modelManager.getFilteredPatientList().size());
-        assertEquals(1, modelManager.getFilteredDoctorList().size());
+        // TODO: 0 coz separate list
+        assertEquals(0, modelManager.getFilteredDoctorList().size());
         assertEquals(1, modelManager.getFilteredPharmacistList().size());
         assertEquals(1, modelManager.getFilteredPatientList().get(0).getDiagnoses().size());
     }
