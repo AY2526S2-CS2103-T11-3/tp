@@ -1,6 +1,5 @@
 package seedu.clinic.storage;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,13 +8,13 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.person.Address;
 import seedu.clinic.model.person.Email;
-import seedu.clinic.model.person.NRIC;
 import seedu.clinic.model.person.Name;
-import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.Phone;
 import seedu.clinic.model.person.Sex;
@@ -24,16 +23,18 @@ import seedu.clinic.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Person}.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = JsonAdaptedPerson.class, name = "person"),
+    @JsonSubTypes.Type(value = JsonAdaptedPatient.class, name = "patient"),
+    @JsonSubTypes.Type(value = JsonAdaptedDoctor.class, name = "doctor"),
+    @JsonSubTypes.Type(value = JsonAdaptedPharmacist.class, name = "pharmacist")
+})
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
-    public static final String MISSING_PATIENT_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
-    public static final String MESSAGE_INVALID_PERSON_TYPE = "Unsupported person type: %s";
-    private static final String TYPE_PATIENT = "patient";
-    private static final String TYPE_PERSON = "person";
 
     private final int id;
-    private final String type;
     private final String name;
     private final String nric;
     private final String dateOfBirth;
@@ -43,21 +44,23 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("type") String type,
-             @JsonProperty("name") String name, @JsonProperty("nric") String nric,
-             @JsonProperty("dateOfBirth") String dateOfBirth,
-             @JsonProperty("sex") String sex,
-             @JsonProperty("emergencyContact") String emergencyContact,
-             @JsonProperty("phone") String phone,
-             @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+//     public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("type") String type,
+//              @JsonProperty("name") String name, @JsonProperty("nric") String nric,
+//              @JsonProperty("dateOfBirth") String dateOfBirth,
+//              @JsonProperty("sex") String sex,
+//              @JsonProperty("emergencyContact") String emergencyContact,
+//              @JsonProperty("phone") String phone,
+//              @JsonProperty("email") String email, @JsonProperty("address") String address,
+//              @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("name") String name,
+                             @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.id = id;
-        this.type = type;
         this.name = name;
         this.nric = nric;
         this.dateOfBirth = dateOfBirth;
@@ -92,7 +95,6 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         id = source.getId();
-        type = source instanceof Patient ? TYPE_PATIENT : null;
         name = source.getName().fullName;
         nric = source instanceof Patient ? ((Patient) source).getNric().value : null;
         dateOfBirth = source instanceof Patient ? ((Patient) source).getDateOfBirth().toString() : null;
@@ -196,7 +198,8 @@ class JsonAdaptedPerson {
             }
         }
 
-        return new Patient(modelPerson, modelNric, modelDateOfBirth, modelSex);
+//         return new Patient(modelPerson, modelNric, modelDateOfBirth, modelSex);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelId);
     }
 
 }
