@@ -45,6 +45,12 @@ public abstract class Staff extends ContactPerson {
         return staffId;
     }
 
+    // separate Id for staff and Id for patient
+    @Override
+    public int getId() {
+        return staffId;
+    }
+
     @Override
     public boolean isSamePerson(Person otherPerson) {
         return otherPerson instanceof Staff

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import javax.print.Doc;
-
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.model.person.Doctor;
@@ -150,8 +148,8 @@ public class ClinicBook implements ReadOnlyClinicBook {
                 .mapToInt(Person::getId)
                 .max()
                 .orElse(0);
-        nextId = maxId + 1;
-        return nextId++;
+        nextDoctorId = maxId + 1;
+        return nextDoctorId++;
     }
 
 
