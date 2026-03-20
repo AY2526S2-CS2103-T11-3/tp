@@ -110,6 +110,7 @@ public class JsonClinicBookStorageTest {
         assertEquals(nadia.getAddress(), readBackPatient.getAddress());
         assertEquals(nadia.getNric(), readBackPatient.getNric());
         assertEquals(nadia.getDateOfBirth(), readBackPatient.getDateOfBirth());
+        assertEquals(nadia.getSex(), readBackPatient.getSex());
     }
 
     @Test

@@ -7,7 +7,7 @@ import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.person.Prescription;
 
 /**
- * Jackson-friendly version of Prescription.
+ * Jackson-friendly version of {@link `Prescription`}.
  */
 class JsonAdaptedPrescription {
 

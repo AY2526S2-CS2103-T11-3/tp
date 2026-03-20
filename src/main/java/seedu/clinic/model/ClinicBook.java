@@ -69,7 +69,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
     public void setPatients(List<Patient> patients) {
         for (Patient p : patients) {
             if (p.getId() == 0) {
-                p.setId(getNextDoctorId());
+                p.setId(getNextPatientId());
             }
         }
         this.patients.setPersons(patients);
@@ -131,13 +131,12 @@ public class ClinicBook implements ReadOnlyClinicBook {
      * Adds a Patient to clinic book.
      * The patient must not already exist in clinic book.
      */
-    public void addPatient(Patient patient) {
-        requireNonNull(patient);
-        if (patient.getId() == 0) {
-            patient.setId(getNextId());
+    public void addPatient(Patient p) {
+        requireNonNull(p);
+        if (p.getId() == 0) {
+            p.setId(getNextPatientId());
         }
-        persons.add(patient);
-        patients.add(patient);
+        patients.add(p);
     }
 
     /**
@@ -147,8 +146,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
     public void addDoctor(Doctor d) {
         // If ID is 0 (default), assign a new one
         if (d.getId() == 0) {
-            int newId = getNextDoctorId();
-            d = new Doctor(d.getName(), d.getPhone(), d.getEmail(), newId);
+            d.setId(getNextDoctorId());
         }
         doctors.add(d);
     }

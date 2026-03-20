@@ -13,6 +13,7 @@
     "id" : 2,
     "nric" : "S1234567D",
     "dateOfBirth" : "1992-04-12",
+    "sex" : "FEMALE",
     "emergencyContact" : "Amir Tan",
     "phone" : "93456789",
     "email" : "nadiatan@example.com",

@@ -51,6 +51,7 @@ class JsonAdaptedDoctor extends JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted doctor.
      */
+    @Override
     public Doctor toModelType() throws IllegalValueException {
         if (id == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "id"));

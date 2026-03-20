@@ -9,6 +9,7 @@
     "tags" : [ "friends" ],
     "nric" : "S1166846A",
     "dateOfBirth" : "2000-01-02",
+    "sex" : "FEMALE",
     "emergencyContact" : "Bob 98765432",
     "diagnoses" : [ {
       "description" : "Flu",

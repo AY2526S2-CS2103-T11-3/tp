@@ -93,4 +93,21 @@ public class JsonAdaptedPatientTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "NRIC");
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }
+
+    @Test
+    public void toModelType_blankSex_throwsIllegalValueException() {
+        JsonAdaptedPatient patient = new JsonAdaptedPatient(
+                VALID_ID,
+                VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_TAGS,
+                VALID_NRIC,
+                VALID_DATE_OF_BIRTH,
+                "  ",
+                List.of());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "sex");
+        assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
+    }
 }

@@ -15,6 +15,7 @@ import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.person.NRIC;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Sex;
 import seedu.clinic.testutil.TypicalPersons;
 
 public class JsonSerializableClinicBookTest {
@@ -49,6 +50,7 @@ public class JsonSerializableClinicBookTest {
         Patient patient = (Patient) firstPerson;
         assertEquals("S1166846A", patient.getNric().value);
         assertEquals("2000-01-02", patient.getDateOfBirth().toString());
+        assertEquals(Sex.FEMALE, patient.getSex());
         assertEquals(1, patient.getDiagnoses().size());
         assertEquals("Flu", patient.getDiagnoses().get(0).getDescription());
         assertEquals(1, patient.getDiagnoses().get(0).getSymptoms().size());
@@ -72,6 +74,7 @@ public class JsonSerializableClinicBookTest {
         Patient patient = (Patient) patientPerson;
         assertEquals("Nadia Tan", patient.getName().fullName);
         assertEquals(new NRIC("S1234567D"), patient.getNric());
+        assertEquals(Sex.FEMALE, patient.getSex());
     }
 
     @Test

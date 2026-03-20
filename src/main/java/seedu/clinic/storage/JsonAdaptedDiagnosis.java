@@ -13,7 +13,7 @@ import seedu.clinic.model.person.Diagnosis;
 import seedu.clinic.model.person.Prescription;
 
 /**
- * Jackson-friendly version of Diagnosis.
+ * Jackson-friendly version of {@link `Diagnosis`}.
  */
 class JsonAdaptedDiagnosis {
 

@@ -1,6 +1,7 @@
 package seedu.clinic.storage;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,11 +17,16 @@ import seedu.clinic.model.person.Person;
 import seedu.clinic.model.person.Sex;
 
 /**
- * Jackson-friendly version of Patient.
+ * Jackson-friendly version of {@link `Patient`}.
  */
 class JsonAdaptedPatient extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
+    private static final String FIELD_NRIC = "NRIC";
+    private static final String FIELD_DATE_OF_BIRTH = "dateOfBirth";
+    private static final String FIELD_SEX = "sex";
+    private static final String INVALID_DATE_OF_BIRTH_MESSAGE = "Patient's dateOfBirth is not a valid date!";
+    private static final String INVALID_SEX_MESSAGE = "Patient's sex is invalid!";
 
     private final String nric;
     private final String dateOfBirth;
@@ -71,36 +77,39 @@ class JsonAdaptedPatient extends JsonAdaptedPerson {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
+    @Override
     public Patient toModelType() throws IllegalValueException {
         Person person = super.toModelType();
 
         if (nric == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "NRIC"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, FIELD_NRIC));
         }
+
         if (!NRIC.isValidNric(nric)) {
             throw new IllegalValueException(NRIC.MESSAGE_CONSTRAINTS);
         }
         final NRIC modelNric = new NRIC(nric);
 
         if (dateOfBirth == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateOfBirth"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, FIELD_DATE_OF_BIRTH));
         }
+
         final LocalDate modelDob;
         try {
             modelDob = LocalDate.parse(dateOfBirth);
-        } catch (RuntimeException e) {
-            throw new IllegalValueException("Patient's dateOfBirth is not a valid date!");
+        } catch (DateTimeParseException e) {
+            throw new IllegalValueException(INVALID_DATE_OF_BIRTH_MESSAGE);
+        }
+
+        if (sex == null || sex.isBlank()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, FIELD_SEX));
         }
 
         final Sex modelSex;
-        if (sex == null || sex.isBlank()) {
-            modelSex = Sex.FEMALE;
-        } else {
-            try {
-                modelSex = Sex.valueOf(sex.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                throw new IllegalValueException("Patient's sex is invalid!");
-            }
+        try {
+            modelSex = Sex.valueOf(sex.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(INVALID_SEX_MESSAGE);
         }
 
         final List<Diagnosis> modelDiagnoses = new ArrayList<>();
