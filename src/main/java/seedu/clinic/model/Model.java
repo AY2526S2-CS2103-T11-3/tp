@@ -131,9 +131,9 @@ public interface Model {
     /**
      * Replaces the given pharmacist {@code target} with {@code editedPharmacist}.
      * {@code target} must exist in clinic book.
-     * The person identity of {@code editedPharmacist} must not be the same as another existing pharmacist in clinic book.
+        * The person identity of {@code editedPharmacist} must not be the same as another existing
+        * pharmacist in clinic book.
      */
-
     void setPharmacist(Pharmacist target, Pharmacist editedPharmacist);
 
     /**
@@ -171,7 +171,4 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();
-
-    /** Returns an unmodifiable view of the filtered pharmacist list */
-    ObservableList<Pharmacist> getFilteredPharmacistList();
 }

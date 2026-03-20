@@ -25,7 +25,7 @@ public class AddPharmacistCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_EMAIL + "john@gmail.com "
-            + PREFIX_PHONE + "90010000 "
+            + PREFIX_PHONE + "90010000 ";
 
     public static final String MESSAGE_SUCCESS = "New pharmacist added: %1$s";
     public static final String MESSAGE_DUPLICATE_PHARMACIST = "This pharmacist already exists in clinic book";

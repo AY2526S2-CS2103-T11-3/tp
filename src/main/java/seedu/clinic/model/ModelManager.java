@@ -112,7 +112,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPharmacist(Pharmacist pharmacist) {
         requireNonNull(pharmacist);
-        return clinicBook.hasDoctor(pharmacist);
+        return clinicBook.hasPharmacist(pharmacist);
     }
 
     @Override
@@ -144,8 +144,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addPharmacist(Pharmacist pharmacist) {
-        clinicBook.addDoctor(pharmacist);
-        updateFilteredDoctorList(PREDICATE_SHOW_ALL_PHARMACISTS);
+        clinicBook.addPharmacist(pharmacist);
+        updateFilteredPharmacistList(PREDICATE_SHOW_ALL_PHARMACISTS);
     }
 
 
@@ -160,14 +160,14 @@ public class ModelManager implements Model {
     public void setDoctor(Doctor target, Doctor editedDoctor) {
         requireAllNonNull(target, editedDoctor);
 
-        clinicBook.setPerson(target, editedDoctor);
+        clinicBook.setDoctor(target, editedDoctor);
     }
 
     @Override
     public void setPharmacist(Pharmacist target, Pharmacist editedPharmacist) {
         requireAllNonNull(target, editedPharmacist);
 
-        clinicBook.setPerson(target, editedPharmacist);
+        clinicBook.setPharmacist(target, editedPharmacist);
     }
 
     public void addDiagnosis(Patient target, Diagnosis diagnosis) {

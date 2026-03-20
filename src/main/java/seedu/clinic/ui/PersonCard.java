@@ -8,9 +8,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.clinic.model.person.Doctor;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
 
 /**
  * An UI component that displays information of a {@code Person} or {@code Doctor}.
@@ -86,7 +86,7 @@ public class PersonCard extends UiPart<Region> {
         role.setText(person.getRole());
     }
 
-     /**
+    /**
      * Creates a {@code PersonCode} with the given {@code Pharmacist} and index to display.
      */
     public PersonCard(Pharmacist pharmacist, int displayedIndex) {

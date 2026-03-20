@@ -39,7 +39,7 @@ public interface Logic {
     ObservableList<Doctor> getFilteredDoctorList();
 
     /** Returns an unmodifiable view of the filtered list of pharmacists */
-    ObservableList<Doctor> getFilteredPharmacistList();
+    ObservableList<Pharmacist> getFilteredPharmacistList();
 
     /**
      * Returns the user prefs' clinic book file path.

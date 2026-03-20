@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.clinic.commons.exceptions.IllegalValueException;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Email;
 import seedu.clinic.model.person.Name;
+import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Phone;
 
 /**

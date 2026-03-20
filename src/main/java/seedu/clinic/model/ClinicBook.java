@@ -9,8 +9,8 @@ import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.model.person.Diagnosis;
 import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Patient;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.UniquePersonList;
 
 /**
@@ -80,7 +80,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      * Replaces the contents of the doctor list with {@code pharmacist}.
      * {@code pharmacist} must not contain duplicate pharmacist.
      */
-    public void setPharmacist(List<Pharmacist> pharmacists) {
+    public void setPharmacists(List<Pharmacist> pharmacists) {
         for (Pharmacist p : pharmacists) {
             if (p.getId() == 0) {
                 p.setId(getNextStaffId());
@@ -96,7 +96,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setPharmacist(newData.getPharmacistList());
+        setPharmacists(newData.getPharmacistList());
         setDoctors(newData.getDoctorList());
     }
 
@@ -121,9 +121,9 @@ public class ClinicBook implements ReadOnlyClinicBook {
     /**
      * Returns true if a pharmacist with the same identity as {@code pharmacist} exists in the clinic book.
      */
-    public boolean hasPharmacist(Pharmacist pharmacists) {
-        requireNonNull(pharmacists);
-        return pharmacists.contains(pharmacists);
+    public boolean hasPharmacist(Pharmacist pharmacist) {
+        requireNonNull(pharmacist);
+        return pharmacists.contains(pharmacist);
     }
 
     /**
@@ -156,7 +156,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
     public void addPharmacist(Pharmacist p) {
         // If ID is 0 (default), assign a new one
         if (p.getId() == 0) {
-            p.setId(getNextStaffId());
+            p = new Pharmacist(p.getName(), p.getPhone(), p.getEmail(), getNextStaffId());
         }
         pharmacists.add(p);
     }
@@ -177,7 +177,7 @@ public class ClinicBook implements ReadOnlyClinicBook {
      * Returns the next available ID and increments the counter
      */
     public int getNextStaffId() {
-        int currentStaffCount = (int) (doctors.stream().count() + pharmacist.stream().count());
+        int currentStaffCount = (int) (doctors.stream().count() + pharmacists.stream().count());
         if (nextStaffId <= currentStaffCount) {
             nextStaffId = currentStaffCount + 1;
         }
@@ -221,9 +221,10 @@ public class ClinicBook implements ReadOnlyClinicBook {
     /**
      * Replaces the given pharmacist {@code target} in the list with {@code editedPharmacist}.
      * {@code target} must exist in clinic book.
-     * The pharmacist identity of {@code editedPharmacist} must not be the same as another existing pharmacist in clinic book.
+        * The pharmacist identity of {@code editedPharmacist} must not be the same as another existing
+        * pharmacist in clinic book.
      */
-    public void setDoctor(Pharmacist target, Pharmacist editedPharmacist) {
+    public void setPharmacist(Pharmacist target, Pharmacist editedPharmacist) {
         requireNonNull(editedPharmacist);
 
         // assign new patient id if editedPerson has no id
@@ -264,17 +265,9 @@ public class ClinicBook implements ReadOnlyClinicBook {
         requireNonNull(target);
         requireNonNull(diagnosis);
 
-        Patient editedPatient = new Patient(
-                target.getName(),
-                target.getPhone(),
-                target.getEmail(),
-                target.getAddress(),
-                target.getTags(),
-                target.getNric(),
-                target.getDateOfBirth(),
-                target.getEmergencyContact(),
-                target.getId()
-        );
+        Patient editedPatient = new Patient(target.getName(), target.getPhone(), target.getEmail(),
+            target.getAddress(), target.getTags(), target.getNric(), target.getDateOfBirth(),
+            target.getEmergencyContact(), target.getId());
 
         target.getDiagnoses().forEach(editedPatient::addDiagnosis);
         editedPatient.addDiagnosis(diagnosis);

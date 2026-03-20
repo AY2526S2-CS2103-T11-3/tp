@@ -160,7 +160,7 @@ public class ClinicBookTest {
         }
 
         @Override
-        public ObservableList<Doctor> getPharmacistList() {
+        public ObservableList<Pharmacist> getPharmacistList() {
             return pharmacists;
         }
     }

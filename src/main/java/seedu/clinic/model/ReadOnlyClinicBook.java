@@ -3,6 +3,7 @@ package seedu.clinic.model;
 import javafx.collections.ObservableList;
 import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
 
 /**
  * Unmodifiable view of an clinic book

@@ -8,14 +8,10 @@ import static seedu.clinic.logic.parser.CliSyntax.PREFIX_PHONE;
 import java.util.stream.Stream;
 
 import seedu.clinic.logic.commands.AddPharmacistCommand;
-import seedu.clinic.logic.parser.ArgumentMultimap;
-import seedu.clinic.logic.parser.ArgumentTokenizer;
-import seedu.clinic.logic.parser.ParserUtil;
-import seedu.clinic.logic.parser.Prefix;
 import seedu.clinic.logic.parser.exceptions.ParseException;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Email;
 import seedu.clinic.model.person.Name;
+import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Phone;
 
 /**

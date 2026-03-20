@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import main.java.seedu.clinic.logic.parser.AddPharmacistCommandParser;
 import seedu.clinic.commons.core.LogsCenter;
 import seedu.clinic.logic.commands.AddCommand;
 import seedu.clinic.logic.commands.AddDiagnosisCommand;

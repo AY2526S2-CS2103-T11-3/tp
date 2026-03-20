@@ -13,9 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.clinic.commons.core.LogsCenter;
 import seedu.clinic.model.person.Doctor;
-import seedu.clinic.model.person.Pharmacist;
 import seedu.clinic.model.person.Person;
-import seedu.clinic.ui.PersonListPanel.PersonListViewCell;
+import seedu.clinic.model.person.Pharmacist;
 
 /**
  * Panel containing the list of persons.
@@ -32,10 +31,13 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList, ObservableList<Doctor> doctorList, ObservableList<Pharmacist> pharmacistList) {
+    public PersonListPanel(
+            ObservableList<Person> personList,
+            ObservableList<Doctor> doctorList,
+            ObservableList<Pharmacist> pharmacistList) {
         super(FXML);
 
-        combinedList = createCombinedList(personList, doctorList);
+        combinedList = createCombinedList(personList, doctorList, pharmacistList);
         personListView.setItems(combinedList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }

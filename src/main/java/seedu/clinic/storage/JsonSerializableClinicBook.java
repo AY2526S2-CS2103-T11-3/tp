@@ -49,7 +49,9 @@ class JsonSerializableClinicBook {
      */
     public JsonSerializableClinicBook(ReadOnlyClinicBook source) {
         doctors.addAll(source.getDoctorList().stream().map(JsonAdaptedDoctor::new).collect(Collectors.toList()));
-        pharmacists.addAll(source.getPharmacistList().stream().map(JsonAdaptedDoctor::new).collect(Collectors.toList()));
+        pharmacists.addAll(source.getPharmacistList().stream()
+            .map(JsonAdaptedPharmacist::new)
+            .collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream()
                 .map(person -> {
                     if (person instanceof Patient) {
