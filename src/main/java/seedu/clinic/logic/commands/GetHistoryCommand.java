@@ -2,9 +2,17 @@ package seedu.clinic.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+
+import seedu.clinic.commons.core.LogsCenter;
 import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.model.Model;
+import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.PatientHasNricPredicate;
+import seedu.clinic.model.person.Prescription;
 
 /**
  * Finds a patient by NRIC to support medical history retrieval workflows.
@@ -18,8 +26,9 @@ public class GetHistoryCommand extends Command {
             + "Parameters: nric/NRIC\n"
             + "Example: " + COMMAND_WORD + " nric/S1234567D";
 
-    public static final String MESSAGE_RESULT = "Found %2$d patient record(s) for NRIC %1$s. "
-            + "Detailed medical history retrieval will be expanded in v1.3.";
+    public static final String MESSAGE_NO_PATIENT_FOUND = "No patient found with NRIC %s.";
+
+    private static final Logger logger = LogsCenter.getLogger(GetHistoryCommand.class);
 
     private final String nric;
     private final PatientHasNricPredicate predicate;
@@ -37,7 +46,104 @@ public class GetHistoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(String.format(MESSAGE_RESULT, nric, model.getFilteredPersonList().size()));
+
+        List<Patient> matchedPatients = model.getFilteredPersonList().stream()
+                .filter(Patient.class::isInstance)
+                .map(Patient.class::cast)
+                .collect(Collectors.toList());
+
+        // key: the system property name to look up. def: the fallback default value if that property is not set
+        String actor = System.getProperty("SYSTEM", "unknown-user");
+        logger.info(String.format("AUDIT access-history user=%s nric=%s matches=%d",
+            actor,
+            nric,
+            matchedPatients.size()));
+
+        if (matchedPatients.isEmpty()) {
+            return new CommandResult(String.format(MESSAGE_NO_PATIENT_FOUND, nric));
+        }
+
+        return new CommandResult(formatMedicalHistory(matchedPatients));
+    }
+
+    private String formatMedicalHistory(List<Patient> matchedPatients) {
+        return matchedPatients.stream()
+                .map(this::formatPatientHistory)
+                .collect(Collectors.joining("\n\n"));
+    }
+
+    private String formatPatientHistory(Patient patient) {
+        StringBuilder result = new StringBuilder();
+        result.append(formatPatientHeader(patient));
+        result.append(System.lineSeparator());
+        result.append(formatDiagnosesList(patient.getDiagnoses()));
+        return result.toString();
+    }
+
+    private String formatPatientHeader(Patient patient) {
+        StringBuilder header = new StringBuilder();
+        header.append(String.format("Medical history for %s (NRIC: %s)", patient.getName(), patient.getNric().value));
+        header.append(System.lineSeparator());
+        header.append(String.format("Date of birth: %s", patient.getDateOfBirth()));
+        header.append(System.lineSeparator());
+        header.append(String.format("Emergency contact: %s", patient.getEmergencyContact()));
+        return header.toString();
+    }
+
+    private String formatDiagnosesList(List<Diagnosis> diagnoses) {
+        if (diagnoses.isEmpty()) {
+            return "Diagnoses: none recorded.";
+        }
+
+        StringBuilder diagnosesSection = new StringBuilder("Diagnoses:");
+        for (int index = 0; index < diagnoses.size(); index++) {
+            diagnosesSection.append(System.lineSeparator());
+            diagnosesSection.append(formatSingleDiagnosis(index + 1, diagnoses.get(index)));
+        }
+        return diagnosesSection.toString();
+    }
+
+    private String formatSingleDiagnosis(int index, Diagnosis diagnosis) {
+        StringBuilder diag = new StringBuilder();
+        diag.append(String.format("  %d. %s (Visit date: %s, Diagnosed by ID: %d)",
+                index, diagnosis.getDescription(), diagnosis.getVisitDate(), diagnosis.getDiagnosedBy()));
+        diag.append(System.lineSeparator());
+        diag.append(formatSymptoms(diagnosis.getSymptoms()));
+        diag.append(System.lineSeparator());
+        diag.append(formatPrescriptionsSection(diagnosis.getPrescriptions()));
+        return diag.toString();
+    }
+
+    private String formatSymptoms(List<String> symptoms) {
+        if (symptoms.isEmpty()) {
+            return "     Symptoms: none recorded.";
+        }
+        return "     Symptoms: " + String.join(", ", symptoms);
+    }
+
+    private String formatPrescriptionsSection(List<Prescription> prescriptions) {
+        if (prescriptions.isEmpty()) {
+            return "     Prescriptions: none recorded.";
+        }
+
+        StringBuilder section = new StringBuilder("     Prescriptions:");
+        for (Prescription p : prescriptions) {
+            section.append(System.lineSeparator()).append("       - ").append(formatPrescription(p));
+        }
+        return section.toString();
+    }
+
+    private String formatPrescription(Prescription prescription) {
+        String prescribedBy = prescription.getPrescribedBy() == 0
+            ? "N/A"
+            : String.valueOf(prescription.getPrescribedBy());
+
+        return String.format("%s, dosage: %s, frequency: %s, prescribed by ID: %s, dispensed by ID: %d",
+                prescription.getMedicationName(),
+                prescription.getDosage(),
+                prescription.getFrequency(),
+                prescribedBy,
+                prescription.getDispensedBy());
     }
 
     @Override

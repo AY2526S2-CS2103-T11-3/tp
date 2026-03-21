@@ -97,15 +97,16 @@ public class ClinicBookParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    public void parseCommand_getHistory() throws Exception {
+        GetHistoryCommand command = (GetHistoryCommand) parser.parseCommand(
+                GetHistoryCommand.COMMAND_WORD + " nric/t1234567z");
+        assertEquals(new GetHistoryCommand("T1234567Z"), command);
     }
 
     @Test
-    public void parseCommand_getHistory() throws Exception {
-        assertTrue(parser.parseCommand(GetHistoryCommand.COMMAND_WORD + " nric/S1234567D")
-                instanceof GetHistoryCommand);
+    public void parseCommand_help() throws Exception {
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
