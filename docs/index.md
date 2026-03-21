@@ -12,6 +12,7 @@ title: ClinicBook
 
 * If you are interested in using ClinicBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing ClinicBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* For a summary of what changed in each release, see the [**Version Summary**](VersionSummary.html).
 
 **Acknowledgements**
 
