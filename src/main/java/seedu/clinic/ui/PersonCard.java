@@ -7,13 +7,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.clinic.model.person.Doctor;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
-import seedu.clinic.model.person.Pharmacist;
 
 /**
- * An UI component that displays information of a {@code Person} or {@code Doctor}.
+ * A UI component that displays information for a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -36,7 +34,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
+    private Label rowNumber;
+    @FXML
+    private Label personIdLabel;
     @FXML
     private Label nric;
     @FXML
@@ -49,13 +49,14 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
 
-        id.setText(displayedIndex + ". ");
+        rowNumber.setText(displayedIndex + ".");
+        personIdLabel.setText("(ID: " + person.getId() + ")");
         name.setText(person.getName().fullName);
         if (person instanceof Patient) {
             nric.setText("NRIC: " + ((Patient) person).getNric().value);
@@ -71,33 +72,4 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
-    /**
-     * Creates a {@code PersonCode} with the given {@code Doctor} and index to display.
-     */
-    public PersonCard(Doctor doctor, int displayedIndex) {
-        super(FXML);
-        this.person = doctor;
-
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        role.setText(person.getRole());
-    }
-
-    /**
-     * Creates a {@code PersonCode} with the given {@code Pharmacist} and index to display.
-     */
-    public PersonCard(Pharmacist pharmacist, int displayedIndex) {
-        super(FXML);
-        this.person = pharmacist;
-
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        role.setText(person.getRole());
-    }
-
 }

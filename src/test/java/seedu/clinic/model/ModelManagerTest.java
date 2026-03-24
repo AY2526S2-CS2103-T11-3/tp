@@ -10,7 +10,9 @@ import static seedu.clinic.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -104,16 +106,16 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void addDiagnosis_andFilteredRoleLists_success() {
+    public void addDiagnosis_updatesCanonicalPersonList_success() {
         ClinicBook clinicBook = new ClinicBook();
         Patient patient = new Patient(
                 new Name("Patient One"),
                 new Phone("91234567"),
                 new Email("patient@example.com"),
                 new Address("1 Street"),
-                java.util.Set.of(),
+                Set.of(),
                 new NRIC("S1166846A"),
-                java.time.LocalDate.of(2000, 1, 1),
+                LocalDate.of(2000, 1, 1),
                 Sex.FEMALE,
                 1);
         Doctor doctor = new Doctor(
@@ -127,19 +129,22 @@ public class ModelManagerTest {
                 new Email("pharmacist@example.com"),
                 3);
 
-        clinicBook.addPatient(patient);
-        clinicBook.addDoctor(doctor);
-        clinicBook.addPharmacist(pharmacist);
+        clinicBook.addPerson(patient);
+        clinicBook.addPerson(doctor);
+        clinicBook.addPerson(pharmacist);
 
         modelManager = new ModelManager(clinicBook, new UserPrefs());
 
         Diagnosis diagnosis = new Diagnosis("Flu", 2);
         modelManager.addDiagnosis(patient, diagnosis);
 
-        assertEquals(1, modelManager.getFilteredPatientList().size());
-        assertEquals(1, modelManager.getFilteredDoctorList().size());
-        assertEquals(1, modelManager.getFilteredPharmacistList().size());
-        assertEquals(1, modelManager.getFilteredPatientList().get(0).getDiagnoses().size());
+        assertEquals(3, modelManager.getFilteredPersonList().size());
+        Patient updatedPatient = modelManager.getFilteredPersonList().stream()
+                .filter(Patient.class::isInstance)
+                .map(Patient.class::cast)
+                .findFirst()
+                .orElseThrow();
+        assertEquals(1, updatedPatient.getDiagnoses().size());
     }
 
     @Test
@@ -148,32 +153,21 @@ public class ModelManagerTest {
         ClinicBook differentClinicBook = new ClinicBook();
         UserPrefs userPrefs = new UserPrefs();
 
-        // same values -> returns true
         modelManager = new ModelManager(clinicBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(clinicBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
-        // same object -> returns true
         assertTrue(modelManager.equals(modelManager));
-
-        // null -> returns false
         assertFalse(modelManager.equals(null));
-
-        // different types -> returns false
         assertFalse(modelManager.equals(5));
-
-        // different clinicBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentClinicBook, userPrefs)));
 
-        // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(clinicBook, userPrefs)));
 
-        // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setClinicBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(clinicBook, differentUserPrefs)));

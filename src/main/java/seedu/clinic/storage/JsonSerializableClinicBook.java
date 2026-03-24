@@ -23,27 +23,17 @@ import seedu.clinic.model.person.Pharmacist;
 class JsonSerializableClinicBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_PATIENT = "Doctors list contains duplicate patient(s).";
-    public static final String MESSAGE_DUPLICATE_DOCTOR = "Doctors list contains duplicate doctor(s).";
-    public static final String MESSAGE_DUPLICATE_PHARMACIST = "Pharmacists list contains duplicate pharmacist(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonAdaptedPatient> patients = new ArrayList<>();
-    private final List<JsonAdaptedDoctor> doctors = new ArrayList<>();
-    private final List<JsonAdaptedPharmacist> pharmacists = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableClinicBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                      @JsonProperty("patients") List<JsonAdaptedPatient> patients,
-                                      @JsonProperty("doctors") List<JsonAdaptedDoctor> doctors,
-                                      @JsonProperty("pharmacists") List<JsonAdaptedPharmacist> pharmacists) {
-        this.persons.addAll(persons);
-        this.patients.addAll(patients);
-        this.doctors.addAll(doctors);
-        this.pharmacists.addAll(pharmacists);
+    public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
     }
 
     /**
@@ -52,21 +42,16 @@ class JsonSerializableClinicBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableClinicBook}.
      */
     public JsonSerializableClinicBook(ReadOnlyClinicBook source) {
-        patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
-        doctors.addAll(source.getDoctorList().stream().map(JsonAdaptedDoctor::new).collect(Collectors.toList()));
-        pharmacists.addAll(source.getPharmacistList().stream()
-            .map(JsonAdaptedPharmacist::new)
-            .collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream()
                 .map(person -> {
-                    if (person instanceof Patient) {
-                        return new JsonAdaptedPatient((Patient) person);
+                    if (person instanceof Patient patient) {
+                        return new JsonAdaptedPatient(patient);
                     }
-                    if (person instanceof Doctor) {
-                        return new JsonAdaptedDoctor((Doctor) person);
+                    if (person instanceof Doctor doctor) {
+                        return new JsonAdaptedDoctor(doctor);
                     }
-                    if (person instanceof Pharmacist) {
-                        return new JsonAdaptedPharmacist((Pharmacist) person);
+                    if (person instanceof Pharmacist pharmacist) {
+                        return new JsonAdaptedPharmacist(pharmacist);
                     }
                     return new JsonAdaptedPerson(person);
                 })
@@ -87,31 +72,6 @@ class JsonSerializableClinicBook {
             }
             clinicBook.addPerson(person);
         }
-
-        for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
-            Patient patient = jsonAdaptedPatient.toModelType();
-            if (clinicBook.hasPatient(patient)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_DOCTOR);
-            }
-            clinicBook.addPatient(patient);
-        }
-
-        for (JsonAdaptedDoctor jsonAdaptedDoctor : doctors) {
-            Doctor doctor = jsonAdaptedDoctor.toModelType();
-            if (clinicBook.hasDoctor(doctor)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_DOCTOR);
-            }
-            clinicBook.addDoctor(doctor);
-        }
-
-        for (JsonAdaptedPharmacist jsonAdaptedPharmacist : pharmacists) {
-            Pharmacist pharmacist = jsonAdaptedPharmacist.toModelType();
-            if (clinicBook.hasPharmacist(pharmacist)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PHARMACIST);
-            }
-            clinicBook.addPharmacist(pharmacist);
-        }
         return clinicBook;
     }
-
 }

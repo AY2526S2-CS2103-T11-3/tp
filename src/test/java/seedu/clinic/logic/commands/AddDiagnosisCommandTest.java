@@ -9,7 +9,6 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.clinic.commons.core.index.Index;
 import seedu.clinic.logic.commands.exceptions.CommandException;
 import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.Model;
@@ -33,28 +32,28 @@ public class AddDiagnosisCommandTest {
     private static final int DOCTOR_ID = 2;
     private static final int PHARMACIST_ID = 3;
 
-
-    // TODO: manual removed test
-    /*
     @Test
     public void execute_validDiagnosis_success() throws Exception {
         Model model = createModelWithAllRoles();
         Diagnosis diagnosis = createDiagnosis(DOCTOR_ID, PHARMACIST_ID);
-        AddDiagnosisCommand command = new AddDiagnosisCommand(Index.fromOneBased(PATIENT_ID), diagnosis);
+        AddDiagnosisCommand command = new AddDiagnosisCommand(PATIENT_ID, diagnosis);
 
         CommandResult result = command.execute(model);
 
         assertEquals(String.format(AddDiagnosisCommand.MESSAGE_SUCCESS, diagnosis), result.getFeedbackToUser());
-        assertEquals(1, model.getFilteredPatientList().get(0).getDiagnoses().size());
+        Patient patient = model.getFilteredPersonList().stream()
+                .filter(Patient.class::isInstance)
+                .map(Patient.class::cast)
+                .findFirst()
+                .orElseThrow(() -> new AssertionError("Expected a patient in the filtered list"));
+        assertEquals(1, patient.getDiagnoses().size());
     }
-
-     */
 
     @Test
     public void execute_invalidPatient_throwsCommandException() {
         Model model = createModelWithAllRoles();
         Diagnosis diagnosis = createDiagnosis(DOCTOR_ID, PHARMACIST_ID);
-        AddDiagnosisCommand command = new AddDiagnosisCommand(Index.fromOneBased(99), diagnosis);
+        AddDiagnosisCommand command = new AddDiagnosisCommand(99, diagnosis);
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(AddDiagnosisCommand.MESSAGE_INVALID_PATIENT, exception.getMessage());
@@ -64,7 +63,7 @@ public class AddDiagnosisCommandTest {
     public void execute_invalidDoctor_throwsCommandException() {
         Model model = createModelWithPatientOnly();
         Diagnosis diagnosis = createDiagnosis(DOCTOR_ID, PHARMACIST_ID);
-        AddDiagnosisCommand command = new AddDiagnosisCommand(Index.fromOneBased(PATIENT_ID), diagnosis);
+        AddDiagnosisCommand command = new AddDiagnosisCommand(PATIENT_ID, diagnosis);
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(AddDiagnosisCommand.MESSAGE_INVALID_DOCTOR, exception.getMessage());
@@ -74,7 +73,7 @@ public class AddDiagnosisCommandTest {
     public void execute_invalidPharmacist_throwsCommandException() {
         Model model = createModelWithPatientAndDoctor();
         Diagnosis diagnosis = createDiagnosis(DOCTOR_ID, PHARMACIST_ID);
-        AddDiagnosisCommand command = new AddDiagnosisCommand(Index.fromOneBased(PATIENT_ID), diagnosis);
+        AddDiagnosisCommand command = new AddDiagnosisCommand(PATIENT_ID, diagnosis);
 
         CommandException exception = assertThrows(CommandException.class, () -> command.execute(model));
         assertEquals(AddDiagnosisCommand.MESSAGE_INVALID_PHARMACIST, exception.getMessage());
@@ -83,11 +82,10 @@ public class AddDiagnosisCommandTest {
     @Test
     public void equals() {
         Diagnosis diagnosis = createDiagnosis(DOCTOR_ID, PHARMACIST_ID);
-        Index index = Index.fromOneBased(PATIENT_ID);
-        AddDiagnosisCommand command = new AddDiagnosisCommand(index, diagnosis);
+        AddDiagnosisCommand command = new AddDiagnosisCommand(PATIENT_ID, diagnosis);
 
         assertTrue(command.equals(command));
-        assertTrue(command.equals(new AddDiagnosisCommand(index, diagnosis)));
+        assertTrue(command.equals(new AddDiagnosisCommand(PATIENT_ID, diagnosis)));
     }
 
     private static Diagnosis createDiagnosis(int doctorId, int pharmacistId) {
@@ -99,7 +97,7 @@ public class AddDiagnosisCommandTest {
 
     private static Model createModelWithAllRoles() {
         ClinicBook clinicBook = new ClinicBook();
-        clinicBook.addPatient(new Patient(
+        clinicBook.addPerson(new Patient(
                 new Name("Patient One"),
                 new Phone("91234567"),
                 new Email("patient@example.com"),
@@ -109,7 +107,7 @@ public class AddDiagnosisCommandTest {
                 LocalDate.of(2000, 1, 1),
                 Sex.FEMALE,
                 PATIENT_ID));
-        clinicBook.addDoctor(new Doctor(
+        clinicBook.addPerson(new Doctor(
                 new Name("Doctor One"),
                 new Phone("92345678"),
                 new Email("doctor@example.com"),
@@ -124,7 +122,7 @@ public class AddDiagnosisCommandTest {
 
     private static Model createModelWithPatientOnly() {
         ClinicBook clinicBook = new ClinicBook();
-        clinicBook.addPatient(new Patient(
+        clinicBook.addPerson(new Patient(
                 new Name("Patient One"),
                 new Phone("91234567"),
                 new Email("patient@example.com"),
@@ -139,7 +137,7 @@ public class AddDiagnosisCommandTest {
 
     private static Model createModelWithPatientAndDoctor() {
         ClinicBook clinicBook = new ClinicBook();
-        clinicBook.addPatient(new Patient(
+        clinicBook.addPerson(new Patient(
                 new Name("Patient One"),
                 new Phone("91234567"),
                 new Email("patient@example.com"),
@@ -149,7 +147,7 @@ public class AddDiagnosisCommandTest {
                 LocalDate.of(2000, 1, 1),
                 Sex.FEMALE,
                 PATIENT_ID));
-        clinicBook.addDoctor(new Doctor(
+        clinicBook.addPerson(new Doctor(
                 new Name("Doctor One"),
                 new Phone("92345678"),
                 new Email("doctor@example.com"),

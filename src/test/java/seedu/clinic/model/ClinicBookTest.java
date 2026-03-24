@@ -11,6 +11,7 @@ import static seedu.clinic.testutil.TypicalPatients.createNadia;
 import static seedu.clinic.testutil.TypicalPersons.ALICE;
 import static seedu.clinic.testutil.TypicalPersons.getTypicalClinicBook;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,9 +43,6 @@ public class ClinicBookTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), clinicBook.getPersonList());
-        assertEquals(Collections.emptyList(), clinicBook.getPatientList());
-        assertEquals(Collections.emptyList(), clinicBook.getDoctorList());
-        assertEquals(Collections.emptyList(), clinicBook.getPharmacistList());
     }
 
     @Test
@@ -61,7 +59,6 @@ public class ClinicBookTest {
 
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
@@ -105,16 +102,41 @@ public class ClinicBookTest {
     }
 
     @Test
+    public void addMixedRoles_defaultIds_assignsGloballyUniquePersonIds() {
+        Patient patient = new Patient(
+                new Name("Patient One"),
+                new Phone("91234567"),
+                new Email("patient@example.com"),
+                new Address("1 Street"),
+                new NRIC("S1166846A"),
+                LocalDate.of(2000, 1, 1),
+                Sex.FEMALE);
+        Doctor doctor = new Doctor(
+                new Name("Doctor One"),
+                new Phone("92345678"),
+                new Email("doctor@example.com"));
+        Pharmacist pharmacist = new Pharmacist(
+                new Name("Pharmacist One"),
+                new Phone("93456789"),
+                new Email("pharmacist@example.com"));
+
+        clinicBook.addPerson(patient);
+        clinicBook.addPerson(doctor);
+        clinicBook.addPerson(pharmacist);
+
+        assertEquals(1, patient.getId());
+        assertEquals(2, doctor.getId());
+        assertEquals(3, pharmacist.getId());
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> clinicBook.getPersonList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = ClinicBook.class.getCanonicalName() + "{persons=" + clinicBook.getPersonList()
-                + ", patients=" + clinicBook.getPatientList()
-                + ", doctors=" + clinicBook.getDoctorList()
-                + ", pharmacists=" + clinicBook.getPharmacistList() + "}";
+        String expected = ClinicBook.class.getCanonicalName() + "{persons=" + clinicBook.getPersonList() + "}";
         assertEquals(expected, clinicBook.toString());
     }
 
@@ -127,16 +149,16 @@ public class ClinicBookTest {
                 new Address("1 Street"),
                 Set.of(),
                 new NRIC("S1166846A"),
-                java.time.LocalDate.of(2000, 1, 1),
+                LocalDate.of(2000, 1, 1),
                 Sex.FEMALE,
                 1);
-        clinicBook.addPatient(patient);
+        clinicBook.addPerson(patient);
 
         Diagnosis diagnosis = new Diagnosis("Flu", 2);
         clinicBook.addDiagnosis(patient, diagnosis);
 
-        Patient updated = clinicBook.getPatientList().get(0);
-        assertEquals(1, updated.getDiagnoses().size());
+        Patient updatedPatient = (Patient) clinicBook.getPersonList().get(0);
+        assertEquals(1, updatedPatient.getDiagnoses().size());
     }
 
     /**
@@ -144,36 +166,14 @@ public class ClinicBookTest {
      */
     private static class ClinicBookStub implements ReadOnlyClinicBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final ObservableList<Patient> patients = FXCollections.observableArrayList();
-        private final ObservableList<Doctor> doctors = FXCollections.observableArrayList();
-        private final ObservableList<Pharmacist> pharmacists = FXCollections.observableArrayList();
 
         ClinicBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
-            this.patients.setAll(patients);
-            this.doctors.setAll(doctors);
-            this.pharmacists.setAll(pharmacists);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
         }
-
-        @Override
-        public ObservableList<Patient> getPatientList() {
-            return FXCollections.emptyObservableList();
-        }
-
-        @Override
-        public ObservableList<Doctor> getDoctorList() {
-            return doctors;
-        }
-
-        @Override
-        public ObservableList<Pharmacist> getPharmacistList() {
-            return pharmacists;
-        }
     }
-
 }
