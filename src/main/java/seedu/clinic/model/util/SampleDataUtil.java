@@ -25,7 +25,7 @@ import seedu.clinic.model.tag.Tag;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Patient(new Name("David Tan"), new Phone("91234567"), new Email("alexyeoh@gmail.com"),
+            new Patient(new Name("Alex Yeoh"), new Phone("91234567"), new Email("alexyeoh@gmail.com"),
                 new Address("123 Clementi Ave 3, #04-12"),
                 new NRIC("S1234567D"), LocalDate.parse("1990-01-01"), Sex.MALE),
             new Doctor(new Name("Tan Wei Ming"), new Phone("87654321"), new Email("drtan@gmail.com")),
