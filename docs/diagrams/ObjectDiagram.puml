@@ -68,18 +68,9 @@ class Patient extends Person {
     + toString(): String
 }
 
-abstract class Staff extends Person {
-    - DEFAULT_STAFF_ID: int
-    - staffId: int
-    + Staff(Name, Phone, Email)
-    + getStaffId(): int
-    + equals(): Boolean
-    + hashcode(): int
-    + toString(): String
-}
 
 ' --- STAFF SPECIALIZATION ---
-class Doctor extends Staff {
+class Doctor extends Person {
     + Doctor(Name, Phone, Email)
     + diagnose(Patient, Diagnosis): void
     + updateDiagnosis(Diagnosis, Diagnosis): void
@@ -91,7 +82,7 @@ class Doctor extends Staff {
     + toString(): String
 }
 
-class Pharmacist extends Staff {
+class Pharmacist extends Person {
     + Pharmacist(Name, Phone, Email)
     + updatePrescription(Prescription, Prescription): void
     + dispensePrescription(Prescription): void
