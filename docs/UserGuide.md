@@ -28,8 +28,6 @@ ClinicBook is a **desktop app for managing contacts, optimized for use via a Com
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Clinic Book.
-
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
@@ -47,7 +45,7 @@ ClinicBook is a **desktop app for managing contacts, optimized for use via a Com
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `find n/NAME_KEYWORDS`, `NAME_KEYWORDS` is a parameter which can be used as `find n/John`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -73,61 +71,36 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
-
-Adds a person to the clinic book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
-
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
 ### Listing all persons : `list`
 
 Shows a list of all persons in the clinic book.
 
 Format: `list`
 
-### Editing a person : `edit`
+* Each card shows both the displayed row number and the person's stable `ID`.
+* Use the row number for index-based commands such as `delete`.
+* Use the stable `ID` for commands that reference a specific person record, such as `diagnosis`.
 
-Edits an existing person in the clinic book.
+### Locating persons by name, phone, or NRIC: `find`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Finds persons who match the supplied name keywords, phone number, and/or patient NRIC.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `find [n/NAME_KEYWORDS] [p/PHONE] [nric/NRIC]`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name or phone: `find`
-
-Finds persons whose names contain any of the given keywords or whose phone numbers match exactly.
-
-Format: `find [n/NAME_KEYWORDS] [p/PHONE]`
-
-* At least one of `n/` or `p/` must be provided.
+* At least one of `n/`, `p/`, or `nric/` must be provided.
 * Prefixes are required. `find Alice` is invalid; use `find n/Alice`.
 * Name search is case-insensitive. e.g `n/hans` will match `Hans`
 * The order of the name keywords does not matter. e.g. `n/Hans Bo` will match `Bo Hans`
 * Only full words in the name will be matched e.g. `n/Han` will not match `Hans`
 * Phone search requires an exact match. e.g. `p/9876` will not match `98765432`
-* If both `n/` and `p/` are provided, persons matching either field will be returned.
+* NRIC search requires an exact valid NRIC and only matches patient entries.
+* If multiple prefixes are provided, a person must match all supplied fields.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find p/98765432` returns persons with phone number `98765432`
-* `find n/alex david p/91234567` returns all persons who match any field, i.e. name keyword or phone number<br>
+* `find nric/S1234567D` returns the patient with NRIC `S1234567D`
+* `find n/Nadia p/93456789 nric/S1234567D` returns the patient only if all three fields match<br>
 
   <!-- ![result for 'find alex david'](images/findAlexDavidResult.png) -->
 
@@ -144,6 +117,22 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the clinic book.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Adding a diagnosis : `diagnosis`
+
+Adds a diagnosis to a patient and validates the referenced doctor and pharmacist by stable person `ID`.
+
+Format:
+`diagnosis id/PATIENT_ID desc/DESCRIPTION vd/VISIT_DATE diagnosed/DOCTOR_ID sym/SYMPTOM... med/MEDICATION dose/DOSAGE freq/FREQUENCY dispensed/PHARMACIST_ID`
+
+* `id/`, `diagnosed/`, and `dispensed/` use the stable person `ID` shown on each person card, not the displayed row number.
+* `delete` remains index-based. `diagnosis` is ID-based.
+* `id/` must refer to a patient, `diagnosed/` must refer to a doctor, and `dispensed/` must refer to a pharmacist.
+* `vd/` must be in `yyyy-MM-dd` format.
+* At least one `sym/` and one medication block are required.
+
+Example:
+`diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever sym/cough med/Paracetamol dose/500mg freq/3 times daily dispensed/4`
 
 ### Clearing all entries : `clear`
 
@@ -194,10 +183,9 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find [n/NAME_KEYWORDS] [p/PHONE]`<br> e.g., `find n/James Jake p/98765432`
+**Diagnosis** | `diagnosis id/PATIENT_ID desc/DESCRIPTION vd/VISIT_DATE diagnosed/DOCTOR_ID sym/SYMPTOM... med/MEDICATION dose/DOSAGE freq/FREQUENCY dispensed/PHARMACIST_ID`<br> e.g., `diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4`
+**Find** | `find [n/NAME_KEYWORDS] [p/PHONE] [nric/NRIC]`<br> e.g., `find n/James Jake p/98765432 nric/S1234567D`
 **List** | `list`
 **Help** | `help`

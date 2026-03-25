@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.person.Address;
@@ -20,6 +22,14 @@ import seedu.clinic.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Person}.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY,
+        property = "type", defaultImpl = JsonAdaptedPerson.class)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = JsonAdaptedPerson.class, name = "person"),
+    @JsonSubTypes.Type(value = JsonAdaptedPatient.class, name = "patient"),
+    @JsonSubTypes.Type(value = JsonAdaptedDoctor.class, name = "doctor"),
+    @JsonSubTypes.Type(value = JsonAdaptedPharmacist.class, name = "pharmacist")
+})
 class JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
@@ -35,10 +45,12 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("id") int id, @JsonProperty("name") String name,
-             @JsonProperty("phone") String phone,
-             @JsonProperty("email") String email, @JsonProperty("address") String address,
-             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+    public JsonAdaptedPerson(@JsonProperty("id") int id,
+            @JsonProperty("name") String name,
+            @JsonProperty("phone") String phone,
+            @JsonProperty("email") String email,
+            @JsonProperty("address") String address,
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -50,6 +62,13 @@ class JsonAdaptedPerson {
     }
 
     /**
+     * Compatibility constructor for plain person records in tests.
+     */
+    public JsonAdaptedPerson(int id, String name, String phone, String email, List<JsonAdaptedTag> tags) {
+        this(id, name, phone, email, "N/A", tags);
+    }
+
+    /**
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
@@ -58,6 +77,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

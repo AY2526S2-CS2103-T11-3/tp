@@ -8,13 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.clinic.commons.core.LogsCenter;
-import seedu.clinic.logic.commands.AddCommand;
+import seedu.clinic.logic.commands.AddDiagnosisCommand;
+import seedu.clinic.logic.commands.AddDoctorCommand;
+import seedu.clinic.logic.commands.AddPatientCommand;
+import seedu.clinic.logic.commands.AddPharmacistCommand;
 import seedu.clinic.logic.commands.ClearCommand;
 import seedu.clinic.logic.commands.Command;
 import seedu.clinic.logic.commands.DeleteCommand;
-import seedu.clinic.logic.commands.EditCommand;
 import seedu.clinic.logic.commands.ExitCommand;
 import seedu.clinic.logic.commands.FindCommand;
+import seedu.clinic.logic.commands.GetHistoryCommand;
 import seedu.clinic.logic.commands.HelpCommand;
 import seedu.clinic.logic.commands.ListCommand;
 import seedu.clinic.logic.parser.exceptions.ParseException;
@@ -53,11 +56,13 @@ public class ClinicBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddPatientCommand.COMMAND_WORD:
+            return new AddPatientCommandParser().parse(arguments);
+        case AddDoctorCommand.COMMAND_WORD:
+            return new AddDoctorCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case AddPharmacistCommand.COMMAND_WORD:
+            return new AddPharmacistCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
@@ -68,6 +73,9 @@ public class ClinicBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case GetHistoryCommand.COMMAND_WORD:
+            return new GetHistoryCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -76,6 +84,9 @@ public class ClinicBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddDiagnosisCommand.COMMAND_WORD:
+            return new AddDiagnosisCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

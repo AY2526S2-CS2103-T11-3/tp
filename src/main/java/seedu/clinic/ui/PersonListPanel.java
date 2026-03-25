@@ -1,13 +1,12 @@
 package seedu.clinic.ui;
 
-import java.util.logging.Logger;
+import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.clinic.commons.core.LogsCenter;
 import seedu.clinic.model.person.Person;
 
 /**
@@ -15,7 +14,6 @@ import seedu.clinic.model.person.Person;
  */
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
     private ListView<Person> personListView;
@@ -25,12 +23,14 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
+        requireNonNull(personList);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person}
+     * using a {@code PersonCard}.
      */
     class PersonListViewCell extends ListCell<Person> {
         @Override
@@ -45,5 +45,4 @@ public class PersonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.clinic.commons.exceptions.IllegalValueException;
 import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.ReadOnlyClinicBook;
+import seedu.clinic.model.person.Doctor;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
+import seedu.clinic.model.person.Pharmacist;
 
 /**
  * An Immutable ClinicBook that is serializable to JSON format.
@@ -28,7 +31,9 @@ class JsonSerializableClinicBook {
      */
     @JsonCreator
     public JsonSerializableClinicBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
     }
 
     /**
@@ -37,7 +42,20 @@ class JsonSerializableClinicBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableClinicBook}.
      */
     public JsonSerializableClinicBook(ReadOnlyClinicBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream()
+                .map(person -> {
+                    if (person instanceof Patient patient) {
+                        return new JsonAdaptedPatient(patient);
+                    }
+                    if (person instanceof Doctor doctor) {
+                        return new JsonAdaptedDoctor(doctor);
+                    }
+                    if (person instanceof Pharmacist pharmacist) {
+                        return new JsonAdaptedPharmacist(pharmacist);
+                    }
+                    return new JsonAdaptedPerson(person);
+                })
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -56,5 +74,4 @@ class JsonSerializableClinicBook {
         }
         return clinicBook;
     }
-
 }

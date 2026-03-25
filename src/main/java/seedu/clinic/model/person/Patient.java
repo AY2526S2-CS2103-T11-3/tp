@@ -11,91 +11,91 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.clinic.model.tag.Tag;
-
 /**
  * Represents a Patient in the clinic.
  * A Patient is a Person who receives medical services.
  *
- * TODO: Replace emergencyContact string with EmergencyContact objects collection
- * TODO: Add Sex enum field for biological sex
- * TODO: Use {@code Set<EmergencyContact>} instead of String for emergency contacts
+ * TODO: Reintroduce emergency contact support after temporary model simplification.
  * TODO: Implement allergies management
- * TODO: Create patientId field
- * TODO: Extract address to separate structure
  */
 public class Patient extends ContactPerson {
+    public static final String ROLE = "Patient";
 
-    private static final int DEFAULT_PATIENT_ID = 0;
-    private static int nextPatientId = DEFAULT_PATIENT_ID + 1;
-
-    private final int patientId;
     private final NRIC nric;
     private final LocalDate dateOfBirth;
-    private final String emergencyContact;
+    private final Sex sex;
     private final List<Diagnosis> diagnoses = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-            NRIC nric, LocalDate dateOfBirth, String emergencyContact) {
+            NRIC nric, LocalDate dateOfBirth, Sex sex) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(nric, dateOfBirth, emergencyContact);
-        this.patientId = getNextPatientId();
+        requireAllNonNull(nric, dateOfBirth, sex);
         this.nric = nric;
         this.dateOfBirth = dateOfBirth;
-        this.emergencyContact = emergencyContact;
+        this.sex = sex;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, NRIC nric,
+            LocalDate dateOfBirth, Sex sex) {
+        this(name, phone, email, address, Collections.emptySet(), nric, dateOfBirth, sex);
     }
 
     /**
      * Constructs a Patient with ID.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-            NRIC nric, LocalDate dateOfBirth, String emergencyContact, int id) {
+            NRIC nric, LocalDate dateOfBirth, Sex sex, int id) {
         super(name, phone, email, address, tags, id);
-        requireAllNonNull(nric, dateOfBirth, emergencyContact);
-        this.patientId = getNextPatientId();
+        requireAllNonNull(nric, dateOfBirth, sex);
         this.nric = nric;
         this.dateOfBirth = dateOfBirth;
-        this.emergencyContact = emergencyContact;
+        this.sex = sex;
+    }
+
+    /**
+     * Constructs a Patient with ID.
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, NRIC nric,
+            LocalDate dateOfBirth, Sex sex, int id) {
+        this(name, phone, email, address, Collections.emptySet(), nric, dateOfBirth, sex, id);
     }
 
     /**
      * Reuses an existing person as the shared identity and contact details for a patient.
      */
-    public Patient(Person person, NRIC nric, LocalDate dob, String emergencyContact) {
+    public Patient(Person person, NRIC nric, LocalDate dob, Sex sex) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(), person.getTags(),
-                nric, dob, emergencyContact, person.getId());
+            nric, dob, sex, person.getId());
     }
 
-    private static int getNextPatientId() {
-        return nextPatientId++;
+    public String getRole() {
+        return ROLE;
     }
 
     public NRIC getNric() {
         return nric;
     }
 
-    /**
-     * Returns the auto-generated patient identifier.
-     */
-    public int getPatientId() {
-        return patientId;
-    }
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public Sex getSex() {
+        return sex;
     }
 
     /**
      * Returns the age of the patient in years.
      */
+
     public int getAge() {
         return Period.between(dateOfBirth, LocalDate.now()).getYears();
-    }
-
-    public String getEmergencyContact() {
-        return emergencyContact;
     }
 
     /**
@@ -130,13 +130,13 @@ public class Patient extends ContactPerson {
 
         Patient otherPatient = (Patient) other;
         return super.equals(otherPatient)
-                && patientId == otherPatient.patientId
                 && nric.equals(otherPatient.nric)
-                && dateOfBirth.equals(otherPatient.dateOfBirth);
+                && dateOfBirth.equals(otherPatient.dateOfBirth)
+                && sex.equals(otherPatient.sex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), patientId, nric, dateOfBirth);
+        return Objects.hash(super.hashCode(), nric, dateOfBirth, sex);
     }
 }

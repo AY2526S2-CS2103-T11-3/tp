@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.clinic.commons.core.GuiSettings;
+import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 
 /**
@@ -75,6 +77,12 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in clinic book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Adds the given diagnosis to the target patient.
+     * {@code target} must exist in clinic book.
+     */
+    void addDiagnosis(Patient target, Diagnosis diagnosis);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

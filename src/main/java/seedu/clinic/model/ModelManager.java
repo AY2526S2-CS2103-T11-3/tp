@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.clinic.commons.core.GuiSettings;
 import seedu.clinic.commons.core.LogsCenter;
+import seedu.clinic.model.person.Diagnosis;
+import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
 
 /**
@@ -33,7 +35,7 @@ public class ModelManager implements Model {
 
         this.clinicBook = new ClinicBook(clinicBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.clinicBook.getPersonList());
+        filteredPersons = new FilteredList<Person>(this.clinicBook.getPersonList());
     }
 
     public ModelManager() {
@@ -107,8 +109,14 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         clinicBook.setPerson(target, editedPerson);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addDiagnosis(Patient target, Diagnosis diagnosis) {
+        clinicBook.addDiagnosis(target, diagnosis);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -134,7 +142,6 @@ public class ModelManager implements Model {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof ModelManager)) {
             return false;
         }
@@ -144,5 +151,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }
