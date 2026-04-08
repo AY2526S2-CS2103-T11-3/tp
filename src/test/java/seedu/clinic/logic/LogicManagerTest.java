@@ -1,6 +1,7 @@
 package seedu.clinic.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.clinic.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.clinic.testutil.Assert.assertThrows;
@@ -21,6 +22,7 @@ import seedu.clinic.model.Model;
 import seedu.clinic.model.ModelManager;
 import seedu.clinic.model.ReadOnlyClinicBook;
 import seedu.clinic.model.UserPrefs;
+import seedu.clinic.testutil.DoctorBuilder;
 import seedu.clinic.storage.JsonClinicBookStorage;
 import seedu.clinic.storage.JsonUserPrefsStorage;
 import seedu.clinic.storage.StorageManager;
@@ -60,6 +62,21 @@ public class LogicManagerTest {
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_confirmationRequired_reexecuteSameCommand_confirmsAndAdds() throws Exception {
+        model.addPerson(new DoctorBuilder().build());
+        String addDoctorCommand = "add-doc n/Dr Bob Tan p/85355255 e/bob@example.com";
+
+        CommandResult warningResult = logic.execute(addDoctorCommand);
+        assertEquals("Warning: existing doctors with the same phone number were found. "
+                + "Press Enter again to continue adding anyway.", warningResult.getFeedbackToUser());
+        assertEquals(1, model.getFilteredPersonList().size());
+
+        CommandResult successResult = logic.execute(addDoctorCommand);
+        assertTrue(successResult.getFeedbackToUser().startsWith("New doctor added: "));
+        assertEquals(2, model.getClinicBook().getPersonList().size());
     }
 
     @Test

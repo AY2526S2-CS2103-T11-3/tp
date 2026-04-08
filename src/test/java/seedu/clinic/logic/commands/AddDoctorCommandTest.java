@@ -1,0 +1,68 @@
+package seedu.clinic.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.clinic.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.clinic.logic.commands.exceptions.CommandException;
+import seedu.clinic.model.Model;
+import seedu.clinic.model.ModelManager;
+import seedu.clinic.model.person.Doctor;
+import seedu.clinic.testutil.DoctorBuilder;
+
+public class AddDoctorCommandTest {
+
+    @Test
+    public void execute_partialContactDuplicate_returnsWarning() throws Exception {
+        Model model = new ModelManager();
+        Doctor existingDoctor = new DoctorBuilder().build();
+        model.addPerson(existingDoctor);
+        Doctor doctorToAdd = new DoctorBuilder()
+                .withName("Dr Bob Tan")
+                .withEmail("bob@example.com")
+                .build();
+
+        CommandResult commandResult = new AddDoctorCommand(doctorToAdd).execute(model);
+
+        assertEquals("Warning: existing doctors with the same phone number were found. "
+                + "Press Enter again to continue adding anyway.", commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequireConfirmation());
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingDoctor, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_exactContactDuplicate_throwsCommandException() {
+        Model model = new ModelManager();
+        Doctor existingDoctor = new DoctorBuilder().build();
+        model.addPerson(existingDoctor);
+        Doctor doctorToAdd = new DoctorBuilder(existingDoctor).build();
+
+        assertThrows(CommandException.class,
+                "Rejected: an existing doctor already has the same name, phone number, and email address. "
+                        + "Matching doctors are shown below.",
+                () -> new AddDoctorCommand(doctorToAdd).execute(model));
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingDoctor, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_confirmedAfterWarning_addSuccessful() throws Exception {
+        Model model = new ModelManager();
+        model.addPerson(new DoctorBuilder().build());
+        Doctor doctorToAdd = new DoctorBuilder()
+                .withName("Dr Bob Tan")
+                .withEmail("bob@example.com")
+                .build();
+        AddDoctorCommand addDoctorCommand = new AddDoctorCommand(doctorToAdd);
+
+        addDoctorCommand.execute(model);
+        addDoctorCommand.confirm();
+        CommandResult commandResult = addDoctorCommand.execute(model);
+
+        assertEquals(String.format(AddDoctorCommand.MESSAGE_SUCCESS, doctorToAdd), commandResult.getFeedbackToUser());
+        assertEquals(2, model.getClinicBook().getPersonList().size());
+    }
+}

@@ -18,6 +18,7 @@ import seedu.clinic.commons.core.GuiSettings;
 import seedu.clinic.logic.commands.exceptions.CommandException;
 import seedu.clinic.model.ClinicBook;
 import seedu.clinic.model.Model;
+import seedu.clinic.model.ModelManager;
 import seedu.clinic.model.ReadOnlyClinicBook;
 import seedu.clinic.model.ReadOnlyUserPrefs;
 import seedu.clinic.model.person.Diagnosis;
@@ -54,6 +55,38 @@ public class AddPatientCommandTest {
 
         assertThrows(CommandException.class, AddPatientCommand.MESSAGE_DUPLICATE_PATIENT, () ->
             addPatientCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_partialContactDuplicate_returnsWarning() throws Exception {
+        Model model = new ModelManager();
+        Patient existingPatient = createPatient("Amy Bee", "S1234567D");
+        model.addPerson(existingPatient);
+        Patient patientToAdd = createPatient("Beatrice Lim", "T1234567J");
+        AddPatientCommand addPatientCommand = new AddPatientCommand(patientToAdd);
+
+        CommandResult commandResult = addPatientCommand.execute(model);
+
+        assertEquals("Warning: existing patients with the same phone number and email address were found. "
+                + "Press Enter again to continue adding anyway.", commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequireConfirmation());
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingPatient, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_confirmedAfterWarning_addSuccessful() throws Exception {
+        Model model = new ModelManager();
+        model.addPerson(createPatient("Amy Bee", "S1234567D"));
+        Patient patientToAdd = createPatient("Beatrice Lim", "T1234567J");
+        AddPatientCommand addPatientCommand = new AddPatientCommand(patientToAdd);
+
+        addPatientCommand.execute(model);
+        addPatientCommand.confirm();
+        CommandResult commandResult = addPatientCommand.execute(model);
+
+        assertEquals(String.format(AddPatientCommand.MESSAGE_SUCCESS, patientToAdd), commandResult.getFeedbackToUser());
+        assertEquals(2, model.getClinicBook().getPersonList().size());
     }
 
     @Test
