@@ -11,6 +11,11 @@ import seedu.clinic.model.person.Person;
  */
 public abstract class AddPersonWithDuplicateWarningCommand<T extends Person>
         extends Command implements ConfirmableCommand {
+    public static final String MESSAGE_DUPLICATE_WARNING = "Warning: existing %s(s) with the same %s were found. "
+            + "Press Enter again to continue adding anyway OR key-in 'list' to get the original list.";
+    public static final String MESSAGE_DUPLICATE_REJECT = "Rejected: an existing %s already has the same name, "
+            + "phone number, and email address. Matching %s is shown below.";
+
     private final T personToAdd;
     private boolean isConfirmed;
 
@@ -25,9 +30,13 @@ public abstract class AddPersonWithDuplicateWarningCommand<T extends Person>
 
     protected abstract String getSuccessMessage();
 
-    protected abstract String getDuplicateWarningMessage();
+    protected String getDuplicateWarningMessage() {
+        return MESSAGE_DUPLICATE_WARNING;
+    }
 
-    protected abstract String getDuplicateRejectMessage();
+    protected String getDuplicateRejectMessage() {
+        return MESSAGE_DUPLICATE_REJECT;
+    }
 
     /**
      * Hook for subclasses to decide whether exact contact-field duplicates should be rejected.

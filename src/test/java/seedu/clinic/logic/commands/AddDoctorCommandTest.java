@@ -26,7 +26,8 @@ public class AddDoctorCommandTest {
 
         CommandResult commandResult = new AddDoctorCommand(doctorToAdd).execute(model);
 
-        assertEquals(String.format(AddDoctorCommand.MESSAGE_DUPLICATE_WARNING, "doctor", "phone number"),
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
+                "doctor", "phone number"),
                 commandResult.getFeedbackToUser());
         assertTrue(commandResult.isRequireConfirmation());
         assertEquals(1, model.getFilteredPersonList().size());
@@ -41,7 +42,39 @@ public class AddDoctorCommandTest {
         Doctor doctorToAdd = new DoctorBuilder(existingDoctor).build();
 
         assertThrows(CommandException.class,
-                String.format(AddDoctorCommand.MESSAGE_DUPLICATE_REJECT, "doctor", "doctor"), ()
+                String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_REJECT, "doctor", "doctor"), ()
+                        -> new AddDoctorCommand(doctorToAdd).execute(model));
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingDoctor, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_exactContactDuplicateWithDifferentNameCase_throwsCommandException() {
+        Model model = new ModelManager();
+        Doctor existingDoctor = new DoctorBuilder().build();
+        model.addPerson(existingDoctor);
+        Doctor doctorToAdd = new DoctorBuilder(existingDoctor)
+                .withName(existingDoctor.getName().fullName.toLowerCase())
+                .build();
+
+        assertThrows(CommandException.class,
+                String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_REJECT, "doctor", "doctor"), ()
+                        -> new AddDoctorCommand(doctorToAdd).execute(model));
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingDoctor, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_exactContactDuplicateWithDifferentEmailCase_throwsCommandException() {
+        Model model = new ModelManager();
+        Doctor existingDoctor = new DoctorBuilder().build();
+        model.addPerson(existingDoctor);
+        Doctor doctorToAdd = new DoctorBuilder(existingDoctor)
+                .withEmail(existingDoctor.getEmail().value.toUpperCase())
+                .build();
+
+        assertThrows(CommandException.class,
+                String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_REJECT, "doctor", "doctor"), ()
                         -> new AddDoctorCommand(doctorToAdd).execute(model));
         assertEquals(1, model.getFilteredPersonList().size());
         assertEquals(existingDoctor, model.getFilteredPersonList().get(0));

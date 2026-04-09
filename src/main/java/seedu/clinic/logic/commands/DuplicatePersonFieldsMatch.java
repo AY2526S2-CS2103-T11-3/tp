@@ -47,11 +47,11 @@ public class DuplicatePersonFieldsMatch<T extends Person> {
                 .collect(Collectors.toList());
 
         boolean hasMatchingName = matchingPersons.stream()
-                .anyMatch(existingPerson -> existingPerson.getName().equals(personToAdd.getName()));
+                .anyMatch(existingPerson -> hasSameName(existingPerson, personToAdd));
         boolean hasMatchingPhone = matchingPersons.stream()
                 .anyMatch(existingPerson -> existingPerson.getPhone().equals(personToAdd.getPhone()));
         boolean hasMatchingEmail = matchingPersons.stream()
-                .anyMatch(existingPerson -> existingPerson.getEmail().equals(personToAdd.getEmail()));
+                .anyMatch(existingPerson -> hasSameEmail(existingPerson, personToAdd));
 
         return new DuplicatePersonFieldsMatch<>(personToAdd, matchingPersons,
                 hasMatchingName, hasMatchingPhone, hasMatchingEmail);
@@ -76,9 +76,9 @@ public class DuplicatePersonFieldsMatch<T extends Person> {
     }
 
     private boolean matchesAllContactFields(T existingPerson) {
-        return existingPerson.getName().equals(personToAdd.getName())
+        return hasSameName(existingPerson, personToAdd)
                 && existingPerson.getPhone().equals(personToAdd.getPhone())
-                && existingPerson.getEmail().equals(personToAdd.getEmail());
+                && hasSameEmail(existingPerson, personToAdd);
     }
 
     public String getMatchingFieldSummary() {
@@ -105,8 +105,16 @@ public class DuplicatePersonFieldsMatch<T extends Person> {
     }
 
     private static boolean isMatchingAnyField(Person existingPerson, Person personToAdd) {
-        return existingPerson.getName().equals(personToAdd.getName())
+        return hasSameName(existingPerson, personToAdd)
                 || existingPerson.getPhone().equals(personToAdd.getPhone())
-                || existingPerson.getEmail().equals(personToAdd.getEmail());
+                || hasSameEmail(existingPerson, personToAdd);
+    }
+
+    private static boolean hasSameName(Person firstPerson, Person secondPerson) {
+        return firstPerson.getName().fullName.equalsIgnoreCase(secondPerson.getName().fullName);
+    }
+
+    private static boolean hasSameEmail(Person firstPerson, Person secondPerson) {
+        return firstPerson.getEmail().value.equalsIgnoreCase(secondPerson.getEmail().value);
     }
 }

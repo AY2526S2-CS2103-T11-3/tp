@@ -43,10 +43,6 @@ public class AddPatientCommand extends AddPersonWithDuplicateWarningCommand<Pati
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in clinic book";
-    public static final String MESSAGE_DUPLICATE_WARNING = "Warning: existing %s(s) with the same %s were found. "
-            + "Press Enter again to continue adding anyway OR key-in 'list' to get the original list.";
-    public static final String MESSAGE_DUPLICATE_REJECT = "Rejected: an existing %s already has the same name, "
-            + "phone number, and email address. Matching %s is shown below.";
 
     private final Patient newPatient;
 
@@ -83,16 +79,6 @@ public class AddPatientCommand extends AddPersonWithDuplicateWarningCommand<Pati
     @Override
     protected String getSuccessMessage() {
         return MESSAGE_SUCCESS;
-    }
-
-    @Override
-    protected String getDuplicateWarningMessage() {
-        return MESSAGE_DUPLICATE_WARNING;
-    }
-
-    @Override
-    protected String getDuplicateRejectMessage() {
-        return MESSAGE_DUPLICATE_REJECT;
     }
 
     @Override

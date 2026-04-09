@@ -53,16 +53,6 @@ public class AddPharmacistCommand extends AddPersonWithDuplicateWarningCommand<P
     }
 
     @Override
-    protected String getDuplicateWarningMessage() {
-        return MESSAGE_DUPLICATE_WARNING;
-    }
-
-    @Override
-    protected String getDuplicateRejectMessage() {
-        return MESSAGE_DUPLICATE_REJECT;
-    }
-
-    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

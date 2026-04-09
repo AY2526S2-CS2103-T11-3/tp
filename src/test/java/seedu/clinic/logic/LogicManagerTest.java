@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.clinic.logic.commands.AddDoctorCommand;
+import seedu.clinic.logic.commands.AddPersonWithDuplicateWarningCommand;
 import seedu.clinic.logic.commands.CommandResult;
 import seedu.clinic.logic.commands.ListCommand;
 import seedu.clinic.logic.commands.exceptions.CommandException;
@@ -72,7 +73,7 @@ public class LogicManagerTest {
         String addDoctorCommand = "add-doc n/Dr Bob Tan p/85355255 e/bob@example.com";
 
         CommandResult warningResult = logic.execute(addDoctorCommand);
-        assertEquals(String.format(AddDoctorCommand.MESSAGE_DUPLICATE_WARNING,
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
                 "doctor", "phone number"), warningResult.getFeedbackToUser());
         assertEquals(1, model.getFilteredPersonList().size());
 

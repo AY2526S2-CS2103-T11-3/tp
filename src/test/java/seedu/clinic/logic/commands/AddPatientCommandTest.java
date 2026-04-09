@@ -67,7 +67,7 @@ public class AddPatientCommandTest {
 
         CommandResult commandResult = addPatientCommand.execute(model);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_DUPLICATE_WARNING,
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
                 "patient", "phone number / email address"), commandResult.getFeedbackToUser());
         assertTrue(commandResult.isRequireConfirmation());
         assertEquals(1, model.getFilteredPersonList().size());
@@ -83,8 +83,40 @@ public class AddPatientCommandTest {
 
         CommandResult commandResult = new AddPatientCommand(patientToAdd).execute(model);
 
-        assertEquals(String.format(AddPatientCommand.MESSAGE_DUPLICATE_WARNING,
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
                 "patient", "name / phone number / email address"), commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequireConfirmation());
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingPatient, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_nameDuplicateWithDifferentCase_returnsWarning() throws Exception {
+        Model model = new ModelManager();
+        Patient existingPatient = createPatient("Amy Bee", "S1234567D");
+        model.addPerson(existingPatient);
+        Patient patientToAdd = createPatient("amy bee", "T1234567J");
+
+        CommandResult commandResult = new AddPatientCommand(patientToAdd).execute(model);
+
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
+                "patient", "name / phone number / email address"), commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequireConfirmation());
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingPatient, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_emailDuplicateWithDifferentCase_returnsWarning() throws Exception {
+        Model model = new ModelManager();
+        Patient existingPatient = createPatient("Amy Bee", "S1234567D");
+        model.addPerson(existingPatient);
+        Patient patientToAdd = createPatientWithEmail("Beatrice Lim", "T1234567J", "AMY@GMAIL.COM");
+
+        CommandResult commandResult = new AddPatientCommand(patientToAdd).execute(model);
+
+        assertEquals(String.format(AddPersonWithDuplicateWarningCommand.MESSAGE_DUPLICATE_WARNING,
+                "patient", "email address"), commandResult.getFeedbackToUser());
         assertTrue(commandResult.isRequireConfirmation());
         assertEquals(1, model.getFilteredPersonList().size());
         assertEquals(existingPatient, model.getFilteredPersonList().get(0));
@@ -134,6 +166,16 @@ public class AddPatientCommandTest {
         Person person = new PersonBuilder()
                 .withId(0)
                 .withName(name)
+                .build();
+        return new Patient(person, new NRIC(nric), LocalDate.of(1990, 1, 1), Sex.FEMALE);
+    }
+
+    private Patient createPatientWithEmail(String name, String nric, String email) {
+        Person person = new PersonBuilder()
+                .withId(0)
+                .withName(name)
+                .withPhone("81234567")
+                .withEmail(email)
                 .build();
         return new Patient(person, new NRIC(nric), LocalDate.of(1990, 1, 1), Sex.FEMALE);
     }
