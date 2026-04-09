@@ -30,6 +30,13 @@ public abstract class AddPersonWithDuplicateWarningCommand<T extends Person>
     protected abstract String getDuplicateRejectMessage();
 
     /**
+     * Hook for subclasses to decide whether exact contact-field duplicates should be rejected.
+     */
+    protected boolean shouldRejectExactDuplicate() {
+        return true;
+    }
+
+    /**
      * Hook for subclasses to reject duplicates outside contact-field checks.
      */
     protected void validateAdditionalConstraints(Model model) throws CommandException {
@@ -45,7 +52,7 @@ public abstract class AddPersonWithDuplicateWarningCommand<T extends Person>
         DuplicatePersonFieldsMatch<T> duplicateMatch =
                 DuplicatePersonFieldsMatch.find(model, personToAdd, getPersonType());
 
-        if (duplicateMatch.hasExactDuplicate()) {
+        if (shouldRejectExactDuplicate() && duplicateMatch.hasExactDuplicate()) {
             model.updateFilteredPersonList(duplicateMatch.asPredicate());
             throw new CommandException(String.format(getDuplicateRejectMessage(), getPersonLabel(), getPersonLabel()));
         }

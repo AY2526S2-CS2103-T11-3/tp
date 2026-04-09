@@ -26,10 +26,7 @@ public class AddDoctorCommand extends AddPersonWithDuplicateWarningCommand<Docto
             + PREFIX_EMAIL + "johnd@example.com ";
 
     public static final String MESSAGE_SUCCESS = "New doctor added: %1$s";
-    public static final String MESSAGE_DUPLICATE_WARNING = "Warning: existing %ss with the same %s were found. "
-            + "Press Enter again to continue adding anyway OR key-in 'list' to get the original list.";
-    public static final String MESSAGE_DUPLICATE_REJECT = "Rejected: an existing %s already has the same name, "
-            + "phone number, and email address. Matching %ss are shown below.";
+
 
     private final Doctor toAdd;
 

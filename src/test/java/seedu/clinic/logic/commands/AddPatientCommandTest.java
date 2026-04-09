@@ -68,7 +68,23 @@ public class AddPatientCommandTest {
         CommandResult commandResult = addPatientCommand.execute(model);
 
         assertEquals(String.format(AddPatientCommand.MESSAGE_DUPLICATE_WARNING,
-                "patient", "phone number and email address"), commandResult.getFeedbackToUser());
+                "patient", "phone number / email address"), commandResult.getFeedbackToUser());
+        assertTrue(commandResult.isRequireConfirmation());
+        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(existingPatient, model.getFilteredPersonList().get(0));
+    }
+
+    @Test
+    public void execute_exactContactDuplicate_returnsWarning() throws Exception {
+        Model model = new ModelManager();
+        Patient existingPatient = createPatient("Amy Bee", "S1234567D");
+        model.addPerson(existingPatient);
+        Patient patientToAdd = createPatient("Amy Bee", "T1234567J");
+
+        CommandResult commandResult = new AddPatientCommand(patientToAdd).execute(model);
+
+        assertEquals(String.format(AddPatientCommand.MESSAGE_DUPLICATE_WARNING,
+                "patient", "name / phone number / email address"), commandResult.getFeedbackToUser());
         assertTrue(commandResult.isRequireConfirmation());
         assertEquals(1, model.getFilteredPersonList().size());
         assertEquals(existingPatient, model.getFilteredPersonList().get(0));

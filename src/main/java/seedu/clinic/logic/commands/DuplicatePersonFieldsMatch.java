@@ -98,10 +98,10 @@ public class DuplicatePersonFieldsMatch<T extends Person> {
         }
 
         if (fieldNames.size() == 2) {
-            return fieldNames.get(0) + " and " + fieldNames.get(1);
+            return fieldNames.get(0) + " / " + fieldNames.get(1);
         }
 
-        return fieldNames.get(0) + ", " + fieldNames.get(1) + ", and " + fieldNames.get(2);
+        return fieldNames.get(0) + " / " + fieldNames.get(1) + " / " + fieldNames.get(2);
     }
 
     private static boolean isMatchingAnyField(Person existingPerson, Person personToAdd) {
