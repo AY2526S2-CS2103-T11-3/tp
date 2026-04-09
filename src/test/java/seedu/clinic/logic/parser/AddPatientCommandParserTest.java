@@ -172,6 +172,20 @@ public class AddPatientCommandParserTest {
     }
 
     @Test
+    public void parse_mistypedAllergyPrefix_failure() {
+        String mistypedAllergyPrefix = " n/John Doe"
+                + " nric/S7630902G"
+                + " dob/01-01-1990"
+                + " sex/MALE"
+                + " allergy/Penicillin all/Shellfish"
+                + " e/johnd@example.com"
+                + " p/91234567"
+                + " a/123 Clementi Ave 3, #04-12";
+
+        assertParseFailure(parser, mistypedAllergyPrefix, Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
     public void parse_blankSex_failure() {
         String blankSex = " n/Alice Patient"
                 + " nric/S1234567D"
