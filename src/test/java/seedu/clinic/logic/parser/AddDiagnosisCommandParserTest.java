@@ -2,6 +2,7 @@ package seedu.clinic.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinic.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.clinic.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.clinic.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -62,5 +63,13 @@ public class AddDiagnosisCommandParserTest {
         String userInput = " id/1 id/2 desc/Flu vd/2026-03-01 diagnosed/2"
                 + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
+    }
+
+    @Test
+    public void parse_zeroPatientId_throwsFriendlyParseException() {
+        String userInput = " id/0 desc/Flu vd/2026-03-01 diagnosed/2"
+                + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4";
+
+        assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_INVALID_PATIENT_ID);
     }
 }

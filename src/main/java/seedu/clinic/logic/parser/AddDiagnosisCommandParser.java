@@ -56,7 +56,12 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_ID, PREFIX_DESC, PREFIX_VISIT_DATE, PREFIX_DIAGNOSED_BY);
 
-        int patientId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
+        String patientIdValue = argMultimap.getValue(PREFIX_ID).get();
+        if ("0".equals(patientIdValue.trim())) {
+            throw new ParseException(AddDiagnosisCommand.MESSAGE_INVALID_PATIENT_ID);
+        }
+
+        int patientId = ParserUtil.parsePersonId(patientIdValue);
         String description = argMultimap.getValue(PREFIX_DESC).get();
         LocalDate visitDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_VISIT_DATE).get());
         int diagnosedById = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_DIAGNOSED_BY).get());

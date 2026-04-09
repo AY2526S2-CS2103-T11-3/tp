@@ -55,6 +55,8 @@ public class AddDiagnosisCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New diagnosis added: %1$s";
     public static final String MESSAGE_INVALID_PATIENT = "The patient ID provided is invalid";
+    public static final String MESSAGE_INVALID_PATIENT_ID =
+            "The patient ID must be 1 or greater..";
     public static final String MESSAGE_INVALID_DOCTOR = "The doctor ID provided is invalid";
     public static final String MESSAGE_INVALID_PHARMACIST = "The pharmacist ID provided is invalid";
 
