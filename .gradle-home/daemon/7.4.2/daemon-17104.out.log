@@ -1,0 +1,603 @@
+2026-04-09T21:05:28.187+0800 [DEBUG] [org.gradle.launcher.daemon.bootstrap.DaemonMain] Assuming the daemon was started with following jvm opts: [-XX:MaxMetaspaceSize=512m, -XX:+HeapDumpOnOutOfMemoryError, --add-opens, java.base/java.util=ALL-UNNAMED, --add-opens, java.base/java.lang=ALL-UNNAMED, --add-opens, java.base/java.lang.invoke=ALL-UNNAMED, --add-opens, java.base/java.util=ALL-UNNAMED, --add-opens, java.prefs/java.util.prefs=ALL-UNNAMED, --add-opens, java.prefs/java.util.prefs=ALL-UNNAMED, --add-opens, java.base/java.nio.charset=ALL-UNNAMED, --add-opens, java.base/java.net=ALL-UNNAMED, --add-opens, java.base/java.util.concurrent.atomic=ALL-UNNAMED, -Xmx1024m, -Dfile.encoding=utf-8, -Duser.country=US, -Duser.language=en, -Duser.variant]
+2026-04-09T21:05:28.389+0800 [DEBUG] [org.gradle.internal.nativeintegration.services.NativeServices] Native-platform posix files integration is not available. Continuing with fallback.
+2026-04-09T21:05:28.412+0800 [INFO] [org.gradle.launcher.daemon.server.Daemon] start() called on daemon - DefaultDaemonContext[uid=5a3f62be-3c2d-4b93-8c63-dc15391bc95b,javaHome=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot,daemonRegistryDir=C:\code\2103\tp\.gradle-home\daemon,pid=17104,idleTimeout=10800000,priority=NORMAL,daemonOpts=-XX:MaxMetaspaceSize=512m,-XX:+HeapDumpOnOutOfMemoryError,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=utf-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+2026-04-09T21:05:28.554+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Software Loopback Interface 1
+2026-04-09T21:05:28.558+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? true
+2026-04-09T21:05:28.559+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding loopback address /127.0.0.1
+2026-04-09T21:05:28.559+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding loopback address /0:0:0:0:0:0:0:1
+2026-04-09T21:05:28.561+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (L2TP)
+2026-04-09T21:05:28.564+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.564+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft 6to4 Adapter
+2026-04-09T21:05:28.568+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.569+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (PPTP)
+2026-04-09T21:05:28.573+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.573+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter
+2026-04-09T21:05:28.576+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.577+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:3108:f0a7:52d2:4514%wlan0
+2026-04-09T21:05:28.577+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft IP-HTTPS Platform Adapter
+2026-04-09T21:05:28.581+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.582+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (Network Monitor)
+2026-04-09T21:05:28.585+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.585+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Bluetooth Device (Personal Area Network)
+2026-04-09T21:05:28.589+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.589+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:3082:d2b5:d465:3ac0%eth1
+2026-04-09T21:05:28.590+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Kernel Debug Network Adapter
+2026-04-09T21:05:28.594+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.594+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Cisco AnyConnect Virtual Miniport Adapter for Windows x64
+2026-04-09T21:05:28.598+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.599+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (PPPOE)
+2026-04-09T21:05:28.601+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.602+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Teredo Tunneling Adapter
+2026-04-09T21:05:28.606+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.606+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (SSTP)
+2026-04-09T21:05:28.610+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.610+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IP)
+2026-04-09T21:05:28.614+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.614+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz
+2026-04-09T21:05:28.617+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.617+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /192.168.1.95
+2026-04-09T21:05:28.617+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:6761:11a:abc6:7d5a%wlan1
+2026-04-09T21:05:28.617+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)
+2026-04-09T21:05:28.620+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.620+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:1414:7493:8d01:fef9%eth5
+2026-04-09T21:05:28.620+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet SSL VPN Virtual Ethernet Adapter
+2026-04-09T21:05:28.624+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.624+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IPv6)
+2026-04-09T21:05:28.628+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.628+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2
+2026-04-09T21:05:28.631+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.631+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding remote address /fe80:0:0:0:1254:8cb1:16c4:6862%wlan2
+2026-04-09T21:05:28.632+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IKEv2)
+2026-04-09T21:05:28.635+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.635+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.639+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.639+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.643+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.643+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.646+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.647+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.649+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.650+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Fortinet Virtual Ethernet Adapter (NDIS 6.30)-WFP 802.3 MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.652+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.652+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.656+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.656+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-Virtual WiFi Filter Driver-0000
+2026-04-09T21:05:28.660+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.660+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-Native WiFi Filter Driver-0000
+2026-04-09T21:05:28.663+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.664+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.667+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.667+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.671+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.671+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.676+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.676+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Intel(R) Wi-Fi 6E AX211 160MHz-WFP 802.3 MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.680+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.680+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Bluetooth Device (Personal Area Network)-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.685+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.685+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.689+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.689+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-Native WiFi Filter Driver-0000
+2026-04-09T21:05:28.692+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.692+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.695+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.695+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.697+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.698+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.700+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.700+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter-WFP 802.3 MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.703+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.704+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.709+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.709+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-Native WiFi Filter Driver-0000
+2026-04-09T21:05:28.712+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.712+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.716+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.716+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.719+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.719+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.723+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.723+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface Microsoft Wi-Fi Direct Virtual Adapter #2-WFP 802.3 MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.727+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.728+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IP)-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.732+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.732+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IP)-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.737+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.738+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IP)-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.742+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.742+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IP)-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.745+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.746+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IPv6)-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.749+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.750+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IPv6)-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.752+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.753+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IPv6)-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.757+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.757+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (IPv6)-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.760+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.761+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (Network Monitor)-WFP Native MAC Layer LightWeight Filter-0000
+2026-04-09T21:05:28.763+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.764+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (Network Monitor)-Fortinet NDIS 6.0 LightWeight Filter-0000
+2026-04-09T21:05:28.767+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.767+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (Network Monitor)-Npcap Packet Driver (NPCAP)-0000
+2026-04-09T21:05:28.770+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.771+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Adding IP addresses for network interface WAN Miniport (Network Monitor)-QoS Packet Scheduler-0000
+2026-04-09T21:05:28.774+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.InetAddresses] Is this a loopback interface? false
+2026-04-09T21:05:28.784+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.TcpIncomingConnector] Listening on [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]].
+2026-04-09T21:05:28.803+0800 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] Daemon starting at: Thu Apr 09 21:05:28 SGT 2026, with address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:05:28.805+0800 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Advertising the daemon address to the clients: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:05:28.806+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Advertised daemon context: DefaultDaemonContext[uid=5a3f62be-3c2d-4b93-8c63-dc15391bc95b,javaHome=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot,daemonRegistryDir=C:\code\2103\tp\.gradle-home\daemon,pid=17104,idleTimeout=10800000,priority=NORMAL,daemonOpts=-XX:MaxMetaspaceSize=512m,-XX:+HeapDumpOnOutOfMemoryError,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=utf-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+2026-04-09T21:05:28.810+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Storing daemon address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]], context: DefaultDaemonContext[uid=5a3f62be-3c2d-4b93-8c63-dc15391bc95b,javaHome=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot,daemonRegistryDir=C:\code\2103\tp\.gradle-home\daemon,pid=17104,idleTimeout=10800000,priority=NORMAL,daemonOpts=-XX:MaxMetaspaceSize=512m,-XX:+HeapDumpOnOutOfMemoryError,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=utf-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+2026-04-09T21:05:28.827+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:05:28.832+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:05:28.839+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:05:28.840+0800 [LIFECYCLE] [org.gradle.launcher.daemon.server.Daemon] Daemon server started.
+2026-04-09T21:05:28.841+0800 [DEBUG] [org.gradle.launcher.daemon.bootstrap.DaemonStartupCommunication] Completed writing the daemon greeting. Closing streams...
+2026-04-09T21:05:28.847+0800 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] stopOnExpiration() called on daemon
+2026-04-09T21:05:28.848+0800 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] awaitExpiration() called on daemon
+2026-04-09T21:05:28.849+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-04-09T21:05:28.861+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.TcpIncomingConnector] Accepted connection from /127.0.0.1:1763 to /127.0.0.1:1761.
+2026-04-09T21:05:28.945+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: received class org.gradle.launcher.daemon.protocol.Build
+2026-04-09T21:05:28.946+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] thread 30: Received non-IO message from client: Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}
+2026-04-09T21:05:28.946+0800 [INFO] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received command: Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}.
+2026-04-09T21:05:28.946+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Starting executing command: Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp} with connection: socket connection from /127.0.0.1:1761 to /127.0.0.1:1763.
+2026-04-09T21:05:28.949+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: started DaemonCommandExecution[command = Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}, connection = DefaultDaemonConnection: socket connection from /127.0.0.1:1761 to /127.0.0.1:1763] after 0.0 minutes of idle
+2026-04-09T21:05:28.949+0800 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Marking the daemon as busy, address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:05:28.949+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:05:28.951+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:05:28.952+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:05:28.954+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:05:28.955+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
+2026-04-09T21:05:28.955+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-04-09T21:05:28.956+0800 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}. Dispatching build started information...
+2026-04-09T21:05:28.956+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 32: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@2f6f949a
+2026-04-09T21:05:28.959+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [PATH, USERDOMAIN_ROAMINGPROFILE, PROCESSOR_LEVEL, EFC_25876_1262719628, SESSIONNAME, ALLUSERSPROFILE, PROCESSOR_ARCHITECTURE, PSModulePath, VSCODE_PID, SystemDrive, =ExitCode, DIRNAME, USERNAME, ProgramFiles(x86), VSCODE_NLS_CONFIG, CHROME_CRASHPAD_PIPE_NAME, CODEX_INTERNAL_ORIGINATOR_OVERRIDE, APP_HOME, COPILOT_OTEL_ENABLED, CODEX_SANDBOX_NETWORK_DISABLED, DEFAULT_JVM_OPTS, PATHEXT, DriverData, VSCODE_CRASH_REPORTER_PROCESS_TYPE, OneDriveConsumer, EFC_25876_1592913036, VSCODE_CODE_CACHE_PATH, EFC_25876_2775293581, OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT, ProgramData, EFC_25876_2283032206, ProgramW6432, HOMEPATH, GHCUP_MSYS2_ENV, PROCESSOR_IDENTIFIER, ProgramFiles, PUBLIC, windir, ZES_ENABLE_SYSMAN, COPILOT_OTEL_EXPORTER_TYPE, OneDriveCommercial, LOCALAPPDATA, ChocolateyLastPathUpdate, IntelliJ IDEA, COPILOT_OTEL_FILE_EXPORTER_PATH, USERDOMAIN, VSCODE_HANDLES_UNCAUGHT_ERRORS, LOGONSERVER, PROMPT, RUST_LOG, CABAL_DIR, ELECTRON_RUN_AS_NODE, OneDrive, =C:, APPDATA, JAVA_EXE, ChocolateyInstall, CODEX_THREAD_ID, GHCUP_INSTALL_BASE_PREFIX, CommonProgramFiles, APPLICATION_INSIGHTS_NO_STATSBEAT, VSCODE_CWD, OS, EFC_25876_3789132940, COMPUTERNAME, VSCODE_ESM_ENTRYPOINT, PROCESSOR_REVISION, CLASSPATH, CommonProgramW6432, DEBUG, ComSpec, APP_BASE_NAME, SystemRoot, TEMP, HOMEDRIVE, USERPROFILE, TMP, CommonProgramFiles(x86), NUMBER_OF_PROCESSORS, VSCODE_IPC_HOOK]
+2026-04-09T21:05:28.961+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: received class org.gradle.launcher.daemon.protocol.CloseInput
+2026-04-09T21:05:28.961+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] thread 30: Received IO message from client: org.gradle.launcher.daemon.protocol.CloseInput@445d4f9c
+2026-04-09T21:05:28.966+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
+2026-04-09T21:05:28.967+0800 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 17104). The daemon log file: C:\code\2103\tp\.gradle-home\daemon\7.4.2\daemon-17104.out.log
+2026-04-09T21:05:28.968+0800 [INFO] [org.gradle.launcher.daemon.server.exec.LogAndCheckHealth] Starting build in new daemon [memory: 1 GiB]
+2026-04-09T21:05:28.970+0800 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] Closing daemon's stdin at end of input.
+2026-04-09T21:05:28.970+0800 [INFO] [org.gradle.launcher.daemon.server.exec.ForwardClientInput] The daemon will no longer process any standard input.
+2026-04-09T21:05:28.975+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
+2026-04-09T21:05:28.975+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=5a3f62be-3c2d-4b93-8c63-dc15391bc95b,javaHome=C:\Program Files\Microsoft\jdk-17.0.17.10-hotspot,daemonRegistryDir=C:\code\2103\tp\.gradle-home\daemon,pid=17104,idleTimeout=10800000,priority=NORMAL,daemonOpts=-XX:MaxMetaspaceSize=512m,-XX:+HeapDumpOnOutOfMemoryError,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.base/java.lang=ALL-UNNAMED,--add-opens,java.base/java.lang.invoke=ALL-UNNAMED,--add-opens,java.base/java.util=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.prefs/java.util.prefs=ALL-UNNAMED,--add-opens,java.base/java.nio.charset=ALL-UNNAMED,--add-opens,java.base/java.net=ALL-UNNAMED,--add-opens,java.base/java.util.concurrent.atomic=ALL-UNNAMED,-Xmx1024m,-Dfile.encoding=utf-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
+C:\code\2103\tp\src\test\java\seedu\clinic\model\person\PersonMatchesFindCriteriaPredicateTest.java:130: error: no suitable constructor found for Patient(Person,NRIC,LocalDate,Sex)
+        Patient patient = new Patient(new PersonBuilder().withName("Alice Bob").withPhone("12345678").build(),
+                          ^
+    constructor Patient.Patient(Name,Phone,Email,Address,Set<Tag>,NRIC,LocalDate,Sex) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor Patient.Patient(Name,Phone,Email,Address,Set<Tag>,NRIC,LocalDate,Sex,int) is not applicable
+      (actual and formal argument lists differ in length)
+    constructor Patient.Patient(Person,Set<Tag>,NRIC,LocalDate,Sex) is not applicable
+      (actual and formal argument lists differ in length)
+Note: C:\code\2103\tp\src\test\java\seedu\clinic\model\person\UniquePersonListTest.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileTestJava'.
+> Compilation failed; see the compiler error output for details.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 1m 5s
+3 actionable tasks: 1 executed, 2 up-to-date
+2026-04-09T21:06:16.990+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has finished executing the build.
+2026-04-09T21:06:17.049+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-04-09T21:06:17.050+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: finished waiting for DaemonCommandExecution[command = Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}, connection = DefaultDaemonConnection: socket connection from /127.0.0.1:1761 to /127.0.0.1:1763]. Result org.gradle.launcher.daemon.server.DaemonStateCoordinator@1b70053d with state Busy
+2026-04-09T21:06:17.051+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Command execution: completed DaemonCommandExecution[command = Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}, connection = DefaultDaemonConnection: socket connection from /127.0.0.1:1761 to /127.0.0.1:1763]
+2026-04-09T21:06:17.051+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
+2026-04-09T21:06:17.052+0800 [INFO] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Marking the daemon as idle, address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:06:17.052+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Marking busy by address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:06:17.055+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:06:17.056+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:17.059+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:17.061+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
+2026-04-09T21:06:17.061+0800 [DEBUG] [org.gradle.launcher.daemon.server.exec.ReturnResult] Daemon is dispatching the build result: Success[value=org.gradle.launcher.exec.BuildActionResult@771cb4db]
+2026-04-09T21:06:17.062+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 29: dispatching Success[value=org.gradle.launcher.exec.BuildActionResult@771cb4db]
+2026-04-09T21:06:17.145+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Finishing executing command: Build{id=fb84f068-f46f-45b4-9601-d0e55f32a774, currentDir=C:\code\2103\tp}
+2026-04-09T21:06:17.218+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: received class org.gradle.launcher.daemon.protocol.Finished
+2026-04-09T21:06:17.219+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] thread 30: Received non-IO message from client: org.gradle.launcher.daemon.protocol.Finished@253d15d2
+2026-04-09T21:06:17.220+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultIncomingConnectionHandler] Received finished message: org.gradle.launcher.daemon.protocol.Finished@253d15d2
+2026-04-09T21:06:17.220+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 29: stopping connection
+2026-04-09T21:06:17.222+0800 [DEBUG] [org.gradle.internal.remote.internal.inet.SocketConnection] Discarding EOFException: java.io.EOFException
+2026-04-09T21:06:17.222+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 30: received null
+2026-04-09T21:06:17.223+0800 [DEBUG] [org.gradle.launcher.daemon.server.DefaultDaemonConnection] thread 30: Received end-of-input from client.
+2026-04-09T21:06:17.226+0800 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 29: stopping connection
+2026-04-09T21:06:18.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:18.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:18.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:18.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:18.870+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:18.870+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:28.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:28.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:28.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:28.867+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:28.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:28.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:28.872+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:28.873+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:28.874+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:38.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:38.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:38.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:38.855+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:38.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:38.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:38.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:38.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:38.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:40.022+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\AppParametersTest$ParametersStub.class
+2026-04-09T21:06:40.026+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\AppParametersTest.class
+2026-04-09T21:06:40.026+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core\ConfigTest.class
+2026-04-09T21:06:40.027+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core\GuiSettingsTest.class
+2026-04-09T21:06:40.027+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core\index\IndexTest.class
+2026-04-09T21:06:40.027+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core\index
+2026-04-09T21:06:40.027+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core\VersionTest.class
+2026-04-09T21:06:40.027+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\core
+2026-04-09T21:06:40.028+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\AppUtilTest.class
+2026-04-09T21:06:40.029+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\CollectionUtilTest.class
+2026-04-09T21:06:40.029+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\ConfigUtilTest.class
+2026-04-09T21:06:40.029+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\FileUtilTest.class
+2026-04-09T21:06:40.030+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\JsonUtilTest.class
+2026-04-09T21:06:40.030+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util\StringUtilTest.class
+2026-04-09T21:06:40.031+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons\util
+2026-04-09T21:06:40.032+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\commons
+2026-04-09T21:06:40.033+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddDiagnosisCommandTest.class
+2026-04-09T21:06:40.034+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddDoctorCommandTest.class
+2026-04-09T21:06:40.036+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddPatientCommandTest$ModelStub.class
+2026-04-09T21:06:40.037+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddPatientCommandTest$ModelStubAcceptingPatientAdded.class
+2026-04-09T21:06:40.038+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddPatientCommandTest$ModelStubWithPatient.class
+2026-04-09T21:06:40.038+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\AddPatientCommandTest.class
+2026-04-09T21:06:40.039+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\ClearCommandTest.class
+2026-04-09T21:06:40.039+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\CommandResultTest.class
+2026-04-09T21:06:40.040+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\CommandTestUtil.class
+2026-04-09T21:06:40.040+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\DeleteCommandTest.class
+2026-04-09T21:06:40.040+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\ExitCommandTest.class
+2026-04-09T21:06:40.041+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\FindCommandTest.class
+2026-04-09T21:06:40.041+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\GetHistoryCommandTest.class
+2026-04-09T21:06:40.042+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\HelpCommandTest.class
+2026-04-09T21:06:40.043+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\ListCommandTest.class
+2026-04-09T21:06:40.044+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands\OrderTestCommandTest.class
+2026-04-09T21:06:40.045+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\commands
+2026-04-09T21:06:40.045+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\LogicManagerTest$1.class
+2026-04-09T21:06:40.046+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\LogicManagerTest.class
+2026-04-09T21:06:40.047+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\AddDiagnosisCommandParserTest.class
+2026-04-09T21:06:40.048+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\AddPatientCommandParserTest.class
+2026-04-09T21:06:40.049+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\ArgumentTokenizerTest.class
+2026-04-09T21:06:40.051+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\ClinicBookParserTest.class
+2026-04-09T21:06:40.051+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\CommandParserTestUtil.class
+2026-04-09T21:06:40.058+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\DeleteCommandParserTest.class
+2026-04-09T21:06:40.058+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\FindCommandParserTest.class
+2026-04-09T21:06:40.059+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\GetHistoryCommandParserTest.class
+2026-04-09T21:06:40.059+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\OrderTestCommandParserTest.class
+2026-04-09T21:06:40.059+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser\ParserUtilTest.class
+2026-04-09T21:06:40.059+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic\parser
+2026-04-09T21:06:40.059+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\logic
+2026-04-09T21:06:40.060+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\ClinicBookTest$ClinicBookStub.class
+2026-04-09T21:06:40.060+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\ClinicBookTest.class
+2026-04-09T21:06:40.061+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\ModelManagerTest.class
+2026-04-09T21:06:40.061+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\AddressTest.class
+2026-04-09T21:06:40.061+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\DiagnosisTest.class
+2026-04-09T21:06:40.062+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\DoctorTest.class
+2026-04-09T21:06:40.062+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\EmailTest.class
+2026-04-09T21:06:40.063+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\exceptions\DiagnosisNotFoundExceptionTest.class
+2026-04-09T21:06:40.064+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\exceptions\DuplicateDiagnosisExceptionTest.class
+2026-04-09T21:06:40.065+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\exceptions
+2026-04-09T21:06:40.068+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\NameContainsKeywordsPredicateTest.class
+2026-04-09T21:06:40.068+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\NameTest.class
+2026-04-09T21:06:40.068+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\NRICTest.class
+2026-04-09T21:06:40.070+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person\PatientTest.class
+2026-04-09T21:06:40.070+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model\person
+2026-04-09T21:06:40.070+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\model
+2026-04-09T21:06:40.070+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\testutil\Assert.class
+2026-04-09T21:06:40.071+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\testutil\TypicalIndexes.class
+2026-04-09T21:06:40.071+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\testutil\TypicalPatients.class
+2026-04-09T21:06:40.071+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change MODIFIED C:\code\2103\tp\build\classes\java\test\seedu\clinic\testutil\TypicalPersons.class
+2026-04-09T21:06:40.072+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic\testutil
+2026-04-09T21:06:40.073+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu\clinic
+2026-04-09T21:06:40.074+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\build\classes\java\test\seedu
+2026-04-09T21:06:48.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:48.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:48.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:48.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:48.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:48.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:48.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:48.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:48.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:58.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:58.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:58.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:58.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:58.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:58.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:06:58.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:06:58.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:06:58.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:08.855+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:08.855+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:08.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:08.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:08.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:08.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:08.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:08.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:08.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:18.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:18.854+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:18.854+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:18.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:18.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:18.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:18.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:18.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:18.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:19.518+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on journal cache (C:\code\2103\tp\.gradle-home\caches\journal-1) requested by another process - releasing lock.
+2026-04-09T21:07:19.519+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for journal cache (C:\code\2103\tp\.gradle-home\caches\journal-1)
+2026-04-09T21:07:19.519+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache file-access.bin (C:\code\2103\tp\.gradle-home\caches\journal-1\file-access.bin)
+2026-04-09T21:07:19.521+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on journal cache (C:\code\2103\tp\.gradle-home\caches\journal-1).
+2026-04-09T21:07:19.522+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -824768581592645884.
+2026-04-09T21:07:19.522+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -824768581592645884.
+2026-04-09T21:07:19.571+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on file hash cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileHashes) requested by another process - releasing lock.
+2026-04-09T21:07:19.572+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for file hash cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileHashes)
+2026-04-09T21:07:19.572+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache fileHashes.bin (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileHashes\fileHashes.bin)
+2026-04-09T21:07:19.573+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache resourceHashesCache.bin (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileHashes\resourceHashesCache.bin)
+2026-04-09T21:07:19.574+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on file hash cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileHashes).
+2026-04-09T21:07:19.575+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -8821823854186832347.
+2026-04-09T21:07:19.575+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -8821823854186832347.
+2026-04-09T21:07:20.976+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on execution history cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\executionHistory) requested by another process - releasing lock.
+2026-04-09T21:07:20.976+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for execution history cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\executionHistory)
+2026-04-09T21:07:20.976+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on execution history cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\executionHistory).
+2026-04-09T21:07:20.977+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 6634233651630819503.
+2026-04-09T21:07:20.977+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 6634233651630819503.
+2026-04-09T21:07:23.216+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on jars (C:\code\2103\tp\.gradle-home\caches\jars-9) requested by another process - releasing lock.
+2026-04-09T21:07:23.216+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for jars (C:\code\2103\tp\.gradle-home\caches\jars-9)
+2026-04-09T21:07:23.217+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on jars (C:\code\2103\tp\.gradle-home\caches\jars-9).
+2026-04-09T21:07:23.217+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 3365163210791115717.
+2026-04-09T21:07:23.217+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 3365163210791115717.
+2026-04-09T21:07:23.411+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on file content cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileContent) requested by another process - releasing lock.
+2026-04-09T21:07:23.411+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for file content cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileContent)
+2026-04-09T21:07:23.411+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on file content cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\fileContent).
+2026-04-09T21:07:23.412+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -6596358703965409441.
+2026-04-09T21:07:23.413+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id -6596358703965409441.
+2026-04-09T21:07:23.899+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Lock on artifact cache (C:\code\2103\tp\.gradle-home\caches\modules-2) requested by another process - releasing lock.
+2026-04-09T21:07:23.900+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for artifact cache (C:\code\2103\tp\.gradle-home\caches\modules-2)
+2026-04-09T21:07:23.900+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-metadata.bin (C:\code\2103\tp\.gradle-home\caches\modules-2\metadata-2.97\module-metadata.bin)
+2026-04-09T21:07:23.901+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-artifact.bin (C:\code\2103\tp\.gradle-home\caches\modules-2\metadata-2.97\module-artifact.bin)
+2026-04-09T21:07:23.901+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache module-artifacts.bin (C:\code\2103\tp\.gradle-home\caches\modules-2\metadata-2.97\module-artifacts.bin)
+2026-04-09T21:07:23.901+0800 [DEBUG] [org.gradle.cache.internal.btree.BTreePersistentIndexedCache] Closing cache resource-at-url.bin (C:\code\2103\tp\.gradle-home\caches\modules-2\metadata-2.97\resource-at-url.bin)
+2026-04-09T21:07:23.902+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on artifact cache (C:\code\2103\tp\.gradle-home\caches\modules-2).
+2026-04-09T21:07:23.902+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 3351747688747639540.
+2026-04-09T21:07:23.902+0800 [DEBUG] [org.gradle.cache.internal.locklistener.FileLockCommunicator] Confirming lock release to Gradle process at port 61778 for lock with id 3351747688747639540.
+2026-04-09T21:07:28.564+0800 [DEBUG] [org.gradle.internal.watch.registry.impl.DefaultFileWatcherProbeRegistry] Triggering watch probe for C:\code\2103\tp
+2026-04-09T21:07:28.564+0800 [DEBUG] [org.gradle.internal.watch.registry.impl.DefaultFileWatcherProbeRegistry] Triggering watch probe for C:\code\2103\tp
+2026-04-09T21:07:28.855+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:28.856+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:28.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:28.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:28.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:28.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:28.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:28.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:28.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:38.873+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:38.873+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:38.874+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:38.877+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:38.877+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:38.878+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:38.879+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:38.880+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:38.880+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:48.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:48.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:48.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:48.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:48.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:48.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:48.870+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:48.871+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:48.871+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:58.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:58.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:58.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:58.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:58.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:58.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:07:58.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:07:58.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:07:58.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:08.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:08.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:08.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:08.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:08.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:08.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:08.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:08.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:08.867+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:18.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:18.853+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:18.854+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:18.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:18.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:18.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:18.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:18.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:18.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:28.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:28.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:28.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:28.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:28.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:28.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:28.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:28.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:28.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:38.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:38.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:38.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:38.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:38.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:38.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:38.867+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:38.867+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:38.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:48.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:48.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:48.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:48.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:48.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:48.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:48.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:48.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:48.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:58.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:58.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:58.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:58.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:58.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:58.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:08:58.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:08:58.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:08:58.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:08.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:08.859+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:08.860+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:08.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:08.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:08.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:08.863+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:08.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:08.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:18.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:18.868+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:18.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:18.872+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:18.872+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:18.872+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:18.874+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:18.875+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:18.875+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:28.609+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\3ikubujx3boylidch8ov3108j\cp_proj\_BuildScript_$_run_closure1.class
+2026-04-09T21:09:28.609+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\3ikubujx3boylidch8ov3108j\cp_proj\_BuildScript_.class
+2026-04-09T21:09:28.610+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\3ikubujx3boylidch8ov3108j\cp_proj
+2026-04-09T21:09:28.615+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure1.class
+2026-04-09T21:09:28.616+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure2$_closure9.class
+2026-04-09T21:09:28.616+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure2.class
+2026-04-09T21:09:28.617+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure3.class
+2026-04-09T21:09:28.617+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure4.class
+2026-04-09T21:09:28.617+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure5.class
+2026-04-09T21:09:28.618+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure6$_closure10$_closure12.class
+2026-04-09T21:09:28.619+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure6$_closure10.class
+2026-04-09T21:09:28.619+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure6$_closure11.class
+2026-04-09T21:09:28.619+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure6.class
+2026-04-09T21:09:28.620+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure7.class
+2026-04-09T21:09:28.621+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_$_run_closure8.class
+2026-04-09T21:09:28.621+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj\_BuildScript_.class
+2026-04-09T21:09:28.622+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts\6qrl4u3k0h1iijldxe6vbwy8\proj
+2026-04-09T21:09:28.625+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\7.4.2\scripts
+2026-04-09T21:09:28.820+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.7.0\19f42c154ffc689f40a77613bc32caeb17d744e3\jackson-annotations-2.7.0.jar
+2026-04-09T21:09:28.826+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.7.4\b8f38a249116b66d804a5ca2b14a3459b7913a94\jackson-core-2.7.4.jar
+2026-04-09T21:09:28.832+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.7.4\1e9c6f3659644aeac84872c3b62d8e363bf4c96d\jackson-databind-2.7.4.jar
+2026-04-09T21:09:28.835+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\com.fasterxml.jackson.core
+2026-04-09T21:09:28.837+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\2.7.4\390dbf17d4eb29a6157c6b9dcd9c93e7acac714\jackson-datatype-jsr310-2.7.4.jar
+2026-04-09T21:09:28.847+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\commons-io\commons-io\2.11.0\a2503f302b11ebde7ebc3df41daebe0e4eea3689\commons-io-2.11.0.jar
+2026-04-09T21:09:28.854+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\gradle.plugin.com.github.johnrengelman\shadow\7.1.2\5ac2940270cdbcb2252d35a8b6be42c5efe7930f\shadow-7.1.2.jar
+2026-04-09T21:09:28.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:28.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:28.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:28.863+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.ant\ant\1.10.11\b875cd48a0bc955ae9c5c477ad991e1f26fb24d2\ant-1.10.11.jar
+2026-04-09T21:09:28.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:28.864+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:28.865+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:28.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:28.866+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:28.867+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:28.867+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.ant\ant-launcher\1.10.11\ea0a0475fb6dfcdcf48b30410fd9d4f5c80df07e\ant-launcher-1.10.11.jar
+2026-04-09T21:09:28.874+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.ant
+2026-04-09T21:09:28.887+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.17.1\d771af8e336e372fb5399c99edabe0919aeaf5b2\log4j-api-2.17.1.jar
+2026-04-09T21:09:28.890+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.17.1\779f60f3844dadc3ef597976fcb1e5127b1f343d\log4j-core-2.17.1.jar
+2026-04-09T21:09:28.893+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apache.logging.log4j
+2026-04-09T21:09:28.896+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.apiguardian\apiguardian-api\1.0.0\3ef5276905e36f4d8055fe3cb0bdcc7503ffc85d\apiguardian-api-1.0.0.jar
+2026-04-09T21:09:28.905+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.codehaus.plexus\plexus-utils\3.4.1\4de9992988c534efd668bfcca0480ebe13e0c0eb\plexus-utils-3.4.1.jar
+2026-04-09T21:09:28.912+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.jdom\jdom2\2.0.6\6f14738ec2e9dd0011e343717fa624a10f8aab64\jdom2-2.0.6.jar
+2026-04-09T21:09:28.922+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.4.0\1a09f25a160f71c267f9ebe3b229b17805c683e9\junit-jupiter-api-5.4.0.jar
+2026-04-09T21:09:28.929+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.4.0\e0b2ed8fac32ad6469d75d034e759f1969db8dda\junit-platform-commons-1.4.0.jar
+2026-04-09T21:09:28.936+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-base\17.0.7\2b79238d65ff33212eafb04acc6acbb7cd0a3300\javafx-base-17.0.7-win.jar
+2026-04-09T21:09:28.938+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-base\17.0.7\2c983af31f7a8525a7730336295e084c42e51598\javafx-base-17.0.7-mac.jar
+2026-04-09T21:09:28.940+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-base\17.0.7\5ba6d336d0e9a4134d96bb402890f5570c4562ae\javafx-base-17.0.7.jar
+2026-04-09T21:09:28.941+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-base\17.0.7\9f27959208043d012b99019a0a9d53d63bf40c56\javafx-base-17.0.7-linux.jar
+2026-04-09T21:09:28.942+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-base\17.0.7
+2026-04-09T21:09:28.945+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-controls\17.0.7\9526295ad4cbee60dd2121802eb17a57d493e4d5\javafx-controls-17.0.7-mac.jar
+2026-04-09T21:09:28.947+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-controls\17.0.7\bf1cb6a3c81e190d56fd84aeeb0fc36d44f9be70\javafx-controls-17.0.7-win.jar
+2026-04-09T21:09:28.950+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-controls\17.0.7\caeb9696d8901c66c9990ff337df884e1867d5b8\javafx-controls-17.0.7-linux.jar
+2026-04-09T21:09:28.951+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-controls\17.0.7\e5bc7891b9e2a389aeac4a5dcabf1130e852bf0c\javafx-controls-17.0.7.jar
+2026-04-09T21:09:28.952+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-controls\17.0.7
+2026-04-09T21:09:28.956+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-fxml\17.0.7\88571e5fa666c2d5bb560cc44d5b6158a7b9c8e5\javafx-fxml-17.0.7-linux.jar
+2026-04-09T21:09:28.959+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-fxml\17.0.7\a686a637faa5c7fd95be464f75124414643b6ccd\javafx-fxml-17.0.7-mac.jar
+2026-04-09T21:09:28.960+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-fxml\17.0.7\dac7ac058b9c66a8a759dbf2d0ae4557749f3063\javafx-fxml-17.0.7-win.jar
+2026-04-09T21:09:28.961+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-fxml\17.0.7
+2026-04-09T21:09:28.964+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-graphics\17.0.7\43ca0f3861f1e3a2cda4a6a7b8746bbf5bcbe754\javafx-graphics-17.0.7-win.jar
+2026-04-09T21:09:28.965+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-graphics\17.0.7\55eca64e65d90976f9d054dceb3921f4d08f4e8b\javafx-graphics-17.0.7.jar
+2026-04-09T21:09:28.968+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-graphics\17.0.7\c2029cf4a359ddb5fe0dec9d11407ea97940e06a\javafx-graphics-17.0.7-linux.jar
+2026-04-09T21:09:28.971+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-graphics\17.0.7\d5463ebc0f524d0225a6613877c381abfcd81918\javafx-graphics-17.0.7-mac.jar
+2026-04-09T21:09:28.974+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx\javafx-graphics\17.0.7
+2026-04-09T21:09:28.975+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.openjfx
+2026-04-09T21:09:28.977+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.1.1\efd9f971e91074491ea55b19f67b13470cf4fcdd\opentest4j-1.1.1.jar
+2026-04-09T21:09:28.985+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.ow2.asm\asm\9.2\81a03f76019c67362299c40e0ba13405f5467bff\asm-9.2.jar
+2026-04-09T21:09:28.992+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.ow2.asm\asm-analysis\9.2\7487dd756daf96cab9986e44b9d7bcb796a61c10\asm-analysis-9.2.jar
+2026-04-09T21:09:28.997+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.ow2.asm\asm-commons\9.2\f4d7f0fc9054386f2893b602454d48e07d4fbead\asm-commons-9.2.jar
+2026-04-09T21:09:29.001+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.ow2.asm\asm-tree\9.2\d96c99a30f5e1a19b0e609dbb19a44d8518ac01e\asm-tree-9.2.jar
+2026-04-09T21:09:29.003+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.ow2.asm
+2026-04-09T21:09:29.006+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1\org.vafer\jdependency\2.7.0\402ee1ea1c872bf10e6ca8d47bf698697e75f98e\jdependency-2.7.0.jar
+2026-04-09T21:09:29.009+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Handling VFS change REMOVED C:\code\2103\tp\.gradle-home\caches\modules-2\files-2.1
+2026-04-09T21:09:38.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:38.857+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.858+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:38.861+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire shared lock on daemon addresses registry.
+2026-04-09T21:09:38.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.862+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:38.862+0800 [WARN] [org.gradle.launcher.daemon.server.DaemonRegistryUnavailableExpirationStrategy] Daemon registry C:\code\2103\tp\.gradle-home\daemon became unreadable. Expiring daemon.
+2026-04-09T21:09:38.863+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Storing daemon stop event: after the daemon registry became unreadable
+2026-04-09T21:09:38.865+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Storing daemon stop event with timestamp 1775740178863
+2026-04-09T21:09:38.869+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:09:38.870+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.870+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:38.873+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:09:38.874+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.878+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:38.879+0800 [LIFECYCLE] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon will be stopped at the end of the build after the daemon registry became unreadable
+2026-04-09T21:09:38.879+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Marking daemon stopped due to after the daemon registry became unreadable. The daemon is running a build: false
+2026-04-09T21:09:38.880+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon has stopped.
+2026-04-09T21:09:38.880+0800 [DEBUG] [org.gradle.launcher.daemon.server.Daemon] stop() called on daemon
+2026-04-09T21:09:38.880+0800 [INFO] [org.gradle.launcher.daemon.server.Daemon] Stop requested. Daemon is removing its presence from the registry...
+2026-04-09T21:09:38.881+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Removing our presence to clients, eg. removing this address from the registry: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:09:38.881+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Removing daemon address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:09:38.885+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:09:38.886+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.889+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
+2026-04-09T21:09:38.890+0800 [DEBUG] [org.gradle.launcher.daemon.server.DaemonRegistryUpdater] Address removed from registry.
+2026-04-09T21:09:38.897+0800 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Artifact transforms cache (C:\code\2103\tp\.gradle-home\caches\transforms-3) could not run cleanup action org.gradle.cache.internal.DefaultPersistentDirectoryStore$Cleanup@2c104774
+2026-04-09T21:09:38.897+0800 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Artifact transforms cache (C:\code\2103\tp\.gradle-home\caches\transforms-3) was closed 0 times.
+2026-04-09T21:09:38.900+0800 [DEBUG] [org.gradle.internal.watch.vfs.impl.WatchingVirtualFileSystem] Closing VFS, dropping state
+2026-04-09T21:09:38.917+0800 [DEBUG] [org.gradle.internal.watch.registry.impl.DefaultFileWatcherRegistry] Finished listening to file system change events
+2026-04-09T21:09:38.918+0800 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache artifact cache (C:\code\2103\tp\.gradle-home\caches\modules-2) could not run cleanup action org.gradle.cache.internal.DefaultPersistentDirectoryStore$Cleanup@4e517165
+2026-04-09T21:09:38.920+0800 [DEBUG] [org.gradle.cache.internal.DefaultCacheAccess] Cache Generated Gradle JARs cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\generated-gradle-jars) was closed 0 times.
+2026-04-09T21:09:38.920+0800 [DEBUG] [org.gradle.cache.internal.LockOnDemandCrossProcessCacheAccess] Releasing file lock for Java compile cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\javaCompile)
+2026-04-09T21:09:38.921+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on Java compile cache (C:\code\2103\tp\.gradle-home\caches\7.4.2\javaCompile).
+2026-04-09T21:09:38.940+0800 [DEBUG] [org.gradle.cache.internal.VersionSpecificCacheCleanupAction] Processed version-specific caches at C:\code\2103\tp\.gradle-home\caches for cleanup in 0.016 secs
+Daemon vm is shutting down... The daemon has exited normally or was terminated in response to a user interrupt.
+2026-04-09T21:09:38.954+0800 [DEBUG] [org.gradle.launcher.daemon.registry.PersistentDaemonRegistry] Removing daemon address: [213bd14a-9e77-4d87-bc1c-5b7b4e19362f port:1761, addresses:[localhost/127.0.0.1]]
+2026-04-09T21:09:38.956+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Waiting to acquire exclusive lock on daemon addresses registry.
+2026-04-09T21:09:38.958+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
+2026-04-09T21:09:38.960+0800 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.

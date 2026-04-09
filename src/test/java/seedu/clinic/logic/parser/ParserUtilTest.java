@@ -31,6 +31,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
+    private static final String VALID_COMPLEX_PHONE = "1234 5678 (HP) 1111-3333 (Office)";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -120,6 +121,12 @@ public class ParserUtilTest {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
         Phone expectedPhone = new Phone(VALID_PHONE);
         assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    }
+
+    @Test
+    public void parsePhone_validComplexValue_returnsPhone() throws Exception {
+        Phone expectedPhone = new Phone(VALID_COMPLEX_PHONE);
+        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_COMPLEX_PHONE));
     }
 
     @Test

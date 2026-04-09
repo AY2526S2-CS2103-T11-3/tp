@@ -39,6 +39,16 @@ public class AddPatientCommandParserTest {
             + " p/94351253"
             + " a/123, Jurong West Ave 6, #08-111";
 
+    private static final String VALID_ARGS_WITH_FORMATTED_PHONE = " n/John Doe"
+            + " nric/S7510505C"
+            + " dob/01-01-1990"
+            + " sex/MALE"
+            + " allergy/Penicillin"
+            + " allergy/Shellfish"
+            + " e/johnd@example.com"
+            + " p/1234 5678 (HP) 1111-3333 (Office)"
+            + " a/123 Clementi Ave 3, #04-12";
+
     private final AddPatientCommandParser parser = new AddPatientCommandParser();
 
     @Test
@@ -62,6 +72,15 @@ public class AddPatientCommandParserTest {
 
         org.junit.jupiter.api.Assertions.assertEquals(Sex.MALE, patient.getSex());
         org.junit.jupiter.api.Assertions.assertTrue(patient.getAllergies().isEmpty());
+    }
+
+    @Test
+    public void parse_formattedPhone_success() throws Exception {
+        Command parsedCommand = parser.parse(VALID_ARGS_WITH_FORMATTED_PHONE);
+        Patient patient = extractPatient((AddPatientCommand) parsedCommand);
+
+        org.junit.jupiter.api.Assertions.assertEquals("1234 5678 (HP) 1111-3333 (Office)",
+                patient.getPhone().value);
     }
 
     @Test
