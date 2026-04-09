@@ -34,6 +34,7 @@ public class ParserUtilTest {
     private static final String VALID_COMPLEX_PHONE = "1234 5678 (HP) 1111-3333 (Office)";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_COMPLEX_EMAIL = "test++a@gmail.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -173,6 +174,12 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseEmail_validValueWithConsecutiveSpecialCharacters_returnsEmail() throws Exception {
+        Email expectedEmail = new Email(VALID_COMPLEX_EMAIL);
+        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_COMPLEX_EMAIL));
     }
 
     @Test
