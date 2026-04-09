@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.clinic.commons.util.ToStringBuilder;
 import seedu.clinic.model.tag.Tag;
 /**
  * Represents a Patient in the clinic.
@@ -171,5 +172,19 @@ public class Patient extends Person {
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), nric, dateOfBirth, sex, allergies);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder("Patient")
+                .add("nric", getNric())
+                .add("name", getName())
+                .add("id", getId())
+                .add("phone", getPhone())
+                .add("email", getEmail())
+                .add("address", getAddress())
+                .add("dob", getDateOfBirth())
+                .add("allergies", getAllergies())
+                .toString();
     }
 }
