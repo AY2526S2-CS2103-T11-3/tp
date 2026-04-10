@@ -55,14 +55,16 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_ID, PREFIX_DESC, PREFIX_VISIT_DATE, PREFIX_DIAGNOSED_BY);
-
-        int patientId = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_ID).get());
+        
+        int patientId = parsePositivePersonId(argMultimap.getValue(PREFIX_ID).get(),
+                AddDiagnosisCommand.MESSAGE_INVALID_PATIENT);
         String description = argMultimap.getValue(PREFIX_DESC).get().trim();
         if (description.isEmpty()) {
             throw new ParseException(AddDiagnosisCommand.MESSAGE_EMPTY_DESCRIPTION);
         }
         LocalDate visitDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_VISIT_DATE).get());
-        int diagnosedById = ParserUtil.parsePersonId(argMultimap.getValue(PREFIX_DIAGNOSED_BY).get());
+        int diagnosedById = parsePositivePersonId(argMultimap.getValue(PREFIX_DIAGNOSED_BY).get(),
+                AddDiagnosisCommand.MESSAGE_INVALID_DOCTOR);
         List<String> symptoms = argMultimap.getAllValues(PREFIX_SYMPTOM);
         if (symptoms.stream().map(String::trim).anyMatch(String::isEmpty)) {
             throw new ParseException(AddDiagnosisCommand.MESSAGE_EMPTY_SYMPTOM);
@@ -73,7 +75,7 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
         List<String> frequencies = argMultimap.getAllValues(PREFIX_FREQ);
         List<Integer> dispensedByList = new ArrayList<>();
         for (String value : argMultimap.getAllValues(PREFIX_DISPENSED_BY)) {
-            dispensedByList.add(ParserUtil.parsePersonId(value));
+            dispensedByList.add(parsePositivePersonId(value, AddDiagnosisCommand.MESSAGE_INVALID_PHARMACIST));
         }
 
         int prescriptionCount = medNames.size();
@@ -114,5 +116,22 @@ public class AddDiagnosisCommandParser implements Parser<AddDiagnosisCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Parses a diagnosis-related person ID into an integer and returns the parsed person ID.
+     * @throws ParseException If the ID is not an integer greater than 0.
+     */
+    private static int parsePositivePersonId(String rawId, String errorMessage) throws ParseException {
+        String trimmedId = rawId.trim();
+        try {
+            if (Integer.parseInt(trimmedId) <= 0) {
+                throw new ParseException(errorMessage);
+            }
+        } catch (NumberFormatException e) {
+            throw new ParseException(errorMessage);
+        }
+
+        return ParserUtil.parsePersonId(trimmedId);
     }
 }

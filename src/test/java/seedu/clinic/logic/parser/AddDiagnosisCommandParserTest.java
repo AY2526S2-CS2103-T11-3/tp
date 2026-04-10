@@ -80,4 +80,36 @@ public class AddDiagnosisCommandParserTest {
 
         assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_EMPTY_SYMPTOM);
     }
+  
+    @Test
+    public void parse_zeroPatientId_throwsFriendlyParseException() {
+        String userInput = " id/0 desc/Flu vd/2026-03-01 diagnosed/2"
+                + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4";
+
+        assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_INVALID_PATIENT);
+    }
+
+    @Test
+    public void parse_negativePatientId_throwsFriendlyParseException() {
+        String userInput = " id/-1 desc/Flu vd/2026-03-01 diagnosed/2"
+                + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4";
+
+        assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_INVALID_PATIENT);
+    }
+
+    @Test
+    public void parse_nonPositiveDoctorId_throwsFriendlyParseException() {
+        String userInput = " id/1 desc/Flu vd/2026-03-01 diagnosed/0"
+                + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4";
+
+        assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_INVALID_DOCTOR);
+    }
+
+    @Test
+    public void parse_nonPositivePharmacistId_throwsFriendlyParseException() {
+        String userInput = " id/1 desc/Flu vd/2026-03-01 diagnosed/2"
+                + " sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/-4";
+
+        assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_INVALID_PHARMACIST);
+    }
 }
