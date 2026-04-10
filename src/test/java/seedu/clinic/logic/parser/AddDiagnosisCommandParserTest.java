@@ -80,7 +80,7 @@ public class AddDiagnosisCommandParserTest {
 
         assertParseFailure(parser, userInput, AddDiagnosisCommand.MESSAGE_EMPTY_SYMPTOM);
     }
-  
+
     @Test
     public void parse_zeroPatientId_throwsFriendlyParseException() {
         String userInput = " id/0 desc/Flu vd/2026-03-01 diagnosed/2"
