@@ -65,7 +65,7 @@ public class GetHistoryCommandTest {
     }
 
     @Test
-    public void execute_matchingPatient_multipleDiagnoses_showsMostRecentFirst() {
+    public void execute_multipleDiagnoses_showsMostRecentFirst() {
         Model model = createModelWithDiagnosesOutOfOrder();
         Model expectedModel = new ModelManager(model.getClinicBook(), new UserPrefs());
 
