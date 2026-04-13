@@ -13,13 +13,9 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * Yong Rui: AI tools, including Codex and Cursor, were used to assist with development and documentation tasks, including refactoring the separate patient, pharmacist, and doctor arrays into a unified person array with role-specific behaviour, and checking affected files for consistency and correctness, which helped resolve several MVP bugs. They also supported the addition of a GitHub Actions workflow to automate PR milestone assignment from linked issues, assisted with PlantUML diagrams, cross-checked documentation against the codebase, refined test cases into valid and invalid partitions, and identified edge cases that could break commands. All suggestions were reviewed and adapted before inclusion.
 
----
-
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
-
----
 
 ## **Design**
 
@@ -161,8 +157,6 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.clinic.commons` package.
-
----
 
 ## **Implementation**
 
@@ -366,8 +360,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g., for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command is correct.
 
----
-
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -375,8 +367,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
----
 
 ## **Appendix: Requirements**
 
@@ -1015,8 +1005,6 @@ Use case ends.
 * **Next-of-Kin**: A person designated by a patient for emergency contact and care coordination.
 * **NRIC**: National Registration Identity Card number used as a unique identifier for individuals in the system.
 * **System User**: Any individual registered in ClinicBook, such as a patient, doctor, or pharmacist.
-
----
 
 ## **Appendix: Instructions for Manual Testing**
 
