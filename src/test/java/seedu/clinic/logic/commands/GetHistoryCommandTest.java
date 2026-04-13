@@ -58,8 +58,7 @@ public class GetHistoryCommandTest {
             + "  1. Hypertension (Visit date: 2024-05-20, Diagnosed by ID: 3)" + lineSep
                 + "     Symptoms: headache, dizziness" + lineSep
                 + "     Prescriptions:" + lineSep
-            + "       - Amlodipine, dosage: 5mg, frequency: once daily, prescribed by ID: N/A, "
-            + "dispensed by ID: 4" + lineSep
+            + "       - Amlodipine, dosage: 5mg, frequency: once daily, dispensed by ID: 4" + lineSep
             + "Lab/Imaging Tests: none ordered.";
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
