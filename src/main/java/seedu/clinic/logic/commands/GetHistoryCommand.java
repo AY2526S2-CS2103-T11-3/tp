@@ -135,15 +135,10 @@ public class GetHistoryCommand extends Command {
     }
 
     private String formatPrescription(Prescription prescription) {
-        String prescribedBy = prescription.getPrescribedBy() == 0
-            ? "N/A"
-            : String.valueOf(prescription.getPrescribedBy());
-
-        return String.format("%s, dosage: %s, frequency: %s, prescribed by ID: %s, dispensed by ID: %d",
+        return String.format("%s, dosage: %s, frequency: %s, dispensed by ID: %d",
                 prescription.getMedicationName(),
                 prescription.getDosage(),
                 prescription.getFrequency(),
-                prescribedBy,
                 prescription.getDispensedBy());
     }
 
