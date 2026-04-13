@@ -22,7 +22,8 @@ import seedu.clinic.model.person.Person;
  */
 public class OrderTestCommand extends Command {
 
-    public static final String COMMAND_WORD = "ordertest";
+    public static final String COMMAND_WORD = "order-test";
+    public static final String LEGACY_COMMAND_WORD = "ordertest";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Orders a lab or imaging test for a patient. "
