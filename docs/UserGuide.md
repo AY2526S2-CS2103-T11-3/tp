@@ -89,9 +89,9 @@ Shows a list of all persons in the clinic book.
 
 Format: `list`
 
-* Each card shows both the displayed row number and the person's stable `ID`.
-* Use the row number for index-based commands such as `delete`.
-* Use the stable `ID` for commands that reference a specific person record, such as `diagnosis`.
+* Each card shows both the displayed index and the person's `ID`.
+* Use the displayed index for index-based commands such as `delete`.
+* Use the person `ID` for commands that reference a specific person record, such as `diagnosis`.
 
 ### Locating persons by name, phone, or NRIC: `find`
 
@@ -134,7 +134,7 @@ Example:
 
 Adds a doctor to the clinic book.  
 * If a doctor with the same Name / Phone Number / Email is found, confirmation is needed. 
-* A doctor cannot be added if an existing pharmacist has the exact same Name, Phone Number, and Email Address.
+* A doctor cannot be added if an existing doctor has the exact same Name, Phone Number, and Email Address.
 
 Format:
 `add-doc n/NAME p/PHONE e/EMAIL`
@@ -179,7 +179,7 @@ Deletes the specified person from the clinic book.
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list, not the ID.
+* The index refers to the displayed index shown in the person list, not the ID.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -188,12 +188,12 @@ Examples:
 
 ### Adding a diagnosis : `diagnosis`
 
-Adds a diagnosis to a patient and validates the referenced doctor and pharmacist by stable person `ID`.
+Adds a diagnosis to a patient and validates the referenced doctor and pharmacist by person `ID`.
 
 Format:
 `diagnosis id/PATIENT_ID desc/DESCRIPTION vd/VISIT_DATE diagnosed/DOCTOR_ID sym/SYMPTOM... med/MEDICATION dose/DOSAGE freq/FREQUENCY dispensed/PHARMACIST_ID [med/MEDICATION dose/DOSAGE freq/FREQUENCY dispensed/PHARMACIST_ID]...`
 
-* `id/`, `diagnosed/`, and `dispensed/` use the stable person `ID` shown on each person card, not the displayed row number.
+* `id/`, `diagnosed/`, and `dispensed/` use the person `ID` shown on each person card, not the displayed index.
 * `id/` must refer to a patient, `diagnosed/` must refer to a doctor, and `dispensed/` must refer to a pharmacist.
 * `vd/` must be in `yyyy-MM-dd` format.
 * `id/`, `desc/`, `vd/`, and `diagnosed/` are required.
@@ -206,13 +206,13 @@ Example:
 
 ### Ordering a lab or imaging test : `ordertest`
 
-Orders a lab or imaging test for a patient, referencing the ordering doctor by stable person `ID`.
+Orders a lab or imaging test for a patient, referencing the ordering doctor by person `ID`.
 
 Format:
 `ordertest id/PATIENT_ID test/TEST_NAME testtype/TEST_TYPE vd/ORDER_DATE ordered/DOCTOR_ID`
 
-* `id/` must refer to a patient's stable person `ID`.
-* `ordered/` must refer to a doctor's stable person `ID`.
+* `id/` must refer to a patient's `ID`.
+* `ordered/` must refer to a doctor's `ID`.
 * `test/` is the name of the test (e.g. `Complete Blood Count`, `Chest X-Ray`).
 * `testtype/` must be either `LAB` or `IMAGING` (case-insensitive).
 * `vd/` is the date the order is placed, in `yyyy-MM-dd` format.
@@ -251,13 +251,9 @@ ClinicBook data are saved to the hard disk automatically after any command that 
 ClinicBook data are saved automatically as a JSON file `[JAR file location]/data/clinicbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, ClinicBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If your changes to the data file make its format invalid, ClinicBook will not be able to load the file and will start with an empty clinic book at the next run. A warning will be shown in the app. If you want to recover existing data, close ClinicBook and fix or restore the data file before entering any commands, as entering commands may overwrite the data file. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the ClinicBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 

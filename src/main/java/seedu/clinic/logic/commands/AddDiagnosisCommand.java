@@ -65,6 +65,7 @@ public class AddDiagnosisCommand extends Command {
     public static final String MESSAGE_MISSING_MEDICATION = "At least one medication is required.";
     public static final String MESSAGE_MISSING_MEDICATION_DETAILS =
             "Medication details (med/, dose/, freq/, dispensed/) are required.";
+    public static final String MESSAGE_FUTURE_VISIT_DATE = "Visit date cannot be later than today.";
     public static final String MESSAGE_EMPTY_DESCRIPTION =
             "Diagnosis description should not be blank.";
     public static final String MESSAGE_EMPTY_SYMPTOM =
@@ -77,7 +78,7 @@ public class AddDiagnosisCommand extends Command {
 
     /**
      * Creates an AddDiagnosisCommand to add the specified {@code Diagnosis}
-     * to the patient with the given stable person ID.
+     * to the patient with the given person ID.
      */
     public AddDiagnosisCommand(int patientId, Diagnosis diagnosis) {
         requireNonNull(diagnosis);
