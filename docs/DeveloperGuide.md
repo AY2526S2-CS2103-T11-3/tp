@@ -183,13 +183,14 @@ The sequence diagram below shows the execution flow for `find n/Alice Bob`.
 
 <img src="images/FindSequenceDiagram.png" width="800" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** This is a partial sequence diagram. For simplicity, it omits some intermediate objects and lower-level interactions within the `Model` component.</div>
+
 1. `LogicManager` forwards the raw user input to `ClinicBookParser`.
 2. `ClinicBookParser` recognises the `find` command word and delegates argument parsing to `FindCommandParser`.
-3. `FindCommandParser` tokenizes and validates the arguments, then converts the selected search criterion into a
-   `PersonMatchesFindCriteriaPredicate`.
-4. `FindCommand` stores that predicate and passes it to `Model#updateFilteredPersonList(...)` during execution.
-5. `ModelManager` applies the predicate to its internal `FilteredList<Person>`, which in turn updates the list shown
-   in the UI.
+3. `FindCommandParser` validates the selected search criterion and creates a `FindCommand` containing a predicate that
+   represents the search criteria.
+4. During execution, `FindCommand` passes that predicate to the `Model` component to update the filtered person list.
+5. Within the `Model` component, lower-level list-update details are omitted from the diagram; conceptually, the predicate is applied to the filtered person list.
 
 This design is intentionally stateful. Commands that act on the currently displayed list can be chained after
 `find` without any extra plumbing, because the filtered list becomes the shared source of truth for follow-up
@@ -216,15 +217,14 @@ to contain at least one usable criterion.
 
 #### Matching Semantics
 
-The class diagram below focuses on `PersonMatchesFindCriteriaPredicate` and the classes directly involved in storing,
-applying, and evaluating `find`'s matching state.
+The (partial) class diagram below focuses on `FindCommand`, `PersonMatchesFindCriteriaPredicate`, and the relevant
+person hierarchy. Lower-level model implementation details are omitted for simplicity.
 
 <img src="images/FindClassDiagram.png" width="760" />
 
-After parsing succeeds, `FindCommand` stores a `PersonMatchesFindCriteriaPredicate`. The predicate stores `find`'s
-matching state as `nameKeywords`, `phone`, and `nric`, with unused criteria left empty. During execution,
-`FindCommand` passes that predicate through the `Model` interface. Internally, `ModelManager` applies it to the
-`FilteredList<Person>` that backs the displayed person list.
+After parsing, `FindCommand` encapsulates a `PersonMatchesFindCriteriaPredicate` that captures the search criteria.
+The predicate determines whether each person in the list matches those criteria: name and phone checks apply to any
+person, while the NRIC criterion applies only to `Patient` instances. During execution, `FindCommand` passes the predicate to the `Model` component to update the filtered person list.
 
 The patient-only NRIC branch is the most distinctive part of the predicate:
 
