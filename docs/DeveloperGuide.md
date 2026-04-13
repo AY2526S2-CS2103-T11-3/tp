@@ -2,14 +2,15 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
-
----
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+### AI Assistance
+
+
+* Yong Rui: AI tools, including Codex and Cursor, were used to assist with development and documentation tasks, including refactoring the separate patient, pharmacist, and doctor arrays into a unified `persons` array with role-specific behaviour, and checking affected files for consistency and correctness, which helped resolve several MVP bugs. They also supported the addition of a GitHub Actions workflow to automate PR milestone assignment from linked issues, assisted with PlantUML diagrams, cross-checked documentation against the codebase, refined test cases into valid and invalid partitions, and identified edge cases that could break commands. All suggestions were reviewed and adapted before inclusion.
 
 ---
 
@@ -365,10 +366,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command is correct.
 
 _{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ---
 
@@ -1023,7 +1020,7 @@ Use case ends.
 
 ---
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -1045,6 +1042,20 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 3. _{ more test cases … }_
+
+### Finding persons
+
+Prerequisite: Start with the initial sample data from a clean launch, before running commands that add, delete, or clear
+records.
+
+1. Test case: `find n/alex lim`<br>
+   Expected: Two persons are listed, `Alex Yeoh` and `Jane Lim`.
+2. Test case: `find p/98765432`<br>
+   Expected: One person is listed, `Lee Mei`.
+3. Test case: `find nric/S1234567D`<br>
+   Expected: One patient is listed, `Alex Yeoh`.
+4. Test case: `find Alex`<br>
+   Expected: No person list update is performed. The result display shows an invalid command format message.
 
 ### Deleting a person
 
