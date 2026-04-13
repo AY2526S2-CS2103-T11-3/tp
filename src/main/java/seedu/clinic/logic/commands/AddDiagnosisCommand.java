@@ -68,7 +68,7 @@ public class AddDiagnosisCommand extends Command {
 
     /**
      * Creates an AddDiagnosisCommand to add the specified {@code Diagnosis}
-     * to the patient with the given stable person ID.
+     * to the patient with the given person ID.
      */
     public AddDiagnosisCommand(int patientId, Diagnosis diagnosis) {
         requireNonNull(diagnosis);
