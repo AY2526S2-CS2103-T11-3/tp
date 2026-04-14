@@ -357,9 +357,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | System Administrator | Register a new pharmacist                                                                                  | They can access the clinic system with the appropriate permissions. |
 | `* * *` | Registration staff   | Search for patients by name, NRIC, or phone number                                                         | I can retrieve records quickly                                      |
 
-### Use cases
+### Current use cases
 
-(For all use cases below, the **System** is the `ClinicBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all current use cases below, the **System** is the `ClinicBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC1 - Add New Patient Record**
 
@@ -425,7 +425,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Actor:** Doctor
 
-**Preconditions:** Doctor is logged in; UC2 returns a valid patient record
+**Preconditions:** UC2 returns a valid patient record
 
 **MSS**
 
@@ -456,8 +456,6 @@ Use case ends.
 **Use case: UC4 - Register a new doctor**
 
 **Actor:** System Administrator
-
-**Preconditions:** System Administrator is logged in
 
 **MSS**
 
@@ -496,8 +494,6 @@ Use case ends.
 
 **Actor:** Registration Staff
 
-**Preconditions:** Registration Staff is logged in.
-
 **MSS**
 
 1. Registration Staff requests to search for a patient.
@@ -534,8 +530,6 @@ Use case ends.
 
 **Actor:** System Administrator
 
-**Preconditions:** System Administrator is logged in.
-
 **MSS**
 
 1. System Administrator requests to register a new pharmacist.
@@ -569,6 +563,10 @@ Use case ends.
   * *a1. ClinicBook requests confirmation for cancellation.
   * *a2. System Administrator confirms.
     Use case ends.
+
+### Future use cases
+
+(The following use cases describe requirements intended for future iterations. They are not implemented in the current version.)
 
 **Use case: UC7 - Add Remark to Existing Patient**
 
