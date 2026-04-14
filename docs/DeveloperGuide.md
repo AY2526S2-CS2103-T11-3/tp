@@ -346,13 +346,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | Registration staff   | Search for patients by name, NRIC, or phone number                                                           | I can retrieve records quickly                                                              |
 | `*`     | System Administrator | Import a patient medical history from an external clinic after verification                                  | The patient's records are complete and up-to-date                                           |
 
-## MVP User Stories
+### MVP User Stories
 
 | Priority  | As a…               | I can…                                                                                                    | So that…                                                           |
 | --------- | -------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `* * *` | Doctor               | Record an existing patient's symptoms, issue a diagnosis and generate prescriptions with specified dosages | The patient receives accurate and timely treatment                  |
 | `* * *` | Doctor / Pharmacist  | Retrieve an existing patient's medical history                                                             | We can make informed, clinical diagnosis                            |
-| `* * *` | System Administrator | Purge a patient's record based on data retention policy                                                    | We maintain only the data that is required to operate compliantly   |
 | `* * *` | System Administrator | Register a new patient                                                                                     | The patient can be registered in the system and receive care        |
 | `* * *` | System Administrator | Register a new doctor                                                                                      | They can access the clinic system with the appropriate permissions. |
 | `* * *` | System Administrator | Register a new pharmacist                                                                                  | They can access the clinic system with the appropriate permissions. |
@@ -430,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Doctor `<u>`gets a patient's medical history (UC2)`</u>`
+1. Doctor <u>gets a patient's medical history (UC2)</u>
 2. Doctor requests to create a new diagnosis
 3. ClinicBook requests for diagnosis details
 4. Doctor enters diagnosis, prescription details
@@ -443,14 +442,16 @@ Use case ends.
 **Extensions**
 
 * 4a. The diagnosis field is empty
-  4a1. ClinicBook requests for a diagnosis and prescription
-  4a2. Doctor enters data for the missing fields
-  Steps 4a1 - 4a2 are repeated until the missing fields are filled
-  Use case resumes at step 5
+
+  * 4a1. ClinicBook requests for a diagnosis and prescription
+  * 4a2. Doctor enters data for the missing fields
+  * Steps 4a1 - 4a2 are repeated until the missing fields are filled
+  * Use case resumes at step 5
 * *a. At any time, doctor chooses to cancel the diagnosis logging
-  *a1. ClinicBook requests to confirm cancellation.
-  *a2. Doctor confirms
-  Use case ends.
+
+  * *a1. ClinicBook requests to confirm cancellation.
+  * *a2. Doctor confirms
+  * Use case ends.
 
 **Use case: UC4 - Register a new doctor**
 
@@ -471,21 +472,25 @@ Use case ends.
 **Extensions**
 
 * 3a. At least one of the fields (name, NRIC, contact number) are empty
-  3a1. ClinicBook requests for values for these fields
-  3a2. System Administrator enters data for the missing fields
-  Steps 3a1 - 3a2 are repeated until the missing fields are filled
-  Use case resumes at step 4.
+
+  * 3a1. ClinicBook requests for values for these fields
+  * 3a2. System Administrator enters data for the missing fields
+  * Steps 3a1 - 3a2 are repeated until the missing fields are filled
+  * Use case resumes at step 4.
 * 3b. ClinicBook finds a duplicate doctor with the same NRIC
-  3b1. ClinicBook shows the duplicate record
-  Use case ends.
+
+  * 3b1. ClinicBook shows the duplicate record
+  * Use case ends.
 * 3c. System Administrator enters invalid input.
-* 3c1. ClinicBook shows an error message indicating the correct input format.
-* 3c2. System Administrator re-enters the particulars.
-  Use case resumes at step 4.
+
+  * 3c1. ClinicBook shows an error message indicating the correct input format.
+  * 3c2. System Administrator re-enters the particulars.
+  * Use case resumes at step 4.
 * *a. At any time, System Administrator chooses to cancel the doctor registration
-  *a1. ClinicBook requests to confirm cancellation.
-  *a2. System Administrator confirms
-  Use case ends.
+
+  * *a1. ClinicBook requests to confirm cancellation.
+  * *a2. System Administrator confirms
+  * Use case ends.
 
 **Use case: UC5 - Search for Patient by Name, NRIC, or Phone Number**
 
@@ -926,8 +931,6 @@ Use case ends.
 * **Next-of-Kin**: A person designated by a patient for emergency contact and care coordination.
 * **NRIC**: National Registration Identity Card number used as a unique identifier for individuals in the system.
 * **System User**: Any individual registered in ClinicBook, such as a patient, doctor, or pharmacist.
-
-## **Appendix: Instructions for Manual Testing**
 
 ## **Appendix: Effort**
 
