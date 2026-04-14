@@ -268,12 +268,13 @@ public class AddPatientCommandParserTest {
                 + " nric/S9012345I"
                 + " dob/1990-01-01"
                 + " sex/MALE"
-                + " allergy/Penicillin all/Shellfish"
+                                + " allergy/Penicillin al/Shellfish"
                 + " e/johnd@example.com"
                 + " p/91234567"
                 + " a/123 Clementi Ave 3, #04-12";
 
-        assertParseFailure(parser, mistypedAllergyPrefix, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, mistypedAllergyPrefix,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
     }
 
     @Test
