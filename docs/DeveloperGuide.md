@@ -2,7 +2,6 @@
 layout: page
 title: Developer Guide
 ---
-
 ## **Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
@@ -10,11 +9,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 ### AI Assistance
 
 * Yat Long: AI tools, including Deepseek and Codex, were used to assist with the architecture design and development. This includes making the design pattern more aligned with OOP standard so that code can be reused. They also provide support in building PlantUML diagrams. All suggestion are reviewed before implementing.
-
 * Yong Rui: AI tools, including Codex and Cursor, were used to assist with development and documentation tasks, including refactoring the separate patient, pharmacist, and doctor arrays into a unified person array with role-specific behaviour, and checking affected files for consistency and correctness, which helped resolve several MVP bugs. They also supported the addition of a GitHub Actions workflow to automate PR milestone assignment from linked issues, assisted with PlantUML diagrams, cross-checked documentation against the codebase, refined test cases into valid and invalid partitions, and identified edge cases that could break commands. All suggestions were reviewed and adapted before inclusion.
-
 * Donavan: AI tools (Claude and Copilot) were used to assist with development, bug findings, provide insights on areas of enhancement during Pull Requests reviews. All suggestions were reviewed and adapted before inclusion.
-
 * Trevor: AI tools, including ChatGPT and Codex, were used to support various aspects of development and test creation. These tools also assisted with smaller tasks, such as locating relevant sections of code and clarifying programming concepts. All suggestions were reviewed and adapted before inclusion.
 
 ## **Setting up, getting started**
@@ -106,7 +102,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to a `ClinicBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses, e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g., to delete a person).<br>
+3. The command can communicate with the `Model` when it is executed (e.g., to delete a person).`<br>`
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
@@ -933,14 +929,24 @@ Use case ends.
 
 ClinicBook required a higher level of effort compared to AB3. While AB3 manages a single main entity type, ClinicBook manages multiple role-specific person types: patients, doctors, and pharmacists. This increased complexity across the model, commands, validation, storage, UI, and test coverage, as many features needed to preserve shared `Person` behaviour while enforcing role-specific constraints.
 
-The main implementation challenge was redesigning AB3's contact-management workflow into a clinic workflow. Patient records required additional medical data such as NRIC, date of birth, sex, allergies, diagnoses, prescriptions, and lab or imaging test orders. 
-Clinical commands such as `diagnosis`, `order-test`, and `get-history` also required validation across different records. 
+The main implementation challenge was redesigning AB3's contact-management workflow into a clinic workflow. Patient records required additional medical data such as NRIC, date of birth, sex, allergies, diagnoses, prescriptions, and lab or imaging test orders.
+Clinical commands such as `diagnosis`, `order-test`, and `get-history` also required validation across different records.
 For example, the app had to ensure that a diagnosis targets a patient, is diagnosed by a doctor,
 and may include prescriptions dispensed by pharmacists. These requirements led to more complex parsing, model operations, and error handling compared to AB3's original name-based contact commands.
 
 A significant amount of effort was saved by reusing AB3 as the project base. AB3 provided the initial JavaFX UI structure, command parsing architecture, JSON storage approach, Gradle setup, testing framework, and documentation structure. This reduced the effort required for general application infrastructure, allowing the team to focus on clinic-specific functionality. The team's adaptation work is reflected especially in the person subtype model, role-specific add commands, diagnosis and prescription handling, lab/imaging test ordering, subtype-aware JSON adapters, and command parsers for clinic workflows.
 
 Despite starting from AB3, ClinicBook achieved a broader domain model and a more integrated workflow. The final product supports registering patients, doctors, and pharmacists, searching by name, phone, or NRIC, recording diagnoses and prescriptions, ordering lab or imaging tests, and retrieving patient history. These features required coordinated changes across the Logic, Model, Storage, UI, testing, and documentation components.
+
+### Planned Enhancements
+
+1. **Add login and multi-role support:** Due to `Constraint-Single-User`, a login feature for `Patient`, `Doctor`, and `Pharmacist` roles was not implemented. As such, NFR 9 (role-based access) is deferred to a future version. Additionally, the current app allows creating a `Doctor` and a `Pharmacist` with exactly the same name, phone number, and email address, resulting in two staff records with identical identity details under different roles. This makes staff records ambiguous and increases the risk of confusing which staff member is being referenced in later workflows (e.g. diagnosis, dispensing). A future version should enforce a cross-role uniqueness constraint on staff contact details, or at minimum present an explicit warning before allowing such records to be created.
+
+2. **Add shorter command aliases:** Common commands such as `add-patient`, `add-doc`, and `add-pharmacist` are verbose for frequent use. A future version should introduce shorter aliases (e.g. `ap`, `ad`, `aph`) so that power users can enter commands more efficiently without needing to type the full command word.
+
+3. **Extend `delete` to support deletion by stable ID:** The current `delete` command operates on the displayed list index (e.g. `delete 3`), which changes as the list is filtered or reordered. This promotes confusion between the display index and the stable internal ID. A future version should support a `delete id/ID` syntax (e.g. `delete id/12`) so that records can be deleted unambiguously by their stable identifier regardless of the current list view.
+
+4. **Prevent duplicate diagnosis entries:** The app currently allows the exact same diagnosis record (identical description, visit date, symptoms, medication, dosage, frequency, and dispense quantity) to be added repeatedly for the same patient, with all copies appearing in the patient's medical history. Since diagnosis records form part of the permanent medical history, accidental duplication clutters the record and may cause clinical confusion. A future version should detect exact duplicate diagnosis entries and either reject them outright or require explicit confirmation before recording a second identical entry.
 
 ---
 
@@ -962,6 +968,7 @@ On a fresh sample-data launch, the IDs are typically:
 * `4` → Lee Mei (pharmacist)
 
 If your local data differs, use the `ID` shown on each person card instead of the example IDs below.
+
 </div>
 
 ### Launch and shutdown
@@ -969,12 +976,12 @@ If your local data differs, use the `ID` shown on each person card instead of th
 1. Initial launch
 
    1. Download the jar file and copy it into an empty folder.
-   2. Double-click the jar file. If double-clicking does not work, open a command terminal, `cd` into the folder containing the jar file, and run `java -jar JAR_FILE_NAME.jar`, replacing `JAR_FILE_NAME.jar` with the downloaded jar file name.<br>
+   2. Double-click the jar file. If double-clicking does not work, open a command terminal, `cd` into the folder containing the jar file, and run `java -jar JAR_FILE_NAME.jar`, replacing `JAR_FILE_NAME.jar` with the downloaded jar file name.`<br>`
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-   2. Re-launch the app using the same method used for the initial launch.<br>
+   2. Re-launch the app using the same method used for the initial launch.`<br>`
       Expected: The most recent window size and location is retained.
 
 ### Finding persons
@@ -982,13 +989,13 @@ If your local data differs, use the `ID` shown on each person card instead of th
 Prerequisite: Start with the initial sample data from a clean launch, before running commands that add, delete, or clear
 records.
 
-1. Test case: `find n/alex lim`<br>
+1. Test case: `find n/alex lim<br>`
    Expected: Two persons are listed, `Alex Yeoh` and `Jane Lim`.
-2. Test case: `find p/98765432`<br>
+2. Test case: `find p/98765432<br>`
    Expected: One person is listed, `Lee Mei`.
-3. Test case: `find nric/S1234567D`<br>
+3. Test case: `find nric/S1234567D<br>`
    Expected: One patient is listed, `Alex Yeoh`.
-4. Test case: `find Alex`<br>
+4. Test case: `find Alex<br>`
    Expected: No person list update is performed. The result display shows an invalid command format message.
 
 ### Deleting a person
@@ -996,11 +1003,11 @@ records.
 1. Deleting a person while all persons are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   2. Test case: `delete 1`<br>
+   2. Test case: `delete 1<br>`
       Expected: First contact is deleted from the list. Details of the deleted contact are shown in the status message. Timestamp in the status bar is updated.
-   3. Test case: `delete 0`<br>
+   3. Test case: `delete 0<br>`
       Expected: No person is deleted. Error details are shown in the status message. Status bar remains the same.
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size).`<br>`
       Expected: Similar to the previous test case.
 
 ### Adding a Doctor
@@ -1015,11 +1022,11 @@ records.
 1. Ordering a test for an existing patient
 
    1. Prerequisite: Start from a clean launch with the default sample data. On a fresh data file, `Alex Yeoh` has ID `1` and `Tan Wei Ming` has ID `2`. If your IDs differ, adjust the commands accordingly.
-   2. Test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/2`<br>
+   2. Test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/2<br>`
       Expected: A success message is shown for the new lab/imaging test order.
-   3. Test case: `order-test id/1 test/Complete Blood Count testtype/LAB vd/2026-04-09 ordered/2`<br>
+   3. Test case: `order-test id/1 test/Complete Blood Count testtype/LAB vd/2026-04-09 ordered/2<br>`
       Expected: A success message is shown and the second test is appended to the same patient record.
-   4. Invalid test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/999`<br>
+   4. Invalid test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/999<br>`
       Expected: No test is added. The result display shows that the doctor ID is invalid.
 
 ### Retrieving a patient's medical history
@@ -1027,13 +1034,13 @@ records.
 1. Viewing history after adding a diagnosis and ordered test
 
    1. Prerequisite: Start from a clean launch with the default sample data. On a fresh data file, `Alex Yeoh` has ID `1`, `Tan Wei Ming` has ID `2`, and `Lee Mei` has ID `4`. If your IDs differ, adjust the commands accordingly.
-   2. Test case: `diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever sym/cough med/Paracetamol dose/500mg freq/3 times daily dispensed/4`<br>
+   2. Test case: `diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever sym/cough med/Paracetamol dose/500mg freq/3 times daily dispensed/4<br>`
       Expected: A success message is shown for the diagnosis.
-   3. Test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/2`<br>
+   3. Test case: `order-test id/1 test/Chest X-Ray testtype/IMAGING vd/2026-04-08 ordered/2<br>`
       Expected: A success message is shown for the ordered test.
-   4. Test case: `get-history nric/S1234567D`<br>
+   4. Test case: `get-history nric/S1234567D<br>`
       Expected: The result display shows `Alex Yeoh`'s medical history, including the diagnosis, prescription, and the ordered imaging test.
-   5. Invalid test case: `get-history nric/T0000000A`<br>
+   5. Invalid test case: `get-history nric/T0000000A<br>`
       Expected: The result display shows that no patient was found for the supplied NRIC.
 
 ### Adding a Diagnosis
@@ -1041,20 +1048,20 @@ records.
 1. Adding a diagnosis with valid patient, doctor, and pharmacist IDs
 
    1. Prerequisite: Start from a clean launch with the sample data. Patient ID `1`, doctor ID `2`, and pharmacist ID `4` are present.
-   2. Test case: `diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever sym/cough med/Paracetamol dose/500mg freq/3 times daily dispensed/4`<br>
+   2. Test case: `diagnosis id/1 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever sym/cough med/Paracetamol dose/500mg freq/3 times daily dispensed/4<br>`
       Expected: A success message is shown for the new diagnosis.
 2. Adding a diagnosis with a missing description
 
    1. Prerequisite: Start from a clean launch with the sample data. Patient ID `1`, doctor ID `2`, and pharmacist ID `4` are present.
-   2. Test case: `diagnosis id/1 vd/2026-03-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4`<br>
+   2. Test case: `diagnosis id/1 vd/2026-03-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4<br>`
       Expected: No diagnosis is added. The result display shows that the diagnosis description is required.
 3. Adding a diagnosis with an invalid patient ID
 
    1. Prerequisite: Start from a clean launch with the sample data. Patient ID `1`, doctor ID `2`, and pharmacist ID `4` are present.
-   2. Test case: `diagnosis id/0 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4`<br>
+   2. Test case: `diagnosis id/0 desc/Flu vd/2026-03-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4<br>`
       Expected: No diagnosis is added. The result display shows that the patient ID provided is invalid.
 4. Adding a diagnosis with a future visit date
 
    1. Prerequisite: Start from a clean launch with the sample data. Patient ID `1`, doctor ID `2`, and pharmacist ID `4` are present.
-   2. Test case: `diagnosis id/1 desc/Flu vd/2099-01-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4`<br>
+   2. Test case: `diagnosis id/1 desc/Flu vd/2099-01-01 diagnosed/2 sym/fever med/Paracetamol dose/500mg freq/3 times daily dispensed/4<br>`
       Expected: No diagnosis is added. The result display shows that the visit date cannot be later than today.
