@@ -88,7 +88,6 @@ public class Prescription {
                 .add("medicationName", medicationName)
                 .add("dosage", dosage)
                 .add("frequency", frequency)
-                .add("prescribedBy", prescribedBy)
                 .add("dispensedBy", dispensedBy)
                 .toString();
     }
