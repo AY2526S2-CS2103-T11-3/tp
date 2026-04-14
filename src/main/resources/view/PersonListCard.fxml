@@ -27,13 +27,15 @@
         </Label>
         <Label fx:id="role" styleClass="cell_big_label" text="\$role" />
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Region HBox.hgrow="ALWAYS" />
         <Label fx:id="personIdLabel" styleClass="cell_small_label" text="(ID: 1)">
           <minWidth>
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="sex" />
+      <FlowPane fx:id="allergies" />
       <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
@@ -41,4 +43,3 @@
     </VBox>
   </GridPane>
 </HBox>
-

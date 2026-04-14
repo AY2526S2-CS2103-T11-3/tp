@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import seedu.clinic.model.person.Patient;
 import seedu.clinic.model.person.Person;
@@ -47,7 +46,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane allergies;
+    @FXML
+    private FlowPane sex;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
@@ -60,26 +61,31 @@ public class PersonCard extends UiPart<Region> {
         personIdLabel.setText("(ID: " + person.getId() + ")");
         role.setText(person.getRole());
         name.setText(person.getName().fullName);
-        allowWrapping(name);
-        HBox.setHgrow(name, Priority.ALWAYS);
+
+        name.setWrapText(true);
+        name.setMinWidth(0);
         keepFullyVisible(role);
-        if (person instanceof Patient) {
-            nric.setText("NRIC: " + ((Patient) person).getNric().value);
+        keepFullyVisible(personIdLabel);
+        if (person instanceof Patient patient) {
+            nric.setText("NRIC: " + patient.getNric().value);
+            address.setText(person.getAddress().value);
+            patient.getAllergies().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> allergies.getChildren().add(new Label(tag.tagName)));
+            sex.getChildren().add(new Label(patient.getSex().getDisplayName()));
         } else {
             nric.setManaged(false);
             nric.setVisible(false);
+            address.setManaged(false);
+            address.setVisible(false);
+            sex.setManaged(false);
+            sex.setVisible(false);
         }
         phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        role.setText(person.getRole());
         allowWrapping(address);
         allowWrapping(email);
-
-        if (person instanceof Patient patient) {
-            patient.getAllergies().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        }
     }
 
     private static void allowWrapping(Label label) {
