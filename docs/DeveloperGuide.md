@@ -466,15 +466,12 @@ Use case ends.
 
 **Extensions**
 
-* 3a. At least one of the fields (name, NRIC, contact number) are empty
+* 3a. At least one of the fields (name, phone number, email) are empty
   3a1. ClinicBook requests for values for these fields
   3a2. System Administrator enters data for the missing fields
   Steps 3a1 - 3a2 are repeated until the missing fields are filled
   Use case resumes at step 4.
-* 3b. ClinicBook finds a duplicate doctor with the same NRIC
-  3b1. ClinicBook shows the duplicate record
-  Use case ends.
-* 3c. System Administrator enters invalid input.
+* 3b. System Administrator enters invalid input.
 * 3c1. ClinicBook shows an error message indicating the correct input format.
 * 3c2. System Administrator re-enters the particulars.
   Use case resumes at step 4.
@@ -540,17 +537,13 @@ Use case ends.
 
 **Extensions**
 
-* 3a. At least one of the fields (name, NRIC, contact number) are empty.
+* 3a. At least one of the fields (name, phone number, email) are empty.
 
   * 3a1. ClinicBook shows an error message indicating the missing fields.
   * 3a2. System Administrator enters the missing information.
     Steps 3a1–3a2 are repeated until all compulsory fields are provided.
     Use case resumes at step 4.
-* 3b. ClinicBook detects a duplicate pharmacist record with the same NRIC.
-
-  * 3b1. ClinicBook shows the potential duplicate record.
-    Use case ends.
-* 3c. System Administrator enters invalid input.
+* 3b. System Administrator enters invalid input.
 
   * 3c1. ClinicBook shows an error message indicating the correct input format.
   * 3c2. System Administrator re-enters the particulars.
@@ -944,7 +937,7 @@ Despite starting from AB3, ClinicBook achieved a broader domain model and a more
 
 2. **Add shorter command aliases:** Common commands such as `add-patient`, `add-doc`, and `add-pharmacist` are verbose for frequent use. A future version should introduce shorter aliases (e.g. `ap`, `ad`, `aph`) so that power users can enter commands more efficiently without needing to type the full command word.
 
-3. **Extend `delete` to support deletion by stable ID:** The current `delete` command operates on the displayed list index (e.g. `delete 3`), which changes as the list is filtered or reordered. This promotes confusion between the display index and the stable internal ID. A future version should support a `delete id/ID` syntax (e.g. `delete id/12`) so that records can be deleted unambiguously by their stable identifier regardless of the current list view.
+3. **Extend `delete` to support deletion by stable ID:** The current `delete` command operates on the displayed list index (e.g. `delete 3`), which changes as the list is filtered or reordered. This promotes confusion between ![1776144853134](image/DeveloperGuide/1776144853134.png)the display index and the stable internal ID. A future version should support a `delete id/ID` syntax (e.g. `delete id/12`) so that records can be deleted unambiguously by their stable identifier regardless of the current list view.
 
 4. **Prevent duplicate diagnosis entries:** The app currently allows the exact same diagnosis record (identical description, visit date, symptoms, medication, dosage, frequency, and dispense quantity) to be added repeatedly for the same patient, with all copies appearing in the patient's medical history. Since diagnosis records form part of the permanent medical history, accidental duplication clutters the record and may cause clinical confusion. A future version should detect exact duplicate diagnosis entries and either reject them outright or require explicit confirmation before recording a second identical entry.
 
