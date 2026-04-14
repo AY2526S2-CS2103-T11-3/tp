@@ -122,13 +122,13 @@ Format:
 `add-patient n/NAME nric/NRIC dob/DOB sex/SEX [allergy/ALLERGY]... e/EMAIL p/PHONE a/ADDRESS`
 
 * `n/`, `nric/`, `dob/`, `sex/`, `e/`, `p/`, and `a/` are required.
-* `dob/` must be in `dd-MM-yyyy` format.
+* `dob/` must be in `yyyy-MM-dd` format (e.g. `1990-01-31`).
 * `sex/` must be one of `MALE`, `FEMALE`, or `INTERSEX` (case-insensitive).
 * `nric/` must be a valid NRIC and must be unique among patient records.
 * `allergy/` is optional and can be repeated.
 
 Example:
-`add-patient n/John Doe nric/S1234567D dob/01-01-1990 sex/MALE allergy/Penicillin allergy/Shellfish e/johnd@example.com p/91234567 a/123 Clementi Ave 3, #04-12`
+`add-patient n/John Doe nric/S1234567D dob/1990-01-01 sex/MALE allergy/Penicillin allergy/Shellfish e/johnd@example.com p/91234567 a/123 Clementi Ave 3, #04-12`
 
 ### Adding a doctor : `add-doctor`
 
@@ -275,7 +275,7 @@ Furthermore, certain edits can cause the ClinicBook to behave in unexpected ways
 
 Action | Format, Examples
 --------|------------------
-**Add Patient** | `add-patient n/NAME nric/NRIC dob/DOB sex/SEX [allergy/ALLERGY]... e/EMAIL p/PHONE a/ADDRESS`<br> e.g., `add-patient n/John Doe nric/S1234567D dob/01-01-1990 sex/MALE allergy/Penicillin e/johnd@example.com p/91234567 a/123 Clementi Ave 3, #04-12`
+**Add Patient** | `add-patient n/NAME nric/NRIC dob/DOB sex/SEX [allergy/ALLERGY]... e/EMAIL p/PHONE a/ADDRESS`<br> e.g., `add-patient n/John Doe nric/S1234567D dob/1990-01-01 sex/MALE allergy/Penicillin e/johnd@example.com p/91234567 a/123 Clementi Ave 3, #04-12`
 **Add Doctor** | `add-doctor n/NAME p/PHONE e/EMAIL`<br> e.g., `add-doctor n/Tan Wei Ming p/87654321 e/drtan@example.com`
 **Add Pharmacist** | `add-pharmacist n/NAME e/EMAIL p/PHONE`<br> e.g., `add-pharmacist n/Lee Mei e/leemei@example.com p/98765432`
 **Clear** | `clear`
