@@ -15,6 +15,8 @@ This project is based on the AddressBook-Level3 project created by the [SE-EDU i
 
 * Donavan: AI tools (Claude and Copilot) were used to assist with development, bug findings, provide insights on areas of enhancement during Pull Requests reviews. All suggestions were reviewed and adapted before inclusion.
 
+* Trevor: AI tools, including ChatGPT and Codex, were used to support various aspects of development and test creation. These tools also assisted with smaller tasks, such as locating relevant sections of code and clarifying programming concepts. All suggestions were reviewed and adapted before inclusion.
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
